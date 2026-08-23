@@ -1,0 +1,11 @@
+# SPA fallback.
+#
+# Every route on this site — /projects, /services, /systems, /contact — is
+# rendered by React Router in the browser. Nothing matching them exists on
+# disk, so a reader who opens one directly, refreshes on one, or follows a
+# shared link would otherwise get Netlify's 404 instead of the page.
+#
+# Netlify serves real files first, so this never shadows /assets or the
+# favicon; it only catches paths that would have 404'd. The 200 keeps the URL
+# in the bar so the router can read it and render the right route.
+/*    /index.html    200

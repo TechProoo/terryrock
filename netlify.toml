@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# Netlify build configuration.
+#
+# The repository root holds no package.json — the app lives in frontend/ — so
+# `base` moves Netlify into that directory first. Everything else in this file
+# is then relative to it, which is why `publish` reads "dist" and not
+# "frontend/dist".
+#
+# The SPA fallback is not here: it lives in frontend/public/_redirects so that
+# it is copied into the build output and travels with it. That way a manual
+# deploy of the dist folder still routes correctly, where a rule written only
+# in this file would be left behind.
+# ---------------------------------------------------------------------------
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Vite 8 needs ^20.19 || >=22.12. Pinned so a change to Netlify's default
+  # cannot move the build underneath us.
+  NODE_VERSION = "22"
+
+# ---------------------------------------------------------------------------
+# Caching
+#
+# Vite fingerprints everything under /assets, so those files can be cached
+# forever — a new build produces new filenames. index.html must never be
+# cached, or a returning reader keeps loading the previous build's asset names.
+# ---------------------------------------------------------------------------
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
