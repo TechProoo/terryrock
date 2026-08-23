@@ -1,8 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import MetaStrip from '../components/MetaStrip';
 import Contact from '../components/Contact';
+import ScrubGallery from '../components/ScrubGallery';
+import SectorCarousel from '../components/SectorCarousel';
 import { IconArrow, IconChevron, IconInfo } from '../components/Icons';
 import { projectsPage } from '../data/projectsPage';
 import useReveal from '../hooks/useReveal';
@@ -27,20 +29,22 @@ export default function ProjectsPage() {
   } = projectsPage;
 
   const [filter, setFilter] = useState<string>(ALL);
-  /* Which project inside the current selection the stage is showing. */
-  const [active, setActive] = useState(0);
+
+  /* Which project the stage is showing, tagged with the selection it belongs
+     to: reading it back through that tag means a new selection always opens on
+     its first project, with no effect needed to reset the index. */
+  const [pos, setPos] = useState({ filter: ALL, index: 0 });
+  const active = pos.filter === filter ? pos.index : 0;
+  const setActive = (index: number) => setPos({ filter, index });
 
   const shown = useMemo(
     () => (filter === ALL ? items : items.filter((item) => item.category === filter)),
     [filter, items],
   );
 
-  /* A new selection always opens on its first project. */
-  useEffect(() => setActive(0), [filter]);
-
   const count = shown.length;
   const current = shown[Math.min(active, count - 1)] ?? items[0];
-  const step = (delta: number) => setActive((i) => (i + delta + count) % count);
+  const step = (delta: number) => setActive((active + delta + count) % count);
   const peek = (offset: number) => shown[(active + offset) % count] ?? items[0];
 
   /* The stage's pill row is a sliding window, so a 24-project selection shows
@@ -292,6 +296,10 @@ export default function ProjectsPage() {
             </div>
           </div>
         </section>
+
+        <ScrubGallery />
+
+        <SectorCarousel />
 
         <div className="pp__back shell">
           <Link className="pill pill--outline" to="/">

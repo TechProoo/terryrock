@@ -96,6 +96,19 @@
   text-wrap: pretty;
 }
 
+/* SplitText wraps each line in a clipping box (`-mask`) that the line itself is
+   scrubbed up out of. The clip follows the em box, which crops descenders at the
+   tighter display line-height — the padding buys the box room to draw them and
+   the negative margin hands that room straight back to the layout. */
+.svc__line-mask {
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+.svc__line {
+  will-change: transform;
+}
+
 /* -- Workshop equipment ---------------------------------------------------- */
 
 .svc__kit {

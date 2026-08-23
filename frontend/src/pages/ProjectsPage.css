@@ -851,19 +851,35 @@
 /* -- Responsive ------------------------------------------------------------ */
 
 @media (max-width: 1080px) {
-  /* Stage first at full width, the two rails side by side beneath it. */
+  /* Stage first at full width, the two rails side by side beneath it. Each
+     rail takes its natural height here rather than stretching to match, so the
+     photographs keep a sane shape instead of running tall. */
   .pb__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     min-height: 0;
+    align-items: start;
   }
 
   .pb__stage {
+    order: -1;
     grid-column: 1 / -1;
     min-height: clamp(380px, 44vw, 460px);
   }
 
   .pb__stageFoot {
     flex-wrap: wrap;
+  }
+
+  .pb__railFrame {
+    flex: none;
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .pb__explore {
+    flex: none;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
   }
 
   .pp__cards {
