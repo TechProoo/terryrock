@@ -39,6 +39,15 @@ export const brand = {
 
 /* `to` values are router paths. A leading "/#id" navigates home and then scrolls
    to that section, so the nav works identically from any route. */
+/* Shown on the transition curtain while a route is being entered. Keyed by
+   pathname so an unknown route falls back to the company name. */
+export const routeLabels: Record<string, string> = {
+  '/': 'Thermal & Mechanical',
+  '/projects': 'Executed Projects',
+  '/systems': 'Mechanical Systems',
+  '/contact': "Let's build together",
+};
+
 export const nav = {
   left: [
     { label: 'Contacts', to: '/contact' },

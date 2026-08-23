@@ -1,0 +1,107 @@
+/* ---------------------------------------------------------------------------
+   Route curtain. The columns start covering the viewport — that is the first
+   thing painted on arrival, so there is never a flash of an unstyled page —
+   and GSAP takes them away. Everything below is resting state only.
+   --------------------------------------------------------------------------- */
+
+.pt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  /* Only blocks input while a transition is actually running. */
+  pointer-events: none;
+}
+
+.pt__cols {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.pt__col {
+  /* A shade apart, so the pass reads as slats rather than one flat panel. */
+  background: var(--ink);
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.035);
+  transform-origin: 50% 0%;
+}
+
+.pt__col:nth-child(even) {
+  background: #0d0d0f;
+}
+
+/* -- The plate ------------------------------------------------------------- */
+
+.pt__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 22px);
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+.pt__mark {
+  opacity: 0.94;
+}
+
+.pt__rule {
+  display: block;
+  width: clamp(46px, 6vw, 84px);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(203, 171, 109, 0) 0%,
+    var(--sand) 50%,
+    rgba(203, 171, 109, 0) 100%
+  );
+}
+
+.pt__name {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.3vw, 18px);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  text-indent: 0.24em; /* balances the trailing letter-space */
+}
+
+/* A held breath around the plate, so it sits in depth rather than on a flat
+   black rectangle. */
+.pt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    68% 52% at 50% 50%,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 68%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .pt__cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Two columns of the six are never rendered at this width; hiding the last
+     two keeps the grid honest rather than squeezing six into four tracks. */
+  .pt__col:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .pt__cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pt__col:nth-child(n + 4) {
+    display: none;
+  }
+}
