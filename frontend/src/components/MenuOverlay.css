@@ -1,0 +1,289 @@
+/* ---------------------------------------------------------------------------
+   Overlay menu. A sheet that pulls down over the page, carrying every route
+   and the ways of reaching the office. GSAP owns the open and close; CSS
+   describes the resting state and what the sheet is made of.
+   --------------------------------------------------------------------------- */
+
+.mn {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  /* GSAP writes both of these; these are the closed state before it runs. */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mn__sheet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink);
+  /* No transform here on purpose. GSAP resolves an existing CSS translate into
+     its own `y` in pixels and then stacks `yPercent` on top of it, which leaves
+     the sheet parked off screen as an invisible full-screen click blocker. The
+     closed position is owned by the timeline; `.mn` keeps it invisible until
+     that has run. */
+}
+
+/* -- Background ------------------------------------------------------------ */
+
+.mn__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.mn__bgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.9s var(--ease), transform 5s var(--ease);
+  filter: grayscale(0.86) saturate(0.9) contrast(1.05) brightness(0.5);
+}
+
+.mn__bgImg.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mn__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(8, 8, 9, 0.94) 0%, rgba(8, 8, 9, 0.62) 42%, rgba(8, 8, 9, 0.28) 100%),
+    linear-gradient(to bottom, rgba(8, 8, 9, 0.7) 0%, rgba(8, 8, 9, 0.2) 34%, rgba(8, 8, 9, 0.86) 100%);
+}
+
+/* -- Layout ---------------------------------------------------------------- */
+
+.mn__inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: clamp(18px, 2.4vw, 32px);
+}
+
+.mn__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mn__close {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px 10px 20px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ink-line);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.mn__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* -- The routes ------------------------------------------------------------ */
+
+.mn__nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 0;
+}
+
+.mn__nav ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.mn__item + .mn__item {
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.mn__link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 40px);
+  padding-block: clamp(13px, 1.9vw, 26px);
+  color: var(--text-on-dark);
+}
+
+.mn__num {
+  font-family: var(--font-ui);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur) var(--ease);
+}
+
+.mn__link:hover .mn__num,
+.mn__link.is-current .mn__num {
+  color: var(--sand);
+}
+
+.mn__labelWrap {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: clamp(10px, 1.6vw, 22px);
+  transition: transform var(--dur) var(--ease);
+}
+
+.mn__link:hover .mn__labelWrap {
+  transform: translateX(10px);
+}
+
+.mn__label {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4.6vw, 62px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  white-space: nowrap;
+}
+
+/* The page being read is stated, not just tinted. */
+.mn__link.is-current .mn__label {
+  color: var(--sand);
+}
+
+.mn__note {
+  font-size: clamp(9.5px, 0.8vw, 11px);
+  color: var(--text-on-dark-faint);
+  white-space: nowrap;
+}
+
+.mn__arrow {
+  flex: none;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.mn__link:hover .mn__arrow,
+.mn__link:focus-visible .mn__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* -- Foot ------------------------------------------------------------------ */
+
+.mn__foot {
+  padding-top: clamp(16px, 2.2vw, 28px);
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.mn__footLabel {
+  margin-bottom: clamp(10px, 1.3vw, 15px);
+  color: var(--text-on-dark-faint);
+  font-size: 9px;
+}
+
+.mn__reach {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: clamp(12px, 1.8vw, 26px);
+}
+
+.mn__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+  padding: 0;
+}
+
+.mn__chip {
+  gap: 7px;
+  font-size: 10.5px;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.mn__chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+.mn__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(12px, 1.6vw, 22px);
+  list-style: none;
+  padding: 0;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.mn__socials a {
+  transition: color var(--dur) var(--ease);
+}
+
+.mn__socials a:hover {
+  color: var(--text-on-dark);
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 700px) {
+  .mn__labelWrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .mn__label {
+    font-size: clamp(24px, 8vw, 38px);
+  }
+
+  .mn__reach {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mn__close span {
+    display: none;
+  }
+
+  .mn__close {
+    padding: 11px;
+  }
+}
+
+/* A short viewport cannot centre four large rows and a foot; let it scroll. */
+@media (max-height: 620px) {
+  .mn__sheet {
+    overflow-y: auto;
+  }
+
+  .mn__inner {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .mn__nav {
+    padding-block: clamp(20px, 5vh, 40px);
+  }
+}

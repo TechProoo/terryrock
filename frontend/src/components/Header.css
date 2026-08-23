@@ -14,7 +14,9 @@
   padding-inline: var(--gutter);
   display: flex;
   align-items: center;
-  gap: clamp(16px, 5.6vw, 84px);
+  gap: clamp(12px, 5.6vw, 84px);
+  /* The bar must never be what makes the page scroll sideways. */
+  min-width: 0;
 }
 
 .hdr__brand {
@@ -32,6 +34,39 @@
   display: flex;
   align-items: center;
   gap: 9px;
+  min-width: 0;
+}
+
+.hdr__pill {
+  white-space: nowrap;
+}
+
+/* -- Current page ---------------------------------------------------------- */
+
+/* The glass pills are already light, so the page being read is marked by going
+   fully opaque and taking a sand dot — a change in material, not just tone. */
+.hdr__pill {
+  position: relative;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    padding var(--dur) var(--ease);
+}
+
+.hdr__pill.is-current {
+  padding-left: 30px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(12, 14, 16, 0.16), 0 10px 26px rgba(12, 14, 16, 0.14);
+}
+
+.hdr__pill.is-current::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--sand);
 }
 
 .hdr__group--right {
@@ -56,6 +91,15 @@
   background: #26272a;
 }
 
+.hdr__menu.is-open {
+  background: #fff;
+  color: var(--text-on-light);
+}
+
+.hdr__menu.is-open .hdr__menuIcon {
+  background: rgba(12, 14, 16, 0.12);
+}
+
 .hdr__menuIcon {
   display: grid;
   place-items: center;
@@ -71,16 +115,45 @@
   font-weight: 600;
 }
 
-@media (max-width: 1080px) {
-  .hdr__group--left .pill:first-child,
-  .hdr__sub .pill:last-child {
+/* -- The ladder ------------------------------------------------------------ */
+
+/* Four pills need room. Below it, each group keeps the one nearest the middle
+   and the menu carries the rest. */
+@media (max-width: 1120px) {
+  .hdr__group--left .hdr__pill:first-child,
+  .hdr__sub .hdr__pill:last-child {
     display: none;
+  }
+
+  .hdr__inner {
+    gap: clamp(12px, 3.4vw, 40px);
   }
 }
 
-@media (max-width: 820px) {
+/* Narrower than this and even two pills crowd the mark, so the menu becomes
+   the whole navigation — which is why it has to work. */
+@media (max-width: 900px) {
   .hdr__group--left,
   .hdr__sub {
     display: none;
+  }
+
+  .hdr__group--right {
+    margin-left: auto;
+  }
+
+  /* Carrying the whole navigation now, so it earns a little more presence. */
+  .hdr__menu {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hdr__menuLabel {
+    display: none;
+  }
+
+  .hdr__menu {
+    padding: 5px;
   }
 }

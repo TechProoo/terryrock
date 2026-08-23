@@ -48,10 +48,12 @@ export const routeLabels: Record<string, string> = {
   '/contact': "Let's build together",
 };
 
+/* Four pills, widest first: the two nearest the mark are the ones that survive
+   the medium breakpoint, so the pair that matters most sits there. */
 export const nav = {
   left: [
     { label: 'Contacts', to: '/contact' },
-    { label: "Let's build together", to: '/contact' },
+    { label: 'Services', to: '/systems' },
   ],
   right: [
     { label: 'Executed Projects', to: '/projects' },
