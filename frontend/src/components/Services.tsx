@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import useCursorPreview from '../hooks/useCursorPreview';
 import SectionHead from './SectionHead';
 import { services } from '../data/site';
 import './Services.css';
@@ -12,6 +13,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 export default function Services() {
   const { headline, lede, gallery, items, kitImage, kitImageAlt, kitLabel, kit } = services;
   const grid = useRef<HTMLOListElement>(null);
+
+  /* Hovering an entry brings up that discipline on site. */
+  useCursorPreview(grid, { row: '.svc__item', preview: '.svc__preview' });
 
   /**
    * Scrubbed line reveal on the register, after GreenSock's autoSplit demo
@@ -96,9 +100,18 @@ export default function Services() {
         <ol className="svc__grid" ref={grid}>
           {items.map((item, i) => (
             <li key={item.title} className="svc__item">
+              {/* Fixed to the viewport and moved by GSAP, so it can leave the
+                 row. Outside the elements SplitText rewrites. */}
+              <img className="svc__preview" src={item.image} alt="" aria-hidden="true" />
+
               <span className="micro svc__num">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="svc__name">{item.title}</h3>
               <p className="svc__body">{item.body}</p>
+
+              {/* Touch and reduced-motion fallback for the floating preview. */}
+              <span className="svc__thumb">
+                <img src={item.image} alt={item.alt} />
+              </span>
             </li>
           ))}
         </ol>

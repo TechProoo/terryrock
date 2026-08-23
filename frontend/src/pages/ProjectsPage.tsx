@@ -114,9 +114,9 @@ export default function ProjectsPage() {
                 ))}
               </h1>
               <p className="pp__lede">{lede}</p>
-              <a className="pill pill--solid pp__cta" href={cta.href}>
+              <Link className="pill pill--solid pp__cta" to={cta.href}>
                 {cta.label}
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -235,9 +235,9 @@ export default function ProjectsPage() {
                   })}
                 </div>
 
-                <a className="pb__contact" href={showcase.contact.href}>
+                <Link className="pb__contact" to={showcase.contact.href}>
                   {showcase.contact.label}
-                </a>
+                </Link>
               </div>
 
               <p className="micro pb__stageTag">{labelFor(current.category)}</p>
@@ -315,13 +315,13 @@ export default function ProjectsPage() {
                 {showcase.exploreAll}
               </button>
 
-              <a className="pb__explore" href={showcase.contact.href}>
+              <Link className="pb__explore" to={showcase.contact.href}>
                 <SwapImage src={peek(2).image} alt={peek(2).alt} />
                 <span className="pb__exploreVeil" aria-hidden="true" />
                 <span className="pb__exploreLabel">
                   {showcase.exploreLabel}
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

@@ -146,10 +146,10 @@ export default function ServicesPage() {
                     <span className="sv__titleLine" key={line.text}>
                       <span className={line.ring ? 'sv__ring' : undefined}>{line.text}</span>
                       {i === hero.headline.length - 1 ? (
-                        <a className="pill pill--solid sv__cta" href={hero.cta.href}>
+                        <Link className="pill pill--solid sv__cta" to={hero.cta.href}>
                           {hero.cta.label}
                           <IconArrow size={13} />
-                        </a>
+                        </Link>
                       ) : null}
                     </span>
                   ))}
@@ -404,10 +404,10 @@ export default function ServicesPage() {
             ))}
           </h2>
           <p className="sv__closerBody">{closer.body}</p>
-          <a className="pill pill--solid sv__closerCta" href={closer.cta.href}>
+          <Link className="pill pill--solid sv__closerCta" to={closer.cta.href}>
             {closer.cta.label}
             <IconArrow size={13} />
-          </a>
+          </Link>
         </section>
 
         <Contact />

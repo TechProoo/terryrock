@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { IconArrow, IconWhatsApp } from './Icons';
 import { survey } from '../data/servicesPage';
 import { contactPage } from '../data/contactPage';
@@ -81,12 +82,12 @@ export default function SurveyBooking() {
             ))}
           </span>
           <span>{survey.title[1]}</span>
-          <a className="sb__inline" href={survey.link.href}>
+          <Link className="sb__inline" to={survey.link.href}>
             {survey.link.label}
             <span className="sb__inlineDot" aria-hidden="true">
               <IconArrow size={12} />
             </span>
-          </a>
+          </Link>
           <span>{survey.title[2]}</span>
         </h2>
       </header>

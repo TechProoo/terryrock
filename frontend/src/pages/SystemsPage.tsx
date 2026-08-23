@@ -60,9 +60,9 @@ export default function SystemsPage() {
                 ))}
               </h1>
               <p className="sy__lede">{lede}</p>
-              <a className="pill pill--solid sy__cta" href={cta.href}>
+              <Link className="pill pill--solid sy__cta" to={cta.href}>
                 {cta.label}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -93,9 +93,9 @@ export default function SystemsPage() {
             ))}
           </h2>
           <p className="sy__closerBody">{closer.body}</p>
-          <a className="pill pill--solid sy__closerCta" href={closer.cta.href}>
+          <Link className="pill pill--solid sy__closerCta" to={closer.cta.href}>
             {closer.cta.label}
-          </a>
+          </Link>
         </section>
 
         <div className="sy__back shell">

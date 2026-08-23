@@ -23,6 +23,22 @@ import brandedVessel from "../assets/site_10.jpg";
 import supportRun from "../assets/site_19.jpg";
 import rooftopBlue from "../assets/site_09.jpg";
 
+/* The thirteen discipline photographs, shared with the systems page so one
+   discipline never shows two different pictures. */
+import d1 from "../assets/sys_d1.jpg";
+import d2 from "../assets/sys_d2.jpg";
+import d3 from "../assets/sys_d3.jpg";
+import d4 from "../assets/sys_d4.jpg";
+import d5 from "../assets/sys_d5.jpg";
+import d6 from "../assets/sys_d6.jpg";
+import d7 from "../assets/sys_d7.jpg";
+import d8 from "../assets/sys_d8.jpg";
+import d9 from "../assets/sys_d9.jpg";
+import d10 from "../assets/sys_d10.jpg";
+import d11 from "../assets/sys_d11.jpg";
+import d12 from "../assets/sys_d12.jpg";
+import d13 from "../assets/sys_d13.jpg";
+
 import materialStock from "../assets/photo_048.jpg";
 import steelBand from "../assets/photo_037.jpg";
 import fabrication from "../assets/photo_040.jpg";
@@ -222,54 +238,80 @@ export const services = {
     {
       title: "Pipe fittings & welding",
       body: "Stainless, mild steel, galvanised, PVC and PPR pipe. Valve installation, elbows rolled to any angle, TIG and MIG welding with argon to certified standards — fabrication, site installation and testing, including sewage pumping stations.",
+      image: d1,
+      alt: "A welded manifold of painted pipework, valves and pumps",
     },
     {
       title: "Insulation & acoustic materials",
       body: "Polystyrene, polyurethane and rigid pipe insulation, imported or sourced locally to suit the client.",
+      image: d2,
+      alt: "A rigid pipe insulation section showing its mineral wool core",
     },
     {
       title: "Cladding",
       body: "Aluminium and stainless steel, 0.5mm to 1mm thick, riveted at even centres for locally fabricated panels.",
+      image: d3,
+      alt: "The spiral-clad end of a large vessel finished in sheet metal",
     },
     {
       title: "Laminating",
       body: "Resin, fibremat, catalyst and accelerator pigment.",
+      image: d4,
+      alt: "A laminated vessel surface finished in resin and fibremat",
     },
     {
       title: "Stainless & mild steel tanks",
       body: "Construction and installation in cylindrical, rectangular and square configurations, across a range of capacities and sizes.",
+      image: d5,
+      alt: "A large horizontal clad tank standing on its supports",
     },
     {
       title: "HVAC",
       body: "Installation, management and control, with air conditioning ductwork fabricated and erected on site.",
+      image: d6,
+      alt: "Clad air handling units installed through a plant hall",
     },
     {
       title: "Machine & equipment installation",
       body: "Machines and equipment of different kinds and sizes.",
+      image: d7,
+      alt: "Installed plant equipment and insulated pipework in a machine room",
     },
     {
       title: "Industrial & domestic plumbing",
       body: "Plumbing installations for industrial plant and private residences alike.",
+      image: d8,
+      alt: "A white PVC plumbing run bending through a service riser",
     },
     {
       title: "Generator exhausts",
       body: "Exhaust pipes and muffler pots fabricated and installed for industrial gen-sets.",
+      image: d9,
+      alt: "A fabricated muffler pot for a generator exhaust",
     },
     {
       title: "Boiler chimneys",
       body: "Fabrication and installation.",
+      image: d10,
+      alt: "A clad boiler chimney rising above the plant it serves",
     },
     {
       title: "Electrical installation",
       body: "Panels, trunking and wiring.",
+      image: d11,
+      alt: "Electrical panels and trunking installed alongside plant pipework",
     },
     {
       title: "Industrial thermal insulation",
       body: "Hot and cold pipe and tank insulation, generator house soundproofing, club wall insulation and studio insulation.",
+      image: d12,
+      alt: "Mineral wool lining applied to a generator house wall",
     },
     {
       title: "Supply of insulation materials",
       body: "Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.",
+      image: d13,
+      alt: "Bagged insulation stock stacked in the TerryRock store",
     },
   ],
   gallery: [
@@ -416,26 +458,59 @@ export const team = {
     alt: "A TerryRock site technician in branded workwear cutting a duct section",
     caption: "Site crew at work",
   },
+  /* The images below are site photography chosen to suit each role — they are
+     not portraits of these people, and the alt text describes the scene rather
+     than the person. Swap in headshots when there are some. */
   people: [
     {
       name: "Taiwo I. Jubrila",
       role: "Managing Director",
       qualification: "B.Sc Mechanical Engineering",
+      image: qaPipework,
+      alt: "Insulated and clad pipework with valves and gauges in a finished plant room",
     },
     {
       name: "Abimbola Jubrila",
       role: "Executive Director",
       qualification: "B.Sc Accounting",
+      image: materialStock,
+      alt: "Insulation stock bagged and stacked in the TerryRock store",
     },
     {
       name: "Ojedokun Olatunji",
       role: "Operations Director",
       qualification: "B.Sc Mech. Engr., MSc Project Management (UNILAG)",
+      image: plantRoom,
+      alt: "A finished plant room of insulated pipework and pumps",
     },
-    { name: "James Akoma", role: "Head Technician", qualification: "" },
-    { name: "Kehinde I. Jubrila", role: "Site Supervisor", qualification: "" },
-    { name: "Orumwense Stephen", role: "Site Supervisor", qualification: "" },
-    { name: "Afolabi Oladiran", role: "Site Supervisor", qualification: "" },
+    {
+      name: "James Akoma",
+      role: "Head Technician",
+      qualification: "",
+      image: fabrication,
+      alt: "A TerryRock fabricator welding a galvanised duct section on site",
+    },
+    {
+      name: "Kehinde I. Jubrila",
+      role: "Site Supervisor",
+      qualification: "",
+      image: crewCutting,
+      alt: "A TerryRock site technician in branded workwear cutting a duct section",
+    },
+    {
+      name: "Orumwense Stephen",
+      role: "Site Supervisor",
+      qualification: "",
+      image: installedPlant,
+      alt: "Insulated and clad pipework installed through a finished plant room",
+    },
+    {
+      name: "Afolabi Oladiran",
+      role: "Site Supervisor",
+      qualification: "",
+      image: supportRun,
+      alt: "A long insulated pipe run carried on its site supports",
+    },
   ],
 };
 

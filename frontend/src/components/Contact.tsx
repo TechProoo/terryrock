@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import BrandMark from './BrandMark';
 import { IconArrow, IconPin } from './Icons';
 import { brand, contact } from '../data/site';
@@ -49,10 +50,13 @@ export default function Contact() {
             <p className="micro ctc__callLabel">Start here</p>
             <p className="ctc__callText">{brand.tagline}</p>
 
-            <a className="pill pill--solid ctc__callBtn" href={`mailto:${emails[0]}`}>
+            {/* The contact page is the fuller answer than a blank mail draft:
+                it carries the enquiry form, the premises and WhatsApp. The
+                addresses are still listed below for anyone who wants one. */}
+            <Link className="pill pill--solid ctc__callBtn" to="/contact">
               Start a conversation
               <IconArrow />
-            </a>
+            </Link>
 
             <a className="ctc__direct" href={telHref(phones[0])}>
               <span className="micro ctc__directLabel">Or call the office</span>

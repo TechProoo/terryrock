@@ -180,3 +180,57 @@
     display: none;
   }
 }
+
+/* -- Cursor preview ---------------------------------------------------------
+   Centring and scale are set by GSAP (xPercent/yPercent) — a CSS translate
+   here would be resolved into the same `x`/`y` the pointer tween writes, and
+   the image would sit offset by half its own size.
+   --------------------------------------------------------------------------- */
+
+.svc__item {
+  position: relative;
+}
+
+.svc__preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: clamp(190px, 19vw, 290px);
+  aspect-ratio: 1 / 1.12;
+  object-fit: cover;
+  border-radius: var(--r-card-sm);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.14) brightness(0.95);
+}
+
+.svc__thumb {
+  display: none;
+  width: clamp(56px, 8vw, 84px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #1a1b1d;
+}
+
+.svc__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.14) brightness(0.93);
+}
+
+/* Wherever the preview cannot run, the photograph comes back into the row. */
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .svc__preview {
+    display: none;
+  }
+
+  .svc__thumb {
+    display: block;
+    margin-top: clamp(8px, 1vw, 12px);
+  }
+}
