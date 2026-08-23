@@ -430,17 +430,22 @@ export const contact = {
     ],
   ] as const,
   lede: 'Two Lagos premises and an Abuja workshop, open to construction, industrial, utility, hospitality and oil and gas clients.',
+  /* City and role are split so the premises can be set as a ledger: the city
+     large in the display face, the role as a micro label beside it. */
   offices: [
     {
-      label: 'Lagos — office & workshop',
+      city: 'Lagos',
+      role: 'Office & workshop',
       lines: ['No. 19, Jamiu Balogun Street', 'Shangisha-Magodo Road', 'Ikosi-Ketu, Lagos'],
     },
     {
-      label: 'Lagos — warehouse',
+      city: 'Lagos',
+      role: 'Warehouse',
       lines: ['7 Ilare Close', '7 & 8 Bus Stop, Airport Road', 'Mafoluku, Oshodi, Lagos'],
     },
     {
-      label: 'Abuja — office & workshop',
+      city: 'Abuja',
+      role: 'Office & workshop',
       lines: ['Beside Exclusive Holiday Resort and Suites', 'Lokogoma District', 'FCT Abuja'],
     },
   ],

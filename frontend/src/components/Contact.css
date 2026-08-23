@@ -1,6 +1,12 @@
 /* ---------------------------------------------------------------------------
-   Contact — three premises across the top, then the ways in: phone, email,
-   social, and a closing call to action carrying the registry line.
+   Contact — the page's closing section, so it is composed as a sign-off rather
+   than another centred register. The invitation sits left against a raised
+   panel carrying the one action worth taking; the three premises follow as a
+   ledger with the city set large; then the ways in, then the registry line.
+
+   Five sections in a row open with the centred head, so this one deliberately
+   takes the asymmetric masthead the portfolio uses — the change of posture is
+   what tells the reader the page is ending.
    --------------------------------------------------------------------------- */
 
 .ctc {
@@ -8,64 +14,216 @@
   padding-bottom: clamp(20px, 3vw, 40px);
 }
 
-.ctc__title {
-  max-width: 12em;
-  font-size: clamp(30px, 4.6vw, 60px);
-  line-height: 1.08;
-  letter-spacing: -0.028em;
-}
+/* -- Masthead -------------------------------------------------------------- */
 
-/* -- Premises -------------------------------------------------------------- */
-
-.ctc__offices {
-  margin-top: clamp(38px, 5.4vw, 74px);
+.ctc__masthead {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.2vw, 30px);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: end;
 }
 
-.ctc__office {
-  padding: clamp(20px, 2.4vw, 30px);
-  border-radius: var(--r-card-sm);
+.ctc__mark {
+  width: auto;
+  margin-bottom: clamp(18px, 2.2vw, 28px);
+}
+
+.ctc__title {
+  max-width: 9em;
+  font-size: clamp(34px, 6vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.034em;
+}
+
+.ctc__lede {
+  max-width: 34ch;
+  margin-top: clamp(18px, 2.2vw, 28px);
+  font-size: 10.5px;
+  line-height: 1.62;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- The action ------------------------------------------------------------ */
+
+/* The old layout left the call to action stranded in the bottom-right corner
+   below three columns of link text. Raised onto its own panel and set opposite
+   the headline, it becomes the second thing read instead of the last. */
+.ctc__call {
+  padding: clamp(24px, 3vw, 38px);
+  border-radius: var(--r-card-lg);
   background: var(--ink-raise);
   border: 1px solid var(--ink-line-soft);
-  transition:
-    border-color var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
 
-.ctc__office:hover {
+.ctc__call:hover {
   border-color: var(--ink-line);
-  transform: translateY(-4px);
 }
 
-.ctc__officeLabel {
+.ctc__callLabel {
   color: var(--sand);
   font-size: 9.5px;
   letter-spacing: 0.16em;
 }
 
-.ctc__address {
+.ctc__callText {
+  margin-top: clamp(12px, 1.5vw, 18px);
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.1vw, 27px);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+  color: var(--text-on-dark);
+  text-wrap: pretty;
+}
+
+.ctc__callBtn {
+  margin-top: clamp(18px, 2.2vw, 26px);
+  padding: 12px 22px;
+}
+
+/* Phone as the alternative to the mail button — ruled off so it reads as a
+   second route rather than a caption to the first. */
+.ctc__direct {
+  display: block;
+  margin-top: clamp(18px, 2.2vw, 26px);
+  padding-top: clamp(14px, 1.7vw, 20px);
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.ctc__directLabel {
+  display: block;
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ctc__directNumber {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.5vw, 19px);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--text-on-dark-dim);
+  transition: color var(--dur) var(--ease);
+}
+
+.ctc__direct:hover .ctc__directNumber {
+  color: var(--sand);
+}
+
+/* -- Premises ledger ------------------------------------------------------- */
+
+.ctc__premises {
+  margin-top: clamp(48px, 7vw, 96px);
+}
+
+.ctc__blockLabel {
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ctc__ledger {
+  margin: clamp(14px, 1.8vw, 22px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Wide ruled rows instead of three equal cards: the premises are not
+   interchangeable tiles, and a ledger lets the city carry the row while the
+   address stays subordinate to it. */
+.ctc__row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 0.62fr) minmax(0, 1.3fr) auto;
+  gap: clamp(14px, 2.4vw, 34px);
+  align-items: baseline;
+  padding: clamp(18px, 2.2vw, 26px) 0;
+  border-top: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.ctc__row:last-child {
+  border-bottom: 1px solid var(--ink-line-soft);
+}
+
+.ctc__row:hover {
+  border-color: var(--ink-line);
+}
+
+.ctc__rowNum {
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ctc__rowCity {
+  font-size: clamp(20px, 2.4vw, 32px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.026em;
+  color: var(--text-on-dark);
+}
+
+.ctc__rowRole {
+  margin-top: 9px;
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+/* The street stays bright and the rest of the address collapses onto one dim
+   line, so a row is two lines deep whatever the address length. */
+.ctc__rowAddress {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  margin-top: clamp(12px, 1.4vw, 17px);
+  gap: 4px;
   font-style: normal;
   font-size: clamp(11px, 1vw, 13px);
   line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.ctc__rowStreet {
+  color: var(--text-on-dark);
+}
+
+.ctc__rowLocality {
   color: var(--text-on-dark-dim);
 }
 
-.ctc__address span:first-child {
-  color: var(--text-on-dark);
+.ctc__rowMap {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-self: end;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* Dim rather than faint: this is a control at 10px, and the faint tone falls
+     under 4.5:1 against the ink ground. */
+  color: var(--text-on-dark-dim);
+  transition: color var(--dur) var(--ease);
+}
+
+.ctc__row:hover .ctc__rowMap,
+.ctc__rowMap:hover,
+.ctc__rowMap:focus-visible {
+  color: var(--sand);
 }
 
 /* -- Ways in --------------------------------------------------------------- */
 
 .ctc__reach {
-  margin-top: clamp(34px, 4.4vw, 60px);
+  margin-top: clamp(40px, 5.4vw, 72px);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 0.72fr)) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.85fr);
   gap: clamp(22px, 3vw, 44px);
   align-items: start;
 }
@@ -81,13 +239,41 @@
   letter-spacing: 0.16em;
 }
 
+/* Each column gets its own treatment — chips, display-face links, name over
+   handle — so the three ways in are told apart at a glance instead of reading
+   as one undifferentiated block of small text. */
+.ctc__chips {
+  margin: clamp(12px, 1.5vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+  /* Two fixed columns rather than a wrapping row: four chips in a column this
+     width break 3 + 1, which reads as an accident instead of a set. */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 8px;
+}
+
+.ctc__chip {
+  font-size: 11px;
+  color: var(--text-on-dark-dim);
+  padding: 7px 15px;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.ctc__chip:hover {
+  color: var(--text-on-dark);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.07);
+}
+
 .ctc__links {
   margin: clamp(12px, 1.5vw, 18px) 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.8vw, 9px);
+  gap: clamp(7px, 0.9vw, 10px);
 }
 
 .ctc__link {
@@ -103,6 +289,13 @@
   color: var(--sand);
 }
 
+.ctc__link--mail {
+  font-family: var(--font-display);
+  font-size: clamp(12.5px, 1.12vw, 14.5px);
+  letter-spacing: -0.012em;
+  color: var(--text-on-dark);
+}
+
 /* Social rows carry the network name above the handle. */
 .ctc__linkName {
   display: block;
@@ -111,33 +304,16 @@
   color: var(--text-on-dark-faint);
 }
 
-/* -- Closing call ---------------------------------------------------------- */
-
-.ctc__cta {
-  padding-top: clamp(14px, 1.6vw, 20px);
-  border-top: 1px solid var(--ink-line);
-}
-
-.ctc__ctaText {
-  font-family: var(--font-display);
-  font-size: clamp(15px, 1.62vw, 21px);
-  font-weight: 500;
-  line-height: 1.34;
-  letter-spacing: -0.018em;
-  color: var(--text-on-dark);
-  text-wrap: pretty;
-}
-
-.ctc__ctaBtn {
-  margin-top: clamp(14px, 1.8vw, 22px);
-  padding: 11px 21px;
-}
+/* -- Registry -------------------------------------------------------------- */
 
 .ctc__registry {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: clamp(16px, 2vw, 24px);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px clamp(16px, 3vw, 40px);
+  margin-top: clamp(34px, 4.4vw, 58px);
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: 1px solid var(--ink-line-soft);
   font-size: 10px;
   line-height: 1.5;
   color: var(--text-on-dark-faint);
@@ -146,21 +322,103 @@
 /* -- Responsive ------------------------------------------------------------ */
 
 @media (max-width: 960px) {
-  .ctc__offices {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .ctc__masthead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(26px, 4vw, 40px);
+  }
+
+  /* Every child is placed explicitly: left to auto-placement the directions
+     link lands in the 34px number track and hangs off the left edge. */
+  .ctc__row {
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: start;
+    row-gap: clamp(10px, 2vw, 16px);
+  }
+
+  .ctc__rowNum {
+    grid-column: 1;
+    line-height: 1.9;
+  }
+
+  .ctc__rowPlace,
+  .ctc__rowAddress,
+  .ctc__rowMap {
+    grid-column: 2;
+  }
+
+  .ctc__rowMap {
+    justify-self: start;
   }
 
   .ctc__reach {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ctc__cta {
+  .ctc__group:last-child {
     grid-column: 1 / -1;
   }
 }
 
+/* The panel would otherwise sit as a narrow block against an empty half of the
+   row, so between the two breakpoints it spans the shell and turns the phone
+   into a second column ruled off the first. */
+@media (min-width: 561px) and (max-width: 960px) {
+  .ctc__call {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    /* Declared explicitly so the phone's `1 / -1` span has an explicit grid to
+       resolve against — against an implicit one it collapses to the first row. */
+    grid-template-rows: auto auto auto;
+    column-gap: clamp(22px, 4vw, 46px);
+    align-items: end;
+  }
+
+  .ctc__callLabel,
+  .ctc__callText {
+    grid-column: 1;
+  }
+
+  .ctc__callBtn {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .ctc__direct {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    /* Stretched so the rule runs the full height of the panel while the number
+       stays seated at the bottom, opposite the button. */
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: clamp(22px, 4vw, 46px);
+    border-top: 0;
+    border-left: 1px solid var(--ink-line-soft);
+  }
+}
+
 @media (max-width: 560px) {
-  .ctc__offices,
+  .ctc__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ctc__rowNum {
+    display: none;
+  }
+
+  .ctc__rowPlace,
+  .ctc__rowAddress,
+  .ctc__rowMap {
+    grid-column: 1;
+  }
+
+  .ctc__rowMap {
+    justify-self: end;
+  }
+
   .ctc__reach {
     grid-template-columns: minmax(0, 1fr);
   }
