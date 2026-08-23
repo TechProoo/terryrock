@@ -1,0 +1,84 @@
+/* ---------------------------------------------------------------------------
+   Clients — a ruled wall of names. Deliberately typographic: these arrive as
+   plain text, and setting them as a quiet index reads better than seventeen
+   mismatched logos would.
+   --------------------------------------------------------------------------- */
+
+.cli {
+  padding-top: clamp(52px, 7.4vw, 100px);
+  padding-bottom: clamp(56px, 8vw, 108px);
+}
+
+.cli__title {
+  max-width: 13em;
+  font-size: clamp(28px, 4.1vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.026em;
+}
+
+.cli__wall {
+  margin: clamp(38px, 5.4vw, 74px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 clamp(18px, 2.4vw, 36px);
+}
+
+/* Rules only along the top, so a short final row never leaves a dangling
+   border the way a fully boxed grid would. */
+.cli__cell {
+  display: flex;
+  align-items: center;
+  min-height: clamp(58px, 5.4vw, 76px);
+  padding: clamp(12px, 1.4vw, 18px) 0;
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.cli__name {
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.16vw, 15px);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.016em;
+  color: var(--text-on-dark-dim);
+  transition: color var(--dur) var(--ease);
+  text-wrap: pretty;
+}
+
+.cli__cell:hover .cli__name {
+  color: var(--text-on-dark);
+}
+
+/* -- Banner ---------------------------------------------------------------- */
+
+.cli__banner {
+  margin-top: clamp(34px, 4.6vw, 64px);
+  border-radius: var(--r-card-md);
+  aspect-ratio: 1 / 0.3;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.46);
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 1080px) {
+  .cli__wall {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .cli__wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .cli__wall {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cli__cell {
+    min-height: 0;
+  }
+}

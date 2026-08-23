@@ -1,0 +1,169 @@
+/* ---------------------------------------------------------------------------
+   Services — centred heading, then a three-column register of the thirteen
+   disciplines. Each entry is ruled off at the top so the grid reads as an
+   index rather than a set of floating cards, which keeps the section quiet
+   next to the image-led ones above it.
+   --------------------------------------------------------------------------- */
+
+.svc {
+  padding-top: clamp(52px, 7.4vw, 100px);
+  padding-bottom: clamp(56px, 8vw, 108px);
+}
+
+.svc__title {
+  max-width: 14em;
+  font-size: clamp(28px, 4.1vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.026em;
+}
+
+/* -- Triptych -------------------------------------------------------------- */
+
+/* Three shots — material, fabrication, installation — that give the section a
+   visual anchor before thirteen text entries. */
+.svc__gallery {
+  margin-top: clamp(38px, 5.4vw, 74px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 24px);
+}
+
+.svc__shot {
+  margin: 0;
+}
+
+.svc__shotFrame {
+  border-radius: var(--r-card-md);
+  aspect-ratio: 1 / 0.78;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.42);
+  transition: transform var(--dur) var(--ease);
+}
+
+.svc__shot:hover .svc__shotFrame {
+  transform: translateY(-6px);
+}
+
+.svc__shotCaption {
+  margin-top: clamp(11px, 1.3vw, 15px);
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+/* -- Register -------------------------------------------------------------- */
+
+.svc__grid {
+  margin: clamp(38px, 5.4vw, 74px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 44px) clamp(20px, 2.6vw, 40px);
+}
+
+.svc__item {
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.svc__item:hover {
+  border-top-color: var(--ink-line);
+}
+
+.svc__num {
+  display: block;
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.svc__name {
+  margin-top: clamp(9px, 1.1vw, 13px);
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.42vw, 19px);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  color: var(--text-on-dark);
+}
+
+.svc__body {
+  margin-top: clamp(7px, 0.9vw, 11px);
+  font-size: clamp(10.5px, 0.92vw, 12px);
+  line-height: 1.62;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Workshop equipment ---------------------------------------------------- */
+
+.svc__kit {
+  margin-top: clamp(44px, 6vw, 84px);
+  padding-top: clamp(24px, 3vw, 38px);
+  border-top: 1px solid var(--ink-line-soft);
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 46px);
+  align-items: center;
+}
+
+.svc__kitFrame {
+  border-radius: var(--r-card-md);
+  aspect-ratio: 1 / 0.62;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.42);
+}
+
+.svc__kitLabel {
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.svc__kitList {
+  margin: clamp(12px, 1.5vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.svc__kitItem {
+  font-size: 10.5px;
+  color: var(--text-on-dark-dim);
+  padding: 6px 14px;
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .svc__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .svc__kit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .svc__kitFrame {
+    aspect-ratio: 1 / 0.42;
+  }
+}
+
+@media (max-width: 560px) {
+  .svc__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  /* Three side-by-side shots become unreadable at this width; the first two
+     carry the idea on their own. */
+  .svc__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .svc__shot:last-child {
+    display: none;
+  }
+}

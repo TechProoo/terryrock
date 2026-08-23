@@ -1,0 +1,304 @@
+/* ---------------------------------------------------------------------------
+   Portfolio — a gallery masthead (title left, lede opposite), then a coverflow
+   carousel whose centre slide stands taller while its neighbours sit back
+   behind a veil. Pagination and round nav controls sit beneath, and the
+   selected project is repeated large at the foot of the section.
+   --------------------------------------------------------------------------- */
+
+.prj {
+  padding-top: clamp(52px, 7vw, 92px);
+  padding-bottom: clamp(70px, 10vw, 130px);
+}
+
+/* -- Masthead -------------------------------------------------------------- */
+
+.prj__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(20px, 6vw, 90px);
+}
+
+/* Heavier than the other section headings — the reference sets this one as a
+   bold gallery title rather than a light editorial statement. */
+.prj__title {
+  font-size: clamp(30px, 4.6vw, 62px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.036em;
+}
+
+.prj__lede {
+  flex: none;
+  width: min(100%, 268px);
+  margin-top: clamp(4px, 0.8vw, 10px);
+  font-size: 10.5px;
+  line-height: 1.62;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Carousel -------------------------------------------------------------- */
+
+/* Full bleed of the shell so the flanking slides run to the page edges the way
+   the reference's do, while the track itself stays centred on the active card. */
+.prj__carousel {
+  position: relative;
+  margin-top: clamp(34px, 4.6vw, 62px);
+  margin-inline: calc(-1 * var(--gutter));
+  padding-block: clamp(10px, 1.4vw, 18px);
+  overflow: hidden;
+}
+
+.prj__carousel:focus-visible {
+  outline: 2px solid var(--steel-deep);
+  outline-offset: 4px;
+  border-radius: var(--r-card-sm);
+}
+
+.prj__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.8vw, 26px);
+  margin: 0;
+  /* Gutter lives on the track, so clamping the offset to its ends still
+     leaves the row inset from the page edge at the first and last project. */
+  padding: 0 var(--gutter);
+  list-style: none;
+  will-change: transform;
+  transition: transform 0.62s var(--ease);
+}
+
+.prj__slide {
+  flex: none;
+  width: clamp(200px, 26vw, 340px);
+}
+
+.prj__slideBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.prj__slideFrame {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-card-md);
+  /* Neighbours are shorter; the active slide grows to the taller ratio below,
+     which is what produces the reference's stepped, coverflow silhouette. */
+  aspect-ratio: 1 / 0.62;
+  background: #1a1b1d;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
+  transition: aspect-ratio 0.62s var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+/* Veil that holds the inactive slides back. It sits above the photograph so
+   the neighbours read as dimmed rather than merely faded out. */
+.prj__slideFrame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 11, 0.62);
+  transition: opacity 0.62s var(--ease), background var(--dur) var(--ease);
+}
+
+.prj__slide.is-active .prj__slideFrame {
+  aspect-ratio: 1 / 0.86;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.56);
+}
+
+.prj__slide.is-active .prj__slideFrame::after {
+  opacity: 0;
+}
+
+.prj__slide:not(.is-active) .prj__slideBtn:hover .prj__slideFrame::after {
+  background: rgba(10, 10, 11, 0.4);
+}
+
+.prj__slideBtn:focus-visible .prj__slideFrame {
+  outline: 2px solid var(--steel-deep);
+  outline-offset: 3px;
+}
+
+/* -- Controls -------------------------------------------------------------- */
+
+.prj__controls {
+  margin-top: clamp(22px, 3vw, 38px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.prj__dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  /* Optically centred against the carousel, with the nav pinned right. */
+  margin-inline: auto;
+  padding-left: clamp(0px, 6vw, 96px);
+}
+
+/* Dashes rather than circles, matching the reference's pagination. */
+.prj__dot {
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background var(--dur) var(--ease), width var(--dur) var(--ease);
+}
+
+.prj__dot:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.prj__dot.is-active {
+  width: 40px;
+  background: var(--sand);
+}
+
+.prj__nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prj__navBtn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-pill);
+  color: var(--ink);
+  background: #fff;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.prj__navBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* The back control is the quieter of the pair, as in the reference. */
+.prj__navBtn--prev {
+  color: var(--text-on-dark);
+  background: transparent;
+  border: 1px solid var(--ink-line);
+}
+
+.prj__navBtn--prev:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.prj__navBtn--prev svg {
+  transform: rotate(180deg);
+}
+
+/* -- Selected project, shown large --------------------------------------- */
+
+.prj__feature {
+  position: relative;
+  margin: clamp(30px, 4.2vw, 58px) 0 0;
+}
+
+.prj__featureFrame {
+  border-radius: var(--r-card-lg);
+  aspect-ratio: 1 / 0.42;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+
+.prj__featureVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 11, 0.72) 0%,
+    rgba(10, 10, 11, 0.22) 34%,
+    rgba(10, 10, 11, 0) 62%
+  );
+}
+
+.prj__featureMeta {
+  position: absolute;
+  left: clamp(18px, 2.6vw, 34px);
+  right: clamp(18px, 2.6vw, 34px);
+  bottom: clamp(16px, 2.4vw, 30px);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.prj__featureTag {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.prj__featureText {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: clamp(10.5px, 1vw, 12.5px);
+  line-height: 1.4;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.prj__featureCompany {
+  color: var(--text-on-dark-dim);
+}
+
+.prj__featureName {
+  color: var(--text-on-dark);
+  font-weight: 700;
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .prj__head {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .prj__lede {
+    width: min(100%, 340px);
+  }
+
+  .prj__dots {
+    padding-left: 0;
+    margin-inline: 0;
+  }
+
+  .prj__featureFrame {
+    aspect-ratio: 1 / 0.62;
+  }
+}
+
+@media (max-width: 560px) {
+  .prj__slide {
+    width: min(74vw, 300px);
+  }
+
+  .prj__featureFrame {
+    border-radius: var(--r-card-md);
+  }
+
+  /* Two lines of meta would crowd the photograph at this width. */
+  .prj__featureMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .prj__featureText {
+    text-align: left;
+  }
+
+  .prj__dots {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,167 @@
+/* ---------------------------------------------------------------------------
+   Contact — three premises across the top, then the ways in: phone, email,
+   social, and a closing call to action carrying the registry line.
+   --------------------------------------------------------------------------- */
+
+.ctc {
+  padding-top: clamp(52px, 7.4vw, 100px);
+  padding-bottom: clamp(20px, 3vw, 40px);
+}
+
+.ctc__title {
+  max-width: 12em;
+  font-size: clamp(30px, 4.6vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+}
+
+/* -- Premises -------------------------------------------------------------- */
+
+.ctc__offices {
+  margin-top: clamp(38px, 5.4vw, 74px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 30px);
+}
+
+.ctc__office {
+  padding: clamp(20px, 2.4vw, 30px);
+  border-radius: var(--r-card-sm);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition:
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.ctc__office:hover {
+  border-color: var(--ink-line);
+  transform: translateY(-4px);
+}
+
+.ctc__officeLabel {
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ctc__address {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: clamp(12px, 1.4vw, 17px);
+  font-style: normal;
+  font-size: clamp(11px, 1vw, 13px);
+  line-height: 1.5;
+  color: var(--text-on-dark-dim);
+}
+
+.ctc__address span:first-child {
+  color: var(--text-on-dark);
+}
+
+/* -- Ways in --------------------------------------------------------------- */
+
+.ctc__reach {
+  margin-top: clamp(34px, 4.4vw, 60px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 0.72fr)) minmax(0, 1.2fr);
+  gap: clamp(22px, 3vw, 44px);
+  align-items: start;
+}
+
+.ctc__group {
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.ctc__groupLabel {
+  color: var(--text-on-dark-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ctc__links {
+  margin: clamp(12px, 1.5vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.8vw, 9px);
+}
+
+.ctc__link {
+  display: block;
+  font-size: clamp(11px, 0.98vw, 12.5px);
+  line-height: 1.45;
+  color: var(--text-on-dark-dim);
+  transition: color var(--dur) var(--ease);
+  overflow-wrap: anywhere;
+}
+
+.ctc__link:hover {
+  color: var(--sand);
+}
+
+/* Social rows carry the network name above the handle. */
+.ctc__linkName {
+  display: block;
+  font-size: 9.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-on-dark-faint);
+}
+
+/* -- Closing call ---------------------------------------------------------- */
+
+.ctc__cta {
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: 1px solid var(--ink-line);
+}
+
+.ctc__ctaText {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.62vw, 21px);
+  font-weight: 500;
+  line-height: 1.34;
+  letter-spacing: -0.018em;
+  color: var(--text-on-dark);
+  text-wrap: pretty;
+}
+
+.ctc__ctaBtn {
+  margin-top: clamp(14px, 1.8vw, 22px);
+  padding: 11px 21px;
+}
+
+.ctc__registry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: clamp(16px, 2vw, 24px);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--text-on-dark-faint);
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 960px) {
+  .ctc__offices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ctc__reach {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ctc__cta {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .ctc__offices,
+  .ctc__reach {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

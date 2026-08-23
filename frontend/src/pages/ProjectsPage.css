@@ -1,0 +1,923 @@
+/* ---------------------------------------------------------------------------
+   Executed Projects — the reference's layout in the platform's palette:
+   a letterboxed hero card with the filter pills sitting in a notch cut from
+   its top-right corner, then a three-card row (wide feature, stacked
+   secondary, annotated "closer look"), then the filtered grid.
+   --------------------------------------------------------------------------- */
+
+.pp {
+  background: var(--ink);
+  min-height: 100vh;
+}
+
+/* The header is absolutely positioned over the hero on the landing page; here
+   it sits in flow above a dark card, so it needs its own space and light text
+   turned dark-surface. */
+.pp__main {
+  padding-top: clamp(84px, 9vw, 118px);
+}
+
+.pp__heroWrap {
+  position: relative;
+}
+
+/* -- Hero card ------------------------------------------------------------- */
+
+/* Proportions taken from the reference: the card is a 2.6:1 letterbox, its
+   corners are only lightly rounded, and a notch is punched out of the
+   top-right corner for the filter chips. */
+.pp__hero {
+  --notch-r: 16px; /* radius of both notch corners */
+  --hero-pad-x: clamp(20px, 2.6vw, 38px);
+  --hero-pad-b: clamp(30px, 6.3vw, 90px);
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  /* No min-height alongside this: an aspect ratio transfers a minimum *width*
+     back through the ratio, which would push the card past the viewport. The
+     narrow-screen height is set in the media query below instead. */
+  aspect-ratio: 2.6 / 1;
+  display: flex;
+  align-items: flex-end;
+  background: #141416;
+}
+
+.pp__heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 54%;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.1) brightness(0.82);
+}
+
+/* The reference weights the scrim to the left, where the copy sits, and keeps
+   the right two-thirds of the photograph open. */
+.pp__heroVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(8, 8, 9, 0.92) 0%, rgba(8, 8, 9, 0.66) 22%, rgba(8, 8, 9, 0.24) 42%, rgba(8, 8, 9, 0) 62%),
+    linear-gradient(to top, rgba(8, 8, 9, 0.55) 0%, rgba(8, 8, 9, 0) 42%);
+}
+
+/* -- Notch + filter pills -------------------------------------------------- */
+
+/* Painted in the page ground so it reads as a cut-out. The chips run flush to
+   the card's top and right edges; the padding below and to the left of them is
+   what gives the notch its shape. */
+.pp__notch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0 0 clamp(9px, 1vw, 15px) clamp(16px, 2.2vw, 32px);
+  background: var(--ink);
+  border-bottom-left-radius: var(--notch-r);
+}
+
+/* The notch's inner top-left corner curves the other way — a quarter disc of
+   ground colour with the card's corner radius bitten out of it. */
+.pp__notch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--notch-r));
+  width: var(--notch-r);
+  height: var(--notch-r);
+  background: radial-gradient(
+    circle at 0 100%,
+    transparent var(--notch-r),
+    var(--ink) calc(var(--notch-r) + 0.5px)
+  );
+}
+
+.pp__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.pp__filter {
+  padding: 17px 24px;
+  border-radius: 22px;
+  font-family: var(--font-ui);
+  font-size: clamp(11.5px, 1.15vw, 14px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.004em;
+  white-space: nowrap;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ink-line-soft);
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.pp__filter:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--ink-line);
+}
+
+/* Every chip in the reference carries the same weight, so the selected state is
+   a lift in the same material rather than a solid white pill. */
+.pp__filter.is-active {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+/* -- Hero copy ------------------------------------------------------------- */
+
+.pp__heroCopy {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--hero-pad-x) var(--hero-pad-b);
+  max-width: 640px;
+}
+
+.pp__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.1vw, 45px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+}
+
+.pp__title span {
+  display: block;
+}
+
+.pp__lede {
+  margin-top: clamp(16px, 1.8vw, 26px);
+  max-width: 40ch;
+  font-size: clamp(10.5px, 0.85vw, 12.5px);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+  text-wrap: pretty;
+}
+
+/* A soft-cornered rectangle in the reference, not a full pill. */
+.pp__cta {
+  margin-top: clamp(24px, 2.8vw, 40px);
+  padding: clamp(11px, 1.05vw, 15px) clamp(18px, 1.8vw, 26px);
+  border-radius: 16px;
+  font-size: clamp(12px, 1vw, 14px);
+}
+
+/* -- Three cards ----------------------------------------------------------- */
+
+.pp__cards {
+  margin-top: clamp(14px, 1.8vw, 22px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(12px, 1.6vw, 20px);
+  align-items: stretch;
+}
+
+.pp__feature,
+.pp__secondary,
+.pp__closer {
+  border-radius: var(--r-card-md);
+  overflow: hidden;
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.pp__feature:hover,
+.pp__secondary:hover,
+.pp__closer:hover {
+  border-color: var(--ink-line);
+}
+
+/* Wide card: image left, copy right. */
+.pp__feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.pp__featureImg {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(180px, 18vw, 240px);
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.12) brightness(0.92);
+}
+
+.pp__featureBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: clamp(16px, 1.9vw, 24px);
+}
+
+.pp__featureTag {
+  align-self: flex-start;
+  font-size: 10px;
+}
+
+.pp__featureTitle {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.85vw, 25px);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.024em;
+  color: var(--text-on-dark);
+}
+
+.pp__featureTitle span {
+  display: block;
+}
+
+.pp__featureLink {
+  font-size: 11px;
+  color: var(--text-on-dark-faint);
+  border-bottom: 1px solid var(--ink-line);
+  align-self: flex-start;
+  padding-bottom: 2px;
+}
+
+/* Middle card: heading and arrow, then image beneath. */
+.pp__secondary {
+  display: flex;
+  flex-direction: column;
+}
+
+.pp__secondaryHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(16px, 1.9vw, 24px);
+}
+
+.pp__secondaryTitle {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.7vw, 23px);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.024em;
+  color: var(--text-on-dark);
+}
+
+.pp__secondaryBody {
+  margin-top: 7px;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--text-on-dark-faint);
+  max-width: 34ch;
+}
+
+.pp__secondaryBtn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  color: var(--text-on-dark);
+  border: 1px solid var(--ink-line);
+  transform: rotate(-45deg);
+}
+
+.pp__secondaryImg {
+  width: 100%;
+  flex: 1;
+  min-height: clamp(120px, 13vw, 170px);
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.12) brightness(0.92);
+}
+
+/* Right card: annotated detail shot. */
+.pp__closer {
+  padding: clamp(16px, 1.9vw, 24px);
+  display: flex;
+  flex-direction: column;
+}
+
+.pp__closerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.7vw, 23px);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.024em;
+  color: var(--text-on-dark);
+}
+
+.pp__closerBody {
+  margin-top: 5px;
+  font-size: 10.5px;
+  color: var(--text-on-dark-faint);
+}
+
+.pp__closerFrame {
+  position: relative;
+  margin-top: clamp(12px, 1.5vw, 18px);
+  flex: 1;
+  min-height: clamp(130px, 14vw, 180px);
+  border-radius: var(--r-card-sm);
+  overflow: hidden;
+}
+
+.pp__closerFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.12) brightness(0.92);
+}
+
+/* Hotspot markers, echoing the reference's dotted callouts. */
+.pp__spot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+}
+
+.pp__spotDot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.18);
+  position: relative;
+}
+
+.pp__spotDot::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* Label is revealed on hover/focus so the markers stay clean at rest. */
+.pp__spotLabel {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  font-size: 9.5px;
+  color: var(--ink);
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.pp__spot:hover .pp__spotLabel {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Showcase panel — three rails in place of a flat image grid: a left rail with
+   the mark, a second view and a note; a stage carrying the selected project;
+   and a discipline list on the right. Every project stays reachable — the list
+   picks the discipline, the stage steps through it.
+   --------------------------------------------------------------------------- */
+
+.pb {
+  margin-top: clamp(30px, 4vw, 54px);
+}
+
+.pb__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.93fr) minmax(0, 2.13fr) minmax(0, 1fr);
+  gap: clamp(10px, 1.2vw, 16px);
+  min-height: clamp(520px, 56vw, 720px);
+}
+
+/* -- Rails ----------------------------------------------------------------- */
+
+.pb__rail {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(9px, 1vw, 14px);
+  padding: clamp(11px, 1.2vw, 16px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+}
+
+.pb__wordmark {
+  padding: clamp(8px, 1.1vw, 15px) 0 clamp(2px, 0.4vw, 6px);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.5vw, 21px);
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+}
+
+.pb__railFrame {
+  flex: 1;
+  min-height: clamp(140px, 16vw, 240px);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1a1b1d;
+}
+
+.pb__railFrame img,
+.pb__rowThumb img,
+.pb__face img,
+.pb__nextThumb img,
+.pb__explore img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.14) brightness(0.93);
+}
+
+/* The one light surface in the panel, as in the reference. */
+.pb__note {
+  border-radius: 22px;
+  padding: clamp(15px, 1.7vw, 24px);
+  background: #fff;
+  color: var(--text-on-light);
+}
+
+.pb__noteTitle {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.55vw, 21px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.pb__noteTitle span {
+  display: block;
+}
+
+.pb__noteBody {
+  margin-top: clamp(9px, 1vw, 14px);
+  font-size: clamp(9.5px, 0.82vw, 11.5px);
+  line-height: 1.5;
+  color: var(--text-on-light-dim);
+  text-wrap: pretty;
+}
+
+/* -- Stage ----------------------------------------------------------------- */
+
+.pb__stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-card-md);
+  background: #141416;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(13px, 1.5vw, 22px);
+}
+
+.pb__stageImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.1) brightness(0.88);
+}
+
+.pb__stageVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(8, 8, 9, 0.52) 0%, rgba(8, 8, 9, 0.08) 34%),
+    linear-gradient(to top, rgba(8, 8, 9, 0.62) 0%, rgba(8, 8, 9, 0) 40%);
+}
+
+.pb__stageTop {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: clamp(7px, 0.8vw, 11px);
+}
+
+.pb__round {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: clamp(36px, 3.5vw, 50px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background var(--dur) var(--ease);
+}
+
+.pb__round svg {
+  transform: rotate(180deg);
+}
+
+.pb__round:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.pb__steps {
+  display: flex;
+  gap: clamp(5px, 0.6vw, 8px);
+  min-width: 0;
+}
+
+.pb__step {
+  padding: clamp(8px, 0.85vw, 12px) clamp(13px, 1.4vw, 20px);
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: clamp(9.5px, 0.8vw, 11.5px);
+  font-weight: 600;
+  color: var(--text-on-light);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background var(--dur) var(--ease);
+}
+
+.pb__step:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.pb__step.is-active {
+  background: #fff;
+}
+
+.pb__contact {
+  margin-left: auto;
+  flex: none;
+  padding: clamp(11px, 1.2vw, 17px) clamp(15px, 1.7vw, 24px);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: clamp(9px, 0.75vw, 10.5px);
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition: background var(--dur) var(--ease);
+}
+
+.pb__contact:hover {
+  background: #2a2b2d;
+}
+
+.pb__stageTitle {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(6px, 0.8vw, 11px);
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.9vw, 40px);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.pb__stageFoot {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding-top: clamp(16px, 2vw, 28px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(10px, 1.2vw, 18px);
+}
+
+.pb__credit {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.pb__faces {
+  display: flex;
+  flex: none;
+}
+
+.pb__face {
+  width: clamp(28px, 2.8vw, 40px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  margin-left: -10px;
+}
+
+.pb__face:first-child {
+  margin-left: 0;
+}
+
+.pb__creditLabel {
+  font-size: clamp(9.5px, 0.82vw, 11.5px);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.pb__stageTag {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(12px, 1.6vw, 22px);
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+/* Frosted chip carrying the next project and its thumbnail. */
+.pb__next {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: clamp(9px, 1.1vw, 16px);
+  padding: clamp(7px, 0.8vw, 11px);
+  padding-left: clamp(14px, 1.6vw, 24px);
+  border-radius: clamp(17px, 1.8vw, 26px);
+  color: #fff;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  transition: background var(--dur) var(--ease);
+}
+
+.pb__next:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.pb__nextLabel {
+  font-size: clamp(9.5px, 0.82vw, 12px);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pb__nextThumb {
+  flex: none;
+  width: clamp(42px, 4.4vw, 62px);
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* -- Discipline list ------------------------------------------------------- */
+
+.pb__listHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: clamp(5px, 0.7vw, 10px) clamp(5px, 0.6vw, 9px) 0;
+}
+
+.pb__listTitle {
+  font-family: var(--font-display);
+  font-size: clamp(12.5px, 1.15vw, 16px);
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  color: var(--text-on-dark);
+}
+
+.pb__info {
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: var(--text-on-dark-faint);
+  cursor: help;
+}
+
+.pb__srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pb__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+}
+
+.pb__row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: clamp(7px, 0.8vw, 11px);
+  padding: 6px clamp(9px, 1vw, 13px) 6px 6px;
+  border-radius: var(--r-pill);
+  text-align: left;
+  color: var(--text-on-dark);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.pb__row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pb__row.is-active {
+  background: #fff;
+  color: var(--text-on-light);
+}
+
+.pb__rowThumb {
+  flex: none;
+  width: clamp(30px, 2.9vw, 42px);
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1b1d;
+}
+
+.pb__rowText {
+  flex: 1;
+  min-width: 0;
+}
+
+.pb__rowTitle {
+  display: block;
+  font-size: clamp(10px, 0.9vw, 12.5px);
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pb__rowSub {
+  display: block;
+  font-size: clamp(8.5px, 0.75vw, 10.5px);
+  line-height: 1.35;
+  color: var(--text-on-dark-faint);
+}
+
+.pb__row.is-active .pb__rowSub {
+  color: var(--text-on-light-dim);
+}
+
+.pb__chev {
+  flex: none;
+  opacity: 0.55;
+}
+
+.pb__all {
+  margin-top: 2px;
+  padding: clamp(10px, 1.1vw, 15px) 14px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: clamp(8.5px, 0.78vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--ink-line);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.pb__all:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.pb__all.is-active {
+  background: #fff;
+  border-color: #fff;
+  color: var(--text-on-light);
+}
+
+.pb__explore img {
+  position: absolute;
+  inset: 0;
+}
+
+.pb__explore {
+  position: relative;
+  flex: 1;
+  min-height: clamp(110px, 12vw, 190px);
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1a1b1d;
+}
+
+.pb__exploreVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 8, 9, 0.6) 0%, rgba(8, 8, 9, 0.05) 60%);
+}
+
+.pb__exploreLabel {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-ui);
+  font-size: clamp(9.5px, 0.9vw, 12.5px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: transform var(--dur) var(--ease);
+}
+
+.pb__explore:hover .pb__exploreLabel {
+  transform: translateY(-3px);
+}
+
+.pp__back {
+  margin-top: clamp(34px, 4.6vw, 62px);
+  display: flex;
+  justify-content: center;
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 1080px) {
+  /* Stage first at full width, the two rails side by side beneath it. */
+  .pb__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+  }
+
+  .pb__stage {
+    grid-column: 1 / -1;
+    min-height: clamp(380px, 44vw, 460px);
+  }
+
+  .pb__stageFoot {
+    flex-wrap: wrap;
+  }
+
+  .pp__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pp__feature {
+    grid-column: 1 / -1;
+  }
+
+}
+
+@media (max-width: 860px) {
+  /* Too narrow for the letterbox: the card takes a fixed height and the notch
+     spans its full width, so a wrapped filter row never eats the photograph. */
+  .pp__hero {
+    aspect-ratio: auto;
+    min-height: 430px;
+  }
+
+  .pp__notch {
+    left: 0;
+    padding-left: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .pp__notch::before {
+    display: none;
+  }
+
+  .pp__filters {
+    justify-content: flex-start;
+  }
+
+  .pp__filter {
+    padding: 11px 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .pb__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pb__stageTitle {
+    max-width: none;
+  }
+
+  .pp__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pp__feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}

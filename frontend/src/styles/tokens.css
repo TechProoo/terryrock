@@ -1,0 +1,62 @@
+/* ---------------------------------------------------------------------------
+   Design tokens — structure from the reference composition, accent hues from
+   the TerryRock logo.
+   Two worlds: a bright, desaturated "site" hero and a near-black editorial body.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* -- Type ---------------------------------------------------------------- */
+  --font-display: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --font-ui: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+
+  /* -- Dark surface -------------------------------------------------------- */
+  --ink: #0a0a0b;
+  --ink-raise: #101011;
+  --ink-line: rgba(255, 255, 255, 0.13);
+  --ink-line-soft: rgba(255, 255, 255, 0.08);
+
+  /* -- Light surface ------------------------------------------------------- */
+  --paper: #eef0f1;
+  --paper-deep: #d9dcde;
+
+  /* -- Text ---------------------------------------------------------------- */
+  --text-on-dark: #f4f4f5;
+  --text-on-dark-dim: #8e8e91;
+  --text-on-dark-faint: #6a6a6d;
+  --text-on-light: #16181a;
+  --text-on-light-dim: #5d6165;
+
+  /* -- Accents ------------------------------------------------------------- */
+  /* Tuned to the logo: its gold (#f0a800) and azure (#0078c0), pulled well down
+     in saturation so the page keeps the reference's muted read while the hues
+     still belong to the brand. */
+  --sand: #cbab6d; /* gold-tinted tan, secondary heading clauses on dark */
+  --sand-soft: #dcc596;
+  --steel: #9dbdd8; /* azure-tinted steel, hero heading clause on paper */
+  --steel-deep: #6ea5d3;
+
+  /* -- Glass --------------------------------------------------------------- */
+  --glass-light: rgba(255, 255, 255, 0.62);
+  --glass-light-line: rgba(255, 255, 255, 0.75);
+  --glass-dark: rgba(22, 22, 24, 0.42);
+
+  /* -- Geometry ------------------------------------------------------------ */
+  --r-card-lg: 42px;
+  --r-card-md: 30px;
+  --r-card-sm: 22px;
+  --r-pill: 999px;
+
+  /* -- Rhythm -------------------------------------------------------------- */
+  --shell: 1200px;
+  --gutter: clamp(18px, 2.6vw, 38px);
+
+  /* -- Motion -------------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.68, 0.32, 1);
+  --dur: 0.42s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0.001s;
+  }
+}

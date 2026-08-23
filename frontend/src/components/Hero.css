@@ -1,0 +1,448 @@
+/* ---------------------------------------------------------------------------
+   Hero — a light room. Stack order, back to front:
+     1. paper gradient ground
+     2. oversized wordmark, bleeding past the viewport edges
+     3. a plume of light that veils the wordmark's middle
+     4. the site photograph, feathered so it dissolves into the paper
+     5. ground haze
+     6. copy, rail, aside and cards
+   --------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(88vh, 860px);
+  padding-bottom: clamp(0px, 2vw, 22px);
+  background:
+    radial-gradient(128% 92% at 50% 0%, #fdfdfe 0%, #f3f5f6 38%, #e6e9eb 74%, #dcdfe2 100%),
+    var(--paper);
+  color: var(--text-on-light);
+}
+
+/* -- 2. Wordmark ----------------------------------------------------------- */
+
+/* Tracked out rather than simply enlarged: "TERRYROCK" is half again as long as
+   the reference's six-letter mark, so the extra width has to come from letter
+   spacing to keep the cap height at the reference's ~20% of the hero. */
+.hero__wordmark {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(78px, 9.6vw, 128px);
+  transform: translateX(-50%);
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(60px, 14.6vw, 210px);
+  line-height: 0.72;
+  letter-spacing: 0.045em;
+  white-space: nowrap;
+  color: #14171b;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* -- 3. Plume of light behind the subject ---------------------------------- */
+
+.hero__glow {
+  position: absolute;
+  left: 57%;
+  bottom: -4%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: min(74%, 900px);
+  height: 66%;
+  background: radial-gradient(
+    50% 58% at 50% 60%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.46) 48%,
+    transparent 76%
+  );
+  pointer-events: none;
+}
+
+/* -- 4. Photograph --------------------------------------------------------- */
+
+/* Full bleed, exactly like the reference: the scene is the hero's ground, not a
+   picture sitting on it. Every edge is dissolved by the mask below, so the
+   photograph has no frame — it simply thins out into the paper. */
+/* The mask lives on the container, not the image, so the paper veil below is
+   clipped by the same ellipse. Masking only the image would let the veil paint
+   across the whole hero and grey out the wordmark's exposed ends. */
+.hero__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    34% 78% at 54% 66%,
+    #000 0%,
+    #000 40%,
+    rgba(0, 0, 0, 0.5) 68%,
+    transparent 90%
+  );
+  mask-image: radial-gradient(
+    34% 78% at 54% 66%,
+    #000 0%,
+    #000 40%,
+    rgba(0, 0, 0, 0.5) 68%,
+    transparent 90%
+  );
+}
+
+.hero__scene img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Framed off-centre so the subject lands right of the headline column. */
+  object-position: 52% 64%;
+  /* Near-monochrome, but the subject keeps its weight: the reference's tower
+     reads as a solid dark mass, not a ghost. */
+  filter: grayscale(0.92) contrast(1.14) brightness(1.03);
+}
+
+/* Paper veil across the top and both flanks — keeps the header pills, the
+   headline and the aside note on pale ground, the way the reference's mist
+   thins out toward the roofline and the margins. */
+.hero__scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(240, 242, 244, 0.96) 0%,
+      rgba(240, 242, 244, 0.72) 12%,
+      rgba(240, 242, 244, 0.2) 26%,
+      rgba(240, 242, 244, 0) 40%
+    ),
+    linear-gradient(
+      to right,
+      rgba(240, 242, 244, 0.82) 0%,
+      rgba(240, 242, 244, 0) 22%,
+      rgba(240, 242, 244, 0) 62%,
+      rgba(240, 242, 244, 0.72) 78%,
+      rgba(240, 242, 244, 0.88) 100%
+    );
+  pointer-events: none;
+}
+
+/* -- 5. Ground haze grading the base into the section edge ----------------- */
+
+.hero__floor {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 4;
+  height: 21%;
+  background: linear-gradient(to top, #dfe2e5 0%, rgba(223, 226, 229, 0.42) 46%, transparent 100%);
+  pointer-events: none;
+}
+
+/* -- 6. Content ------------------------------------------------------------ */
+
+.hero__grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: clamp(94px, 10.4vw, 146px) var(--gutter) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.94fr);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: start;
+}
+
+/* Social rail ------------------------------------------------------------- */
+
+.hero__rail {
+  position: absolute;
+  top: clamp(98px, 12.2vw, 148px);
+  left: max(calc(var(--gutter) - 8px), calc(50% - var(--shell) / 2 - 4px));
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero__railBtn {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: var(--r-pill);
+  color: var(--text-on-light);
+  background: var(--glass-light);
+  border: 1px solid var(--glass-light-line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.hero__railBtn:hover {
+  background: #fff;
+  transform: translateX(2px);
+}
+
+/* Headline ---------------------------------------------------------------- */
+
+.hero__copy {
+  padding-left: clamp(0px, 3.4vw, 46px);
+  padding-top: clamp(4px, 1.2vw, 16px);
+}
+
+/* Deliberately small — the reference headline is a compact block of three
+   short lines, not a full-width statement. */
+.hero__title {
+  font-size: clamp(26px, 2.42vw, 36px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.026em;
+  max-width: 18ch;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__title .c-steel,
+.hero__title .c-steel-deep {
+  display: inline;
+}
+
+.hero__cta {
+  margin-top: clamp(18px, 2.2vw, 28px);
+  padding: 10px 19px;
+}
+
+/* Right column: aside note + connector, then the two glass cards ---------- */
+
+.hero__aside {
+  padding-top: clamp(6px, 1.6vw, 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hero__note {
+  position: relative;
+  max-width: 202px;
+  margin-right: clamp(0px, 4.6vw, 68px);
+  padding-left: 20px;
+  text-align: left;
+}
+
+/* Hairline + node that ties the note back toward the building. */
+.hero__note::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: calc(100% + 2px);
+  width: clamp(40px, 8vw, 116px);
+  height: 1px;
+  background: linear-gradient(to left, rgba(24, 26, 30, 0.34), rgba(24, 26, 30, 0));
+}
+
+.hero__note::after {
+  content: '';
+  position: absolute;
+  top: 4.5px;
+  right: calc(100% + 2px + clamp(40px, 8vw, 116px));
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(24, 26, 30, 0.42);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.hero__noteTitle {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.36;
+  letter-spacing: -0.008em;
+}
+
+.hero__noteBody {
+  margin-top: 9px;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: rgba(29, 32, 36, 0.5);
+  text-wrap: pretty;
+}
+
+.hero__cards {
+  margin-top: clamp(58px, 14.4vw, 194px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: min(100%, 250px);
+}
+
+.hero__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 11px 18px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--glass-light-line);
+  backdrop-filter: blur(16px) saturate(1.35);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  box-shadow: 0 12px 30px rgba(20, 24, 28, 0.09);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.hero__card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 20px 44px rgba(20, 24, 28, 0.14);
+}
+
+.hero__cardIcon {
+  color: rgba(24, 27, 31, 0.82);
+}
+
+.hero__cardTitle {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.28;
+  color: var(--steel-deep);
+}
+
+.hero__card:last-child .hero__cardTitle {
+  color: var(--text-on-light);
+}
+
+.hero__cardBody {
+  font-size: 9.5px;
+  line-height: 1.42;
+  color: rgba(29, 32, 36, 0.46);
+  max-width: 88px;
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+/* The scene is full bleed at every width; narrower viewports only need the
+   mask's core widened, since there is less paper to dissolve into. */
+@media (max-width: 1180px) {
+  .hero__scene {
+    -webkit-mask-image: radial-gradient(
+      42% 78% at 55% 66%,
+      #000 0%,
+      #000 40%,
+      rgba(0, 0, 0, 0.5) 68%,
+      transparent 90%
+    );
+    mask-image: radial-gradient(
+      42% 78% at 55% 66%,
+      #000 0%,
+      #000 40%,
+      rgba(0, 0, 0, 0.5) 68%,
+      transparent 90%
+    );
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero__note {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: clamp(96px, 20vw, 130px);
+    padding-bottom: clamp(280px, 62vw, 420px);
+  }
+
+  .hero__copy {
+    padding-left: 0;
+  }
+
+  .hero__title {
+    max-width: 20ch;
+  }
+
+  .hero__aside {
+    align-items: flex-start;
+  }
+
+  .hero__note {
+    padding-left: 0;
+    max-width: 340px;
+  }
+
+  .hero__note::before,
+  .hero__note::after {
+    display: none;
+  }
+
+  .hero__cards {
+    margin-top: 26px;
+    width: min(100%, 300px);
+  }
+
+  .hero__rail {
+    flex-direction: row;
+    top: auto;
+    bottom: 18px;
+    left: var(--gutter);
+  }
+
+  .hero__glow {
+    left: 50%;
+  }
+
+  /* Single column stacks copy above the scene, so the photograph drops to a
+     band along the base rather than sitting behind the headline. */
+  .hero__scene {
+    inset: auto 0 0 0;
+    height: clamp(300px, 66vw, 440px);
+    -webkit-mask-image: radial-gradient(
+      74% 96% at 50% 74%,
+      #000 0%,
+      #000 40%,
+      rgba(0, 0, 0, 0.58) 70%,
+      transparent 92%
+    );
+    mask-image: radial-gradient(
+      74% 96% at 50% 74%,
+      #000 0%,
+      #000 40%,
+      rgba(0, 0, 0, 0.58) 70%,
+      transparent 92%
+    );
+  }
+
+  .hero__scene img {
+    object-position: 54% 58%;
+  }
+
+  .hero__wordmark {
+    bottom: clamp(140px, 36vw, 240px);
+    font-size: clamp(56px, 20vw, 190px);
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__cards {
+    gap: 9px;
+  }
+
+  .hero__grid {
+    padding-bottom: clamp(250px, 82vw, 360px);
+  }
+}
