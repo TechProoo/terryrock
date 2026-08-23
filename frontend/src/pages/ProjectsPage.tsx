@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import MetaStrip from "../components/MetaStrip";
 import Contact from "../components/Contact";
 import ScrubGallery from "../components/ScrubGallery";
+import SwapImage from "../components/SwapImage";
 import SectorCarousel from "../components/SectorCarousel";
 import { IconArrow, IconChevron, IconInfo } from "../components/Icons";
 import { projectsPage } from "../data/projectsPage";
@@ -184,7 +185,7 @@ export default function ProjectsPage() {
               <p className="pb__wordmark">{showcase.wordmark}</p>
 
               <div className="pb__railFrame">
-                <img src={peek(1).image} alt={peek(1).alt} />
+                <SwapImage src={peek(1).image} alt={peek(1).alt} />
               </div>
 
               <div className="pb__note">
@@ -199,7 +200,7 @@ export default function ProjectsPage() {
 
             {/* Stage: the project currently selected. */}
             <article className="pb__stage reveal">
-              <img
+              <SwapImage
                 className="pb__stageImg"
                 src={current.image}
                 alt={current.alt}
@@ -247,7 +248,7 @@ export default function ProjectsPage() {
                   <span className="pb__faces" aria-hidden="true">
                     {[1, 2, 3].map((offset) => (
                       <span key={offset} className="pb__face">
-                        <img src={peek(offset).image} alt="" />
+                        <SwapImage src={peek(offset).image} alt="" />
                       </span>
                     ))}
                   </span>
@@ -265,7 +266,7 @@ export default function ProjectsPage() {
                     {showcase.nextPrefix} {peek(1).title}
                   </span>
                   <span className="pb__nextThumb" aria-hidden="true">
-                    <img src={peek(1).image} alt="" />
+                    <SwapImage src={peek(1).image} alt="" />
                   </span>
                 </button>
               </div>
@@ -315,7 +316,7 @@ export default function ProjectsPage() {
               </button>
 
               <a className="pb__explore" href={showcase.contact.href}>
-                <img src={peek(2).image} alt={peek(2).alt} />
+                <SwapImage src={peek(2).image} alt={peek(2).alt} />
                 <span className="pb__exploreVeil" aria-hidden="true" />
                 <span className="pb__exploreLabel">
                   {showcase.exploreLabel}

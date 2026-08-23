@@ -252,6 +252,42 @@ h3 {
 }
 
 /* ---------------------------------------------------------------------------
+   Image swap — the resting styles behind <SwapImage>. Layers stack on the
+   parent, so whatever box they sit in has to be positioned and sized; only the
+   incoming layer animates, and it fades over the outgoing one rather than over
+   the container's background.
+   --------------------------------------------------------------------------- */
+
+.swap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swap.is-entering {
+  /* Slower than --dur: this is a picture changing, not a control responding,
+     and it wants the same unhurried dissolve the sector carousel uses. */
+  animation: swapIn 0.72s var(--ease) both;
+}
+
+/* Only a `from` — the layer settles onto whatever the resting styles say, so
+   filters and object positions set per call site are never overwritten. */
+@keyframes swapIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swap.is-entering {
+    animation-duration: 0.001s;
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Scroll reveal
    --------------------------------------------------------------------------- */
 

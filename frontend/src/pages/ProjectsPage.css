@@ -421,7 +421,10 @@
   color: var(--text-on-dark);
 }
 
+/* Positioned because the crossfade stacks its layers on this box; the same
+   goes for the face, thumb and explore frames below. */
 .pb__railFrame {
+  position: relative;
   flex: 1;
   min-height: clamp(140px, 16vw, 240px);
   border-radius: 20px;
@@ -611,6 +614,7 @@
 }
 
 .pb__face {
+  position: relative;
   width: clamp(28px, 2.8vw, 40px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -668,6 +672,7 @@
 }
 
 .pb__nextThumb {
+  position: relative;
   flex: none;
   width: clamp(42px, 4.4vw, 62px);
   aspect-ratio: 1;
