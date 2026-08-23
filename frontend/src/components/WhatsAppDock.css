@@ -1,0 +1,292 @@
+/* ---------------------------------------------------------------------------
+   WhatsApp dock. The page is monochrome, so the brand green is used as an
+   accent only — the mark, the live dot and the send button — and never as a
+   surface. GSAP handles the open; CSS only describes the two states.
+   --------------------------------------------------------------------------- */
+
+.wa {
+  --wa-green: #25d366;
+
+  position: fixed;
+  right: clamp(16px, 2.4vw, 34px);
+  bottom: clamp(16px, 2.4vw, 34px);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* -- The button ------------------------------------------------------------ */
+
+.wa__fab {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(48px, 4.4vw, 58px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--wa-green);
+  background: rgba(18, 19, 21, 0.82);
+  border: 1px solid rgba(37, 211, 102, 0.32);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 0 rgba(37, 211, 102, 0.28);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  transition:
+    transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.wa__fab:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 211, 102, 0.6);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.55),
+    0 0 0 6px rgba(37, 211, 102, 0.1);
+}
+
+.wa.is-open .wa__fab {
+  color: var(--text-on-dark);
+  border-color: var(--ink-line);
+}
+
+.wa__fabIcon {
+  display: grid;
+  place-items: center;
+}
+
+/* A slow halo at rest, so the button reads as live without blinking. */
+.wa__fab::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid rgba(37, 211, 102, 0.5);
+  opacity: 0;
+  animation: wa-pulse 3.4s var(--ease) infinite;
+  pointer-events: none;
+}
+
+.wa.is-open .wa__fab::after {
+  animation: none;
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* -- The panel ------------------------------------------------------------- */
+
+.wa__panel {
+  width: min(330px, calc(100vw - 2 * clamp(16px, 2.4vw, 34px)));
+  padding: clamp(15px, 1.7vw, 20px);
+  border-radius: 24px;
+  background: rgba(16, 16, 18, 0.94);
+  border: 1px solid var(--ink-line);
+  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  /* GSAP owns visibility; this is only the resting state before it runs. */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.wa__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: clamp(11px, 1.3vw, 15px);
+  border-bottom: 1px solid var(--ink-line-soft);
+}
+
+.wa__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--wa-green);
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.26);
+}
+
+.wa__ident {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--text-on-dark);
+}
+
+/* The dot is decoration on the brand line, not a presence indicator. */
+.wa__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.wa__status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--wa-green);
+}
+
+.wa__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--text-on-dark-faint);
+  border: 1px solid var(--ink-line-soft);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.wa__close:hover {
+  color: var(--text-on-dark);
+  border-color: var(--ink-line);
+}
+
+.wa__intro {
+  margin-top: clamp(12px, 1.4vw, 16px);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-on-dark-faint);
+}
+
+.wa__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: clamp(10px, 1.2vw, 13px);
+}
+
+.wa__preset {
+  padding: 7px 12px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--text-on-dark-dim);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ink-line-soft);
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.wa__preset:hover {
+  color: var(--text-on-dark);
+  background: rgba(37, 211, 102, 0.1);
+  border-color: rgba(37, 211, 102, 0.32);
+}
+
+.wa__field {
+  display: block;
+  margin-top: clamp(10px, 1.2vw, 13px);
+}
+
+.wa__field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 15px;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ink-line-soft);
+  resize: none;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+.wa__field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.26);
+}
+
+.wa__field textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(37, 211, 102, 0.45);
+}
+
+.wa__send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(10px, 1.2vw, 13px);
+  padding: 12px 18px;
+  border-radius: 15px;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #06240f;
+  background: var(--wa-green);
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.wa__send:hover {
+  background: #34e176;
+  transform: translateY(-1px);
+}
+
+.wa__number {
+  margin-top: 9px;
+  text-align: center;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--text-on-dark-faint);
+}
+
+.wa__srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Keeps the dock clear of whatever the page ends with on a narrow screen. */
+@media (max-width: 640px) {
+  body:has(.wa) .meta--footer {
+    padding-bottom: calc(clamp(16px, 2.4vw, 34px) + 74px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa__fab::after {
+    animation: none;
+  }
+}

@@ -41,8 +41,8 @@ export const brand = {
    to that section, so the nav works identically from any route. */
 export const nav = {
   left: [
-    { label: 'Contacts', to: '/#contact' },
-    { label: "Let's build together", to: '/#contact' },
+    { label: 'Contacts', to: '/contact' },
+    { label: "Let's build together", to: '/contact' },
   ],
   right: [
     { label: 'Executed Projects', to: '/projects' },

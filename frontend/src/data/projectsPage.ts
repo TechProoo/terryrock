@@ -47,7 +47,7 @@ export const projectsPage = {
   /* Kept to two short lines so the hero copy block sits at the reference's
      proportions; the full client list lives on the home page. */
   lede: 'Insulation, ductwork and pipework packages delivered on site across Lagos and Abuja.',
-  cta: { label: 'Start a conversation', href: '/#contact' },
+  cta: { label: 'Start a conversation', href: '/contact' },
   hero: {
     image: heroPlant,
     alt: 'A long run of insulated chilled water pipework and pumps across a rooftop',
@@ -95,7 +95,7 @@ export const projectsPage = {
     nextPrefix: 'View',
     prevLabel: 'Previous project',
     exploreLabel: 'Explore',
-    contact: { label: 'Contact', href: '/#contact' },
+    contact: { label: 'Contact', href: '/contact' },
   },
 
   filterLabel: 'Filter by discipline',

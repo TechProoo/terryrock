@@ -41,7 +41,7 @@ export const systemsPage = {
   eyebrow: 'Mechanical systems',
   headline: ['Thirteen disciplines', 'under one contract'],
   lede: 'Mechanical, insulation and electrical work handled in house — from pipe fabrication and welding through to cladding, HVAC and thermal insulation.',
-  cta: { label: 'Scope a package', href: '/#contact' },
+  cta: { label: 'Scope a package', href: '/contact' },
   hero: {
     image: hero,
     alt: 'Insulated pipework threading overhead through a finished plant hall',
@@ -208,6 +208,6 @@ export const systemsPage = {
   closer: {
     title: ['Bring us the', 'drawing'],
     body: 'Send a scope and we will price the package — fabrication, installation, insulation and finish, under one contract.',
-    cta: { label: 'Start a conversation', href: '/#contact' },
+    cta: { label: 'Start a conversation', href: '/contact' },
   },
 };
