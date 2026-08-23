@@ -21,28 +21,43 @@ export default function SectorCarousel() {
   const section = useRef<HTMLElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
 
   const go = useCallback((index: number) => setActive((index + slides.length) % slides.length), [slides.length]);
 
-  /* Where the row sits is a measurement, not a formula: while the whole row
-     fits it stays centred as a group (the reference's composition), and once it
-     is wider than the viewport it slides just far enough to centre the selected
-     card — never past either end, so there is no dead space at the edges.
-     Written straight to the node so re-measuring costs no render. */
+  /* The block hangs off the right-hand edge. Where the row sits is a
+     measurement, not a formula:
+
+       - while the whole row fits, it is right-aligned to the gutter, so the
+         cards sit against the right edge with open background to their left;
+       - once it is wider than that, it slides to bring the selected card to the
+         left of the visible run, clamped at both ends so neither edge ever
+         shows dead space.
+
+     `--row-x` carries the row's resting left edge back out to the heading and
+     the dots, which line up with it. Written straight to the nodes, so
+     re-measuring costs no render. */
   const positionTrack = useCallback(() => {
     const view = viewport.current;
     const row = track.current;
-    if (!view || !row) return;
+    const box = inner.current;
+    if (!view || !row || !box) return;
 
     const card = row.children[active] as HTMLElement | undefined;
-    const overflow = row.scrollWidth - view.clientWidth;
-    if (!card || overflow <= 0) {
-      row.style.transform = 'translateX(0px)';
-      return;
-    }
+    if (!card) return;
 
-    const centred = card.offsetLeft + card.offsetWidth / 2 - view.clientWidth / 2;
-    row.style.transform = `translateX(${-Math.min(Math.max(centred, 0), overflow)}px)`;
+    const gutter = parseFloat(getComputedStyle(box).paddingLeft) || 0;
+    const viewW = view.clientWidth;
+    const rowW = row.scrollWidth;
+    const rightAligned = viewW - gutter - rowW;
+
+    const x =
+      rowW + gutter * 2 <= viewW
+        ? rightAligned
+        : Math.min(Math.max(gutter - card.offsetLeft, rightAligned), gutter);
+
+    row.style.transform = `translateX(${x}px)`;
+    box.style.setProperty('--row-x', `${Math.max(gutter, rightAligned) - gutter}px`);
   }, [active]);
 
   useEffect(positionTrack, [positionTrack]);
@@ -114,7 +129,7 @@ export default function SectorCarousel() {
         <div className="sc__veil" />
       </div>
 
-      <div className="sc__inner shell">
+      <div className="sc__inner" ref={inner}>
         <header className="sc__head">
           <p className="micro sc__eyebrow">{eyebrow}</p>
           <h2 className="sc__title">{title}</h2>

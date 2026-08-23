@@ -1,16 +1,16 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import MetaStrip from '../components/MetaStrip';
-import Contact from '../components/Contact';
-import ScrubGallery from '../components/ScrubGallery';
-import SectorCarousel from '../components/SectorCarousel';
-import { IconArrow, IconChevron, IconInfo } from '../components/Icons';
-import { projectsPage } from '../data/projectsPage';
-import useReveal from '../hooks/useReveal';
-import './ProjectsPage.css';
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import MetaStrip from "../components/MetaStrip";
+import Contact from "../components/Contact";
+import ScrubGallery from "../components/ScrubGallery";
+import SectorCarousel from "../components/SectorCarousel";
+import { IconArrow, IconChevron, IconInfo } from "../components/Icons";
+import { projectsPage } from "../data/projectsPage";
+import useReveal from "../hooks/useReveal";
+import "./ProjectsPage.css";
 
-const ALL = 'all';
+const ALL = "all";
 
 export default function ProjectsPage() {
   const {
@@ -38,7 +38,8 @@ export default function ProjectsPage() {
   const setActive = (index: number) => setPos({ filter, index });
 
   const shown = useMemo(
-    () => (filter === ALL ? items : items.filter((item) => item.category === filter)),
+    () =>
+      filter === ALL ? items : items.filter((item) => item.category === filter),
     [filter, items],
   );
 
@@ -52,9 +53,12 @@ export default function ProjectsPage() {
   const windowStart = Math.min(Math.max(active - 1, 0), Math.max(count - 4, 0));
   const windowed = shown.slice(windowStart, windowStart + 4);
 
-  const labelFor = (id: string) => categories.find((c) => c.id === id)?.label ?? '';
-  const countFor = (id: string) => items.filter((item) => item.category === id).length;
-  const thumbFor = (id: string) => items.find((item) => item.category === id) ?? items[0];
+  const labelFor = (id: string) =>
+    categories.find((c) => c.id === id)?.label ?? "";
+  const countFor = (id: string) =>
+    items.filter((item) => item.category === id).length;
+  const thumbFor = (id: string) =>
+    items.find((item) => item.category === id) ?? items[0];
 
   /* Re-runs the reveal observer whenever the filtered set changes, so cards
      that mount after a filter change animate in rather than staying hidden. */
@@ -75,10 +79,14 @@ export default function ProjectsPage() {
                top-right corner, so the chips read as part of the card rather
                than as a toolbar floating above it. */}
             <div className="pp__notch">
-              <div className="pp__filters" role="group" aria-label={filterLabel}>
+              <div
+                className="pp__filters"
+                role="group"
+                aria-label={filterLabel}
+              >
                 <button
                   type="button"
-                  className={`pp__filter${filter === ALL ? ' is-active' : ''}`}
+                  className={`pp__filter${filter === ALL ? " is-active" : ""}`}
                   onClick={() => setFilter(ALL)}
                   aria-pressed={filter === ALL}
                 >
@@ -88,7 +96,7 @@ export default function ProjectsPage() {
                   <button
                     key={category.id}
                     type="button"
-                    className={`pp__filter${filter === category.id ? ' is-active' : ''}`}
+                    className={`pp__filter${filter === category.id ? " is-active" : ""}`}
                     onClick={() => setFilter(category.id)}
                     aria-pressed={filter === category.id}
                   >
@@ -115,7 +123,11 @@ export default function ProjectsPage() {
         {/* -- Three cards, as in the reference --------------------------- */}
         <section className="pp__cards shell">
           <article className="pp__feature reveal">
-            <img className="pp__featureImg" src={feature.image} alt={feature.alt} />
+            <img
+              className="pp__featureImg"
+              src={feature.image}
+              alt={feature.alt}
+            />
             <div className="pp__featureBody">
               <span className="tag pp__featureTag">{feature.tag}</span>
               <h2 className="pp__featureTitle">
@@ -137,7 +149,11 @@ export default function ProjectsPage() {
                 <IconArrow />
               </span>
             </div>
-            <img className="pp__secondaryImg" src={secondary.image} alt={secondary.alt} />
+            <img
+              className="pp__secondaryImg"
+              src={secondary.image}
+              alt={secondary.alt}
+            />
           </article>
 
           <article className="pp__closer reveal">
@@ -183,7 +199,11 @@ export default function ProjectsPage() {
 
             {/* Stage: the project currently selected. */}
             <article className="pb__stage reveal">
-              <img className="pb__stageImg" src={current.image} alt={current.alt} />
+              <img
+                className="pb__stageImg"
+                src={current.image}
+                alt={current.alt}
+              />
               <div className="pb__stageVeil" aria-hidden="true" />
 
               <div className="pb__stageTop">
@@ -203,12 +223,12 @@ export default function ProjectsPage() {
                       <button
                         key={item.title}
                         type="button"
-                        className={`pb__step${index === active ? ' is-active' : ''}`}
+                        className={`pb__step${index === active ? " is-active" : ""}`}
                         onClick={() => setActive(index)}
                         aria-label={item.title}
                         aria-current={index === active}
                       >
-                        {String(index + 1).padStart(2, '0')}
+                        {String(index + 1).padStart(2, "0")}
                       </button>
                     );
                   })}
@@ -231,10 +251,16 @@ export default function ProjectsPage() {
                       </span>
                     ))}
                   </span>
-                  <span className="pb__creditLabel">{showcase.creditLabel}</span>
+                  <span className="pb__creditLabel">
+                    {showcase.creditLabel}
+                  </span>
                 </div>
 
-                <button type="button" className="pb__next" onClick={() => step(1)}>
+                <button
+                  type="button"
+                  className="pb__next"
+                  onClick={() => step(1)}
+                >
                   <span className="pb__nextLabel">
                     {showcase.nextPrefix} {peek(1).title}
                   </span>
@@ -260,7 +286,7 @@ export default function ProjectsPage() {
                   <li key={category.id}>
                     <button
                       type="button"
-                      className={`pb__row${filter === category.id ? ' is-active' : ''}`}
+                      className={`pb__row${filter === category.id ? " is-active" : ""}`}
                       onClick={() => setFilter(category.id)}
                       aria-pressed={filter === category.id}
                     >
@@ -281,7 +307,7 @@ export default function ProjectsPage() {
 
               <button
                 type="button"
-                className={`pb__all${filter === ALL ? ' is-active' : ''}`}
+                className={`pb__all${filter === ALL ? " is-active" : ""}`}
                 onClick={() => setFilter(ALL)}
                 aria-pressed={filter === ALL}
               >
@@ -291,15 +317,19 @@ export default function ProjectsPage() {
               <a className="pb__explore" href={showcase.contact.href}>
                 <img src={peek(2).image} alt={peek(2).alt} />
                 <span className="pb__exploreVeil" aria-hidden="true" />
-                <span className="pb__exploreLabel">{showcase.exploreLabel}</span>
+                <span className="pb__exploreLabel">
+                  {showcase.exploreLabel}
+                </span>
               </a>
             </div>
           </div>
         </section>
 
-        <ScrubGallery />
+        <div style={{ marginTop: "100px" }}>
+          <SectorCarousel />
+        </div>
 
-        <SectorCarousel />
+        <ScrubGallery />
 
         <div className="pp__back shell">
           <Link className="pill pill--outline" to="/">

@@ -46,7 +46,7 @@ export const nav = {
   ],
   right: [
     { label: 'Executed Projects', to: '/projects' },
-    { label: 'Mechanical Systems', to: '/#services' },
+    { label: 'Mechanical Systems', to: '/systems' },
   ],
 };
 
