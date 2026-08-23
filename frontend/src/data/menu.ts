@@ -9,6 +9,7 @@
 
 import home from '../assets/site_05.jpg';
 import projects from '../assets/site_35.jpg';
+import services from '../assets/srv_hero.jpg';
 import systems from '../assets/sys_hero.jpg';
 import contact from '../assets/contact_hero.jpg';
 
@@ -36,6 +37,13 @@ export const menu = {
       to: '/projects',
       image: projects,
       alt: 'A long run of insulated chilled water pipework across a rooftop',
+    },
+    {
+      label: 'Services',
+      note: 'From drawing to commissioned plant',
+      to: '/services',
+      image: services,
+      alt: 'Insulated distribution pipework running the length of a rooftop',
     },
     {
       label: 'Mechanical Systems',

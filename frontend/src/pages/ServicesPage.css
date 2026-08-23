@@ -1,0 +1,957 @@
+/* ---------------------------------------------------------------------------
+   Services. The hero follows the reference composition: one photograph with
+   plates floating over it — headline and action top left, topics and a policy
+   plate opposite, and a foot of three. Everything below it is the platform's
+   own furniture, so the page reads as part of the site rather than a visitor.
+   --------------------------------------------------------------------------- */
+
+.sv {
+  background: var(--ink);
+  min-height: 100vh;
+}
+
+.sv__main {
+  padding-top: clamp(84px, 9vw, 118px);
+}
+
+/* -- Hero ------------------------------------------------------------------ */
+
+.sv__hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  /* Taller than the other pages' heroes — it is carrying five plates. */
+  aspect-ratio: 1.85 / 1;
+  background: #141416;
+}
+
+.sv__heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.08) brightness(0.74);
+}
+
+.sv__heroVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(8, 8, 9, 0.9) 0%, rgba(8, 8, 9, 0.5) 32%, rgba(8, 8, 9, 0.12) 62%, rgba(8, 8, 9, 0.42) 100%),
+    linear-gradient(to bottom, rgba(8, 8, 9, 0.42) 0%, rgba(8, 8, 9, 0) 30%, rgba(8, 8, 9, 0.78) 100%);
+}
+
+/* Two rows: the headline and panel above, the three plates below. */
+.sv__heroGrid {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(14px, 2vw, 30px);
+  padding: clamp(18px, 2.6vw, 40px);
+}
+
+.sv__lead {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+}
+
+.sv__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.9vw, 58px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+}
+
+/* Each line clips so its inner span can slide up from underneath. */
+.sv__titleLine {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 20px);
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.sv__titleLine > span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* One word of the headline is ringed rather than coloured. */
+.sv__ring {
+  padding: 0.04em 0.34em 0.1em;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--r-pill);
+}
+
+/* The micro labels, in a row of their own above the headline. */
+.sv__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.4vw, 20px);
+  margin-bottom: clamp(10px, 1.3vw, 16px);
+  font-family: var(--font-ui);
+  font-size: clamp(7.5px, 0.64vw, 9px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand);
+}
+
+.sv__flags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sv__flags span + span::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+/* -- Ornaments -------------------------------------------------------------- */
+
+/* A slow ring of text. Decoration, so it is hidden from assistive tech and
+   stops turning for anyone who asked for less motion. */
+.sv__badge {
+  position: absolute;
+  right: clamp(18px, 2.6vw, 40px);
+  top: 50%;
+  width: clamp(74px, 8vw, 112px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.sv__badge svg {
+  width: 100%;
+  height: 100%;
+  animation: sv-spin 26s linear infinite;
+}
+
+.sv__badge text {
+  font-family: var(--font-ui);
+  font-size: 8.4px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  fill: rgba(255, 255, 255, 0.66);
+}
+
+.sv__badgeDot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand);
+}
+
+@keyframes sv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sv__badge svg {
+    animation: none;
+  }
+}
+
+/* The action sits on the last line of the headline, as in the reference. */
+.sv__cta {
+  flex: none;
+  padding: clamp(9px, 0.9vw, 13px) clamp(14px, 1.5vw, 22px);
+  border-radius: var(--r-pill);
+  font-size: clamp(10px, 0.85vw, 12.5px);
+  text-transform: none;
+  letter-spacing: -0.004em;
+}
+
+/* -- Top-right panel -------------------------------------------------------- */
+
+.sv__panel {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.sv__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.sv__tag {
+  font-size: clamp(9px, 0.75vw, 10.5px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* -- Glass plates ----------------------------------------------------------- */
+
+/* One material for every floating plate in the hero. */
+.sv__note,
+.sv__aside,
+.sv__proof,
+.sv__closerNote {
+  border-radius: clamp(16px, 1.8vw, 24px);
+  background: rgba(20, 20, 23, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+}
+
+.sv__note,
+.sv__aside {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding: clamp(12px, 1.3vw, 18px);
+  max-width: clamp(240px, 30vw, 400px);
+}
+
+.sv__noteText,
+.sv__asideText {
+  min-width: 0;
+  flex: 1;
+}
+
+.sv__noteTitle,
+.sv__asideTitle {
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.05vw, 15px);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--text-on-dark);
+}
+
+.sv__noteBody,
+.sv__asideBody {
+  margin-top: 6px;
+  font-size: clamp(9px, 0.74vw, 10.5px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+  text-wrap: pretty;
+}
+
+.sv__noteThumb,
+.sv__asideThumb {
+  flex: none;
+  width: clamp(46px, 5vw, 72px);
+  border-radius: clamp(10px, 1.1vw, 15px);
+  overflow: hidden;
+  background: #1a1b1d;
+}
+
+.sv__noteThumb img,
+.sv__asideThumb img,
+.sv__face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.12) brightness(0.95);
+}
+
+.sv__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: clamp(7px, 0.9vw, 11px);
+  font-family: var(--font-ui);
+  font-size: clamp(9px, 0.72vw, 10px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--sand);
+  transition: gap var(--dur) var(--ease);
+}
+
+.sv__more:hover {
+  gap: 11px;
+}
+
+/* -- Hero foot -------------------------------------------------------------- */
+
+/* One row, three plates, each taking only the width it needs. */
+.sv__foot {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(10px, 1.6vw, 24px);
+}
+
+.sv__proof {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(9px, 1vw, 14px);
+  padding: clamp(10px, 1.1vw, 15px) clamp(13px, 1.4vw, 20px);
+}
+
+.sv__faces {
+  display: flex;
+  flex: none;
+}
+
+.sv__face {
+  width: clamp(24px, 2.4vw, 34px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  margin-left: -9px;
+}
+
+.sv__face:first-child {
+  margin-left: 0;
+}
+
+.sv__proofValue {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 33px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.sv__proofLabel {
+  font-size: clamp(8.5px, 0.7vw, 10px);
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sv__proofLabel span {
+  display: block;
+}
+
+.sv__closerNote {
+  max-width: clamp(220px, 26vw, 330px);
+  padding: clamp(12px, 1.3vw, 18px);
+}
+
+/* The badge lives in the middle band, so the foot has to stop short of it. */
+.sv__foot {
+  padding-right: clamp(74px, 9vw, 128px);
+}
+
+.sv__closerNote p {
+  font-size: clamp(9px, 0.74vw, 10.5px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+}
+
+/* -- Shared section furniture ----------------------------------------------- */
+
+.sv__eyebrow {
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+}
+
+.sv__sectionTitle {
+  margin-top: clamp(10px, 1.3vw, 15px);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.sv__sectionTitle span,
+.sv__closerTitle span {
+  display: block;
+}
+
+/* A line revealed from behind a mask needs somewhere to hide. */
+.sv-lines {
+  overflow: hidden;
+}
+
+.sv-lines span {
+  will-change: transform;
+}
+
+.sv__sectionLede {
+  max-width: 44ch;
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.6;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Areas ------------------------------------------------------------------ */
+
+.sv__areas {
+  padding-block: clamp(52px, 7vw, 106px);
+}
+
+.sv__areasHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 64px);
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+.sv__areasAside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 1.6vw, 20px);
+  padding-bottom: 3px;
+}
+
+.sv__areasLink {
+  padding: 10px 18px;
+  font-size: 11px;
+}
+
+.sv__areaGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 20px);
+  list-style: none;
+  padding: 0;
+}
+
+.sv__areaFrame {
+  position: relative;
+  aspect-ratio: 1 / 1.16;
+  overflow: hidden;
+  border-radius: var(--r-card-sm);
+  background: #1a1b1d;
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.sv__area:hover .sv__areaFrame {
+  border-color: var(--ink-line);
+}
+
+/* The drift rule above owns size and fit; this only carries the hover. */
+.sv__areaFrame img {
+  transition: filter var(--dur) var(--ease);
+}
+
+.sv__area:hover .sv__areaFrame img {
+  filter: grayscale(0.55) saturate(1) contrast(1.12) brightness(1);
+}
+
+.sv__areaTag {
+  position: absolute;
+  top: clamp(9px, 1vw, 13px);
+  left: clamp(9px, 1vw, 13px);
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #fff;
+  background: rgba(12, 12, 14, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sv__areaTitle {
+  margin-top: clamp(10px, 1.2vw, 15px);
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  color: var(--text-on-dark);
+}
+
+.sv__areaBody {
+  margin-top: clamp(5px, 0.7vw, 9px);
+  font-size: clamp(9.5px, 0.76vw, 11px);
+  line-height: 1.55;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Capacity mosaic --------------------------------------------------------- */
+
+.sv__capacity {
+  padding-bottom: clamp(52px, 7vw, 106px);
+}
+
+.sv__capHead {
+  margin-bottom: clamp(24px, 3.4vw, 44px);
+}
+
+/* Six cells: a wide tagged photograph, two counters, an arch, a wide frame and
+   a note — the mosaic shape the references keep returning to. */
+.sv__mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, auto);
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.sv__tagged {
+  position: relative;
+  grid-column: span 2;
+  grid-row: span 2;
+  margin: 0;
+  min-height: clamp(260px, 30vw, 430px);
+  overflow: hidden;
+  border-radius: var(--r-card-md);
+  background: #141416;
+}
+
+.sv__taggedFrame,
+.sv__arch,
+.sv__wide {
+  display: block;
+  overflow: hidden;
+  background: #141416;
+}
+
+.sv__taggedFrame {
+  position: absolute;
+  inset: 0;
+}
+
+/* Drifting images are oversized, so the parallax never exposes an edge. */
+.sv-drift img {
+  width: 100%;
+  height: 116%;
+  margin-top: -8%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.1) brightness(0.82);
+}
+
+.sv__taggedVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 8, 9, 0.86) 0%, rgba(8, 8, 9, 0.12) 62%);
+}
+
+.sv__taggedTags {
+  position: absolute;
+  left: clamp(14px, 1.6vw, 22px);
+  right: clamp(14px, 1.6vw, 22px);
+  bottom: clamp(38px, 4vw, 56px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sv__capTag {
+  font-size: clamp(9px, 0.72vw, 10.5px);
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.sv__taggedCaption {
+  position: absolute;
+  left: clamp(14px, 1.6vw, 22px);
+  bottom: clamp(14px, 1.6vw, 20px);
+  font-family: var(--font-ui);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+/* Counters. */
+.sv__stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(14px, 2vw, 30px);
+  padding: clamp(16px, 1.9vw, 26px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+.sv__stat:hover {
+  background: #141416;
+  border-color: var(--ink-line);
+}
+
+.sv__statValue {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 54px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--text-on-dark);
+}
+
+.sv__statLabel {
+  max-width: 22ch;
+  font-size: clamp(9.5px, 0.78vw, 11px);
+  line-height: 1.45;
+  color: var(--text-on-dark-faint);
+}
+
+.sv__statArrow {
+  position: absolute;
+  top: clamp(16px, 1.9vw, 26px);
+  right: clamp(16px, 1.9vw, 26px);
+  color: var(--text-on-dark-faint);
+  transform: rotate(-45deg);
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sv__stat:hover .sv__statArrow {
+  color: var(--sand);
+  transform: rotate(-45deg) translateX(3px);
+}
+
+/* The arch, straight from the hotel reference's cluster. */
+.sv__arch {
+  grid-column: span 1;
+  grid-row: span 2;
+  min-height: clamp(220px, 26vw, 380px);
+  border-radius: 999px 999px var(--r-card-md) var(--r-card-md);
+}
+
+.sv__wide {
+  grid-column: span 1;
+  min-height: clamp(120px, 13vw, 180px);
+  border-radius: var(--r-card-md);
+}
+
+.sv__capNote {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(16px, 1.9vw, 28px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+}
+
+.sv__capNote p {
+  max-width: 44ch;
+  font-size: clamp(10px, 0.85vw, 12px);
+  line-height: 1.6;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+/* -- The standard ------------------------------------------------------------ */
+
+.sv__standard {
+  padding-bottom: clamp(52px, 7vw, 106px);
+}
+
+.sv__standardLede {
+  max-width: 52ch;
+  margin-top: clamp(12px, 1.6vw, 20px);
+  font-size: clamp(11px, 0.9vw, 13px);
+  line-height: 1.6;
+  color: var(--text-on-dark-dim);
+}
+
+.sv__standardGrid {
+  margin-top: clamp(28px, 4vw, 50px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 32px);
+}
+
+.sv__block {
+  padding-top: clamp(14px, 1.7vw, 22px);
+  border-top: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.sv__block:hover {
+  border-color: var(--sand);
+}
+
+.sv__blockLabel {
+  margin-bottom: clamp(10px, 1.3vw, 16px);
+  color: var(--sand);
+  font-size: 9px;
+}
+
+.sv__blockList {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 13px);
+  list-style: none;
+  padding: 0;
+  font-size: clamp(10px, 0.82vw, 11.5px);
+  line-height: 1.55;
+  color: var(--text-on-dark-faint);
+}
+
+.sv__blockList li {
+  padding-left: 15px;
+  position: relative;
+  text-wrap: pretty;
+}
+
+.sv__blockList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 1px;
+  background: var(--text-on-dark-faint);
+}
+
+.sv__band {
+  position: relative;
+  margin-top: clamp(28px, 4vw, 50px);
+  aspect-ratio: 3.4 / 1;
+  min-height: 190px;
+  overflow: hidden;
+  border-radius: var(--r-card-md);
+  background: #141416;
+}
+
+.sv__band img {
+  object-position: 50% 48%;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.08) brightness(0.66);
+}
+
+.sv__bandVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(8, 8, 9, 0.86) 0%, rgba(8, 8, 9, 0.4) 62%, rgba(8, 8, 9, 0.2) 100%);
+}
+
+.sv__bandNote {
+  position: absolute;
+  left: clamp(18px, 2.4vw, 38px);
+  bottom: clamp(18px, 2.2vw, 32px);
+  max-width: 46ch;
+  font-size: clamp(10px, 0.85vw, 12.5px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+  text-wrap: pretty;
+}
+
+/* -- Clients ----------------------------------------------------------------- */
+
+.sv__clients {
+  padding-bottom: clamp(52px, 7vw, 106px);
+}
+
+.sv__clientsHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 64px);
+  margin-bottom: clamp(24px, 3.4vw, 44px);
+}
+
+.sv__names {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(16px, 3vw, 48px);
+  list-style: none;
+  padding: 0;
+}
+
+.sv__name {
+  padding-block: clamp(10px, 1.2vw, 15px);
+  border-top: 1px solid var(--ink-line-soft);
+  font-size: clamp(10.5px, 0.88vw, 12.5px);
+  line-height: 1.4;
+  color: var(--text-on-dark-dim);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.sv__name:hover {
+  color: var(--text-on-dark);
+  border-color: var(--ink-line);
+}
+
+/* -- Closer ------------------------------------------------------------------ */
+
+.sv__closer {
+  padding-bottom: clamp(52px, 7vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sv__closerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.6vw, 50px);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.sv__closerTitle span {
+  display: block;
+}
+
+.sv__closerBody {
+  max-width: 44ch;
+  margin-top: clamp(14px, 1.8vw, 22px);
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.6;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+.sv__closerCta {
+  margin-top: clamp(20px, 2.4vw, 32px);
+  padding: clamp(11px, 1.05vw, 15px) clamp(18px, 1.8vw, 26px);
+  border-radius: 16px;
+}
+
+/* -- Responsive --------------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .sv__areaGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sv__mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sv__tagged,
+  .sv__capNote {
+    grid-column: span 2;
+  }
+
+  .sv__arch {
+    grid-row: span 1;
+    min-height: clamp(240px, 42vw, 340px);
+  }
+
+  .sv__standardGrid,
+  .sv__names {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  /* The plates stop floating and become a stack under the headline: five
+     glass panels over one photograph needs width to breathe. */
+  .sv__hero {
+    aspect-ratio: auto;
+  }
+
+  /* Both ornaments are decoration, and neither has room here. */
+  .sv__badge,
+  .sv__scroll {
+    display: none;
+  }
+
+  .sv__foot {
+    padding-right: 0;
+  }
+
+  .sv__flag {
+    display: none;
+  }
+
+  .sv__heroGrid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: clamp(14px, 3vw, 24px);
+  }
+
+  .sv__lead,
+  .sv__panel,
+  .sv__foot,
+  .sv__aside,
+  .sv__proof,
+  .sv__closerNote {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
+    align-self: auto;
+    max-width: none;
+  }
+
+  .sv__foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sv__panel {
+    align-items: flex-start;
+  }
+
+  .sv__tags {
+    justify-content: flex-start;
+  }
+
+  .sv__proof {
+    justify-content: flex-start;
+  }
+
+  .sv__areasHead,
+  .sv__clientsHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sv__band {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 700px) {
+  .sv__titleLine {
+    flex-wrap: wrap;
+  }
+
+  .sv__mosaic {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sv__tagged,
+  .sv__capNote,
+  .sv__arch,
+  .sv__wide {
+    grid-column: span 1;
+  }
+
+  .sv__areaGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sv__standardGrid,
+  .sv__names {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

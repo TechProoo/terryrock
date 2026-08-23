@@ -1,0 +1,371 @@
+/* ---------------------------------------------------------------------------
+   Survey scheduler. The reference's date-and-time card, in the platform's
+   materials: a raised panel of chips on the near-black ground, with the
+   headline carrying faces and an action inside its own line.
+   --------------------------------------------------------------------------- */
+
+.sb {
+  padding-bottom: clamp(52px, 7vw, 106px);
+}
+
+.sb__eyebrow {
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+}
+
+/* -- Headline --------------------------------------------------------------- */
+
+.sb__title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(8px, 1vw, 16px);
+  margin-top: clamp(10px, 1.3vw, 15px);
+  margin-bottom: clamp(26px, 3.6vw, 48px);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.sb__faces {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sb__face {
+  width: clamp(30px, 3.2vw, 46px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  margin-left: -12px;
+}
+
+.sb__face:first-child {
+  margin-left: 0;
+}
+
+.sb__face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.84) saturate(0.9) contrast(1.12) brightness(0.95);
+}
+
+/* An action sitting inside the sentence, as the reference does. */
+.sb__inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 6px 6px 16px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: clamp(10px, 0.85vw, 12.5px);
+  font-weight: 600;
+  letter-spacing: -0.004em;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--ink-line);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.sb__inline:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.sb__inlineDot {
+  display: grid;
+  place-items: center;
+  width: clamp(24px, 2.4vw, 32px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--ink);
+  background: #fff;
+  transform: rotate(-45deg);
+}
+
+/* -- Layout ----------------------------------------------------------------- */
+
+.sb__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.62fr);
+  gap: clamp(10px, 1.4vw, 18px);
+  align-items: stretch;
+}
+
+.sb__card,
+.sb__side,
+.sb__stat {
+  padding: clamp(18px, 2.1vw, 30px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.sb__card:hover,
+.sb__side:hover,
+.sb__stat:hover {
+  border-color: var(--ink-line);
+}
+
+/* -- The picker -------------------------------------------------------------- */
+
+.sb__cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sb__cardLabel {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.sb__cardLabel--slots {
+  margin-top: clamp(18px, 2.2vw, 28px);
+  margin-bottom: clamp(10px, 1.2vw, 14px);
+}
+
+.sb__month {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-on-dark);
+}
+
+.sb__days {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(6px, 0.7vw, 9px);
+  margin-top: clamp(12px, 1.4vw, 17px);
+}
+
+.sb__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: clamp(9px, 1.1vw, 14px) 4px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ink-line-soft);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.sb__day:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.sb__day.is-on {
+  background: #fff;
+  border-color: #fff;
+  color: var(--text-on-light);
+}
+
+.sb__dayName {
+  font-family: var(--font-ui);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.sb__day.is-on .sb__dayName {
+  color: var(--text-on-light-dim);
+}
+
+.sb__dayNum {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.5vw, 21px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.sb__day.is-on .sb__dayNum {
+  color: var(--text-on-light);
+}
+
+.sb__slots {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.8vw, 9px);
+}
+
+.sb__slot {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: clamp(11px, 1.3vw, 15px) clamp(13px, 1.4vw, 17px);
+  border-radius: 16px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ink-line-soft);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.sb__slot:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.sb__slot.is-on {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sb__slotDot {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-line);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.sb__slot.is-on .sb__slotDot {
+  border-color: var(--sand);
+  box-shadow: inset 0 0 0 3px var(--sand);
+}
+
+.sb__slotName {
+  flex: 1;
+  font-family: var(--font-ui);
+  font-size: clamp(10.5px, 0.88vw, 12.5px);
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+
+.sb__slotWindow {
+  font-size: clamp(9.5px, 0.76vw, 11px);
+  color: var(--text-on-dark-faint);
+}
+
+/* -- The request ------------------------------------------------------------- */
+
+.sb__side {
+  display: flex;
+  flex-direction: column;
+}
+
+.sb__body {
+  font-size: clamp(10.5px, 0.88vw, 12.5px);
+  line-height: 1.6;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+.sb__chosen {
+  margin-top: auto;
+  padding-top: clamp(18px, 2.2vw, 28px);
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.25vw, 18px);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  color: var(--text-on-dark);
+}
+
+.sb__chosenLabel {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 9px;
+  color: var(--text-on-dark-faint);
+}
+
+.sb__go {
+  --wa-green: #25d366;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: clamp(14px, 1.7vw, 22px);
+  padding: clamp(12px, 1.2vw, 16px) clamp(16px, 1.7vw, 24px);
+  border-radius: 16px;
+  font-family: var(--font-ui);
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  color: #06240f;
+  background: var(--wa-green);
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sb__go:hover {
+  background: #34e176;
+  transform: translateY(-1px);
+}
+
+.sb__hint {
+  margin-top: clamp(9px, 1.1vw, 13px);
+  font-size: clamp(9px, 0.74vw, 10.5px);
+  line-height: 1.5;
+  color: var(--text-on-dark-faint);
+}
+
+/* -- The counter ------------------------------------------------------------- */
+
+.sb__stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.2vw, 15px);
+}
+
+.sb__statValue {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.4vw, 66px);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.038em;
+  color: var(--text-on-dark);
+}
+
+.sb__statLabel {
+  font-size: clamp(9.5px, 0.78vw, 11px);
+  line-height: 1.5;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Responsive --------------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .sb__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sb__stat {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: baseline;
+    gap: clamp(14px, 2vw, 26px);
+  }
+}
+
+@media (max-width: 700px) {
+  .sb__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sb__stat {
+    grid-column: span 1;
+  }
+
+  .sb__days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

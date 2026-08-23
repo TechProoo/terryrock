@@ -2,38 +2,38 @@
    Every string and image the landing page renders, in one place.
    --------------------------------------------------------------------------- */
 
-import logo from '../assets/terryrock_logo_transparent.png';
+import logo from "../assets/terryrock_logo_transparent.png";
 
 /* Site photography. The `site_*` files are the sharper 2026 set; the remaining
    `photo_*` files cover subjects that set does not include — stored materials,
    workshop fabrication and crew at work. */
-import heroScene from '../assets/site_05.jpg';
-import chillerBank from '../assets/site_07.jpg';
-import plantRoom from '../assets/site_13.jpg';
-import pumpSets from '../assets/site_16.jpg';
-import rooftopRun from '../assets/site_03.jpg';
-import riserPipework from '../assets/site_12.jpg';
-import ahuRiser from '../assets/site_01.jpg';
-import installedPlant from '../assets/site_18.jpg';
-import pumpHall from '../assets/site_20.jpg';
-import qaPipework from '../assets/site_17.jpg';
-import towerFarm from '../assets/site_04.jpg';
-import ductRiser from '../assets/site_02.jpg';
-import brandedVessel from '../assets/site_10.jpg';
-import supportRun from '../assets/site_19.jpg';
-import rooftopBlue from '../assets/site_09.jpg';
+import heroScene from "../assets/site_05.jpg";
+import chillerBank from "../assets/site_07.jpg";
+import plantRoom from "../assets/site_13.jpg";
+import pumpSets from "../assets/site_16.jpg";
+import rooftopRun from "../assets/site_03.jpg";
+import riserPipework from "../assets/site_12.jpg";
+import ahuRiser from "../assets/site_01.jpg";
+import installedPlant from "../assets/site_18.jpg";
+import pumpHall from "../assets/site_20.jpg";
+import qaPipework from "../assets/site_17.jpg";
+import towerFarm from "../assets/site_04.jpg";
+import ductRiser from "../assets/site_02.jpg";
+import brandedVessel from "../assets/site_10.jpg";
+import supportRun from "../assets/site_19.jpg";
+import rooftopBlue from "../assets/site_09.jpg";
 
-import materialStock from '../assets/photo_048.jpg';
-import steelBand from '../assets/photo_037.jpg';
-import fabrication from '../assets/photo_040.jpg';
-import crewCutting from '../assets/photo_039.jpg';
+import materialStock from "../assets/photo_048.jpg";
+import steelBand from "../assets/photo_037.jpg";
+import fabrication from "../assets/photo_040.jpg";
+import crewCutting from "../assets/photo_039.jpg";
 
 export const brand = {
-  name: 'TerryRock',
-  legalName: 'TerryRock Technical Company Limited',
-  formerly: 'Formerly Terry Technical Company',
-  rc: 'RC 1360332',
-  tagline: 'Your commercial thermal insulation allies',
+  name: "TerryRock",
+  legalName: "TerryRock Technical Company Limited",
+  formerly: "Formerly Terry Technical Company",
+  rc: "RC 1360332",
+  tagline: "Your commercial thermal insulation allies",
   logo,
 };
 
@@ -42,63 +42,62 @@ export const brand = {
 /* Shown on the transition curtain while a route is being entered. Keyed by
    pathname so an unknown route falls back to the company name. */
 export const routeLabels: Record<string, string> = {
-  '/': 'Thermal & Mechanical',
-  '/projects': 'Executed Projects',
-  '/systems': 'Mechanical Systems',
-  '/contact': "Let's build together",
+  "/": "Thermal & Mechanical",
+  "/projects": "Executed Projects",
+  "/services": "Services",
+  "/systems": "Mechanical Systems",
+  "/contact": "Let's build together",
 };
 
 /* Four pills, widest first: the two nearest the mark are the ones that survive
    the medium breakpoint, so the pair that matters most sits there. */
 export const nav = {
-  left: [
-    { label: 'Contacts', to: '/contact' },
-    { label: 'Services', to: '/systems' },
-  ],
+  left: [{ label: "Services", to: "/services" }],
   right: [
-    { label: 'Executed Projects', to: '/projects' },
-    { label: 'Mechanical Systems', to: '/systems' },
+    { label: "Contacts", to: "/contact" },
+    { label: "Executed Projects", to: "/projects" },
+    { label: "Mechanical Systems", to: "/systems" },
   ],
 };
 
 export const hero = {
   headline: [
     [
-      { text: 'TerryRock', tone: 'ink' },
-      { text: 'builds', tone: 'steel' },
+      { text: "TerryRock", tone: "ink" },
+      { text: "builds", tone: "steel" },
     ],
-    [{ text: 'the systems behind', tone: 'steel-deep' }],
-    [{ text: 'every building', tone: 'ink' }],
+    [{ text: "the systems behind", tone: "steel-deep" }],
+    [{ text: "every building", tone: "ink" }],
   ] as const,
-  cta: 'Discover more',
-  asideTitle: ['Engineering Timeless', 'Building Services'],
+  cta: "Discover more",
+  asideTitle: ["Engineering Timeless", "Building Services"],
   asideBody:
-    'A technical company that merges mechanical precision, thermal insulation and disciplined installation to keep the buildings of tomorrow running.',
+    "A technical company that merges mechanical precision, thermal insulation and disciplined installation to keep the buildings of tomorrow running.",
   cards: [
     {
-      icon: 'pin',
-      title: ['Explore all', 'locations'],
-      body: 'See every site on the map',
-      href: '#projects',
+      icon: "pin",
+      title: ["Explore all", "locations"],
+      body: "See every site on the map",
+      href: "#projects",
     },
     {
-      icon: 'eye',
-      title: ['Discover', 'TerryRock'],
-      body: 'See our approach',
-      href: '#studio',
+      icon: "eye",
+      title: ["Discover", "TerryRock"],
+      body: "See our approach",
+      href: "#studio",
     },
   ] as const,
-  wordmark: 'TERRYROCK',
+  wordmark: "TERRYROCK",
   image: heroScene,
   imageAlt:
-    'Polished stainless steel extract ducts and cyclones installed on a rooftop plant deck',
+    "Polished stainless steel extract ducts and cyclones installed on a rooftop plant deck",
 };
 
 export const metaStrip = {
-  tags: ['MECHANICAL', 'QUALITY', 'PRECISION'],
+  tags: ["MECHANICAL", "QUALITY", "PRECISION"],
   facts: [
-    { label: 'Engineering discipline', value: 'HVAC & Insulation' },
-    { label: 'Operating since', value: '2009+' },
+    { label: "Engineering discipline", value: "HVAC & Insulation" },
+    { label: "Operating since", value: "2009+" },
   ],
 };
 
@@ -107,54 +106,54 @@ export const projects = {
      as a gallery masthead rather than another centred section head. */
   headline: [
     [
-      { text: 'Recent', tone: 'plain' },
-      { text: 'work', tone: 'sand' },
+      { text: "Recent", tone: "plain" },
+      { text: "work", tone: "sand" },
     ],
   ] as const,
-  lede: 'A selection of mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.',
-  controls: { prev: 'Previous project', next: 'Next project' },
+  lede: "A selection of mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.",
+  controls: { prev: "Previous project", next: "Next project" },
   items: [
     {
-      tag: 'chilled water',
-      title: 'TerryRock Technical',
-      name: 'Chiller Bank & Headers',
+      tag: "chilled water",
+      title: "TerryRock Technical",
+      name: "Chiller Bank & Headers",
       image: chillerBank,
-      alt: 'Insulated chilled water headers running past a bank of air cooled chillers',
+      alt: "Insulated chilled water headers running past a bank of air cooled chillers",
     },
     {
-      tag: 'plant room',
-      title: 'TerryRock Technical',
-      name: 'Central Plant Pipework',
+      tag: "plant room",
+      title: "TerryRock Technical",
+      name: "Central Plant Pipework",
       image: plantRoom,
-      alt: 'Insulated and clad pipework with valves inside a finished central plant room',
+      alt: "Insulated and clad pipework with valves inside a finished central plant room",
     },
     {
-      tag: 'pump sets',
-      title: 'TerryRock Technical',
-      name: 'Pump Set Installation',
+      tag: "pump sets",
+      title: "TerryRock Technical",
+      name: "Pump Set Installation",
       image: pumpSets,
-      alt: 'Pump sets and insulated suction pipework installed in a plant room',
+      alt: "Pump sets and insulated suction pipework installed in a plant room",
     },
     {
-      tag: 'rooftop',
-      title: 'TerryRock Technical',
-      name: 'Rooftop Distribution',
+      tag: "rooftop",
+      title: "TerryRock Technical",
+      name: "Rooftop Distribution",
       image: rooftopRun,
-      alt: 'Insulated distribution pipework on painted supports across a rooftop',
+      alt: "Insulated distribution pipework on painted supports across a rooftop",
     },
     {
-      tag: 'risers',
-      title: 'TerryRock Technical',
-      name: 'Riser Pipework',
+      tag: "risers",
+      title: "TerryRock Technical",
+      name: "Riser Pipework",
       image: riserPipework,
-      alt: 'Insulated riser pipework and valves rising through a plant room',
+      alt: "Insulated riser pipework and valves rising through a plant room",
     },
     {
-      tag: 'air handling',
-      title: 'TerryRock Technical',
-      name: 'Rooftop AHU Risers',
+      tag: "air handling",
+      title: "TerryRock Technical",
+      name: "Rooftop AHU Risers",
       image: ahuRiser,
-      alt: 'Insulated duct risers beside rooftop air handling units',
+      alt: "Insulated duct risers beside rooftop air handling units",
     },
   ],
 };
@@ -162,35 +161,42 @@ export const projects = {
 export const studio = {
   headline: [
     [
-      { text: 'TerryRock Technical — a', tone: 'plain' },
-      { text: 'company', tone: 'plain' },
+      { text: "TerryRock Technical — a", tone: "plain" },
+      { text: "company", tone: "plain" },
     ],
     [
-      { text: 'focused on', tone: 'dim' },
-      { text: 'systems, comfort,', tone: 'sand' },
+      { text: "focused on", tone: "dim" },
+      { text: "systems, comfort,", tone: "sand" },
     ],
-    [{ text: 'and lasting performance', tone: 'sand' }],
+    [{ text: "and lasting performance", tone: "sand" }],
   ] as const,
-  lede: 'A disciplined vision of working buildings that merge engineering, precision and long service life.',
+  lede: "A disciplined vision of working buildings that merge engineering, precision and long service life.",
   card: {
-    title: 'TerryRock Technical',
-    subtitle: ['Fabrication &', 'Site Installation'],
+    title: "TerryRock Technical",
+    subtitle: ["Fabrication &", "Site Installation"],
     image: fabrication,
-    imageAlt: 'A TerryRock fabricator welding a galvanised duct section on site',
+    imageAlt:
+      "A TerryRock fabricator welding a galvanised duct section on site",
   },
   feature: {
     image: ductRiser,
-    imageAlt: 'A tall insulated duct riser installed beside rooftop air handling plant',
+    imageAlt:
+      "A tall insulated duct riser installed beside rooftop air handling plant",
   },
   pitch: {
-    title: ["The future of building services", "isn't about what looks", 'impressive today.'],
+    title: [
+      "The future of building services",
+      "isn't about what looks",
+      "impressive today.",
+    ],
     body: "It's about installing systems that perform, endure, and last.",
     actions: [
-      { label: 'Our clients', href: '#clients' },
-      { label: 'Our services', href: '#services' },
+      { label: "Our clients", href: "#clients" },
+      { label: "Our services", href: "#services" },
     ],
     proofImages: [brandedVessel, supportRun, rooftopBlue],
-    proof: 'Over 50 contractors across Nigeria and West Africa trust TerryRock to build the future.',
+    proof:
+      "Over 50 contractors across Nigeria and West Africa trust TerryRock to build the future.",
   },
 };
 
@@ -206,99 +212,99 @@ export const footer = {
 export const services = {
   headline: [
     [
-      { text: 'Thirteen disciplines', tone: 'plain' },
-      { text: 'delivered', tone: 'dim' },
+      { text: "Thirteen disciplines", tone: "plain" },
+      { text: "delivered", tone: "dim" },
     ],
-    [{ text: 'under one contract', tone: 'sand' }],
+    [{ text: "under one contract", tone: "sand" }],
   ] as const,
-  lede: 'Mechanical, insulation and electrical work handled in house — from pipe fabrication and welding through to cladding, HVAC and thermal insulation.',
+  lede: "Mechanical, insulation and electrical work handled in house — from pipe fabrication and welding through to cladding, HVAC and thermal insulation.",
   items: [
     {
-      title: 'Pipe fittings & welding',
-      body: 'Stainless, mild steel, galvanised, PVC and PPR pipe. Valve installation, elbows rolled to any angle, TIG and MIG welding with argon to certified standards — fabrication, site installation and testing, including sewage pumping stations.',
+      title: "Pipe fittings & welding",
+      body: "Stainless, mild steel, galvanised, PVC and PPR pipe. Valve installation, elbows rolled to any angle, TIG and MIG welding with argon to certified standards — fabrication, site installation and testing, including sewage pumping stations.",
     },
     {
-      title: 'Insulation & acoustic materials',
-      body: 'Polystyrene, polyurethane and rigid pipe insulation, imported or sourced locally to suit the client.',
+      title: "Insulation & acoustic materials",
+      body: "Polystyrene, polyurethane and rigid pipe insulation, imported or sourced locally to suit the client.",
     },
     {
-      title: 'Cladding',
-      body: 'Aluminium and stainless steel, 0.5mm to 1mm thick, riveted at even centres for locally fabricated panels.',
+      title: "Cladding",
+      body: "Aluminium and stainless steel, 0.5mm to 1mm thick, riveted at even centres for locally fabricated panels.",
     },
     {
-      title: 'Laminating',
-      body: 'Resin, fibremat, catalyst and accelerator pigment.',
+      title: "Laminating",
+      body: "Resin, fibremat, catalyst and accelerator pigment.",
     },
     {
-      title: 'Stainless & mild steel tanks',
-      body: 'Construction and installation in cylindrical, rectangular and square configurations, across a range of capacities and sizes.',
+      title: "Stainless & mild steel tanks",
+      body: "Construction and installation in cylindrical, rectangular and square configurations, across a range of capacities and sizes.",
     },
     {
-      title: 'HVAC',
-      body: 'Installation, management and control, with air conditioning ductwork fabricated and erected on site.',
+      title: "HVAC",
+      body: "Installation, management and control, with air conditioning ductwork fabricated and erected on site.",
     },
     {
-      title: 'Machine & equipment installation',
-      body: 'Machines and equipment of different kinds and sizes.',
+      title: "Machine & equipment installation",
+      body: "Machines and equipment of different kinds and sizes.",
     },
     {
-      title: 'Industrial & domestic plumbing',
-      body: 'Plumbing installations for industrial plant and private residences alike.',
+      title: "Industrial & domestic plumbing",
+      body: "Plumbing installations for industrial plant and private residences alike.",
     },
     {
-      title: 'Generator exhausts',
-      body: 'Exhaust pipes and muffler pots fabricated and installed for industrial gen-sets.',
+      title: "Generator exhausts",
+      body: "Exhaust pipes and muffler pots fabricated and installed for industrial gen-sets.",
     },
     {
-      title: 'Boiler chimneys',
-      body: 'Fabrication and installation.',
+      title: "Boiler chimneys",
+      body: "Fabrication and installation.",
     },
     {
-      title: 'Electrical installation',
-      body: 'Panels, trunking and wiring.',
+      title: "Electrical installation",
+      body: "Panels, trunking and wiring.",
     },
     {
-      title: 'Industrial thermal insulation',
-      body: 'Hot and cold pipe and tank insulation, generator house soundproofing, club wall insulation and studio insulation.',
+      title: "Industrial thermal insulation",
+      body: "Hot and cold pipe and tank insulation, generator house soundproofing, club wall insulation and studio insulation.",
     },
     {
-      title: 'Supply of insulation materials',
-      body: 'Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.',
+      title: "Supply of insulation materials",
+      body: "Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.",
     },
   ],
   gallery: [
     {
       image: materialStock,
-      alt: 'Rockwool pipe sections stacked and bagged in the TerryRock store',
-      caption: 'Materials',
+      alt: "Rockwool pipe sections stacked and bagged in the TerryRock store",
+      caption: "Materials",
     },
     {
       image: installedPlant,
-      alt: 'Insulated and clad pipework installed through a finished plant room',
-      caption: 'Installation',
+      alt: "Insulated and clad pipework installed through a finished plant room",
+      caption: "Installation",
     },
     {
       image: pumpHall,
-      alt: 'Pump sets and insulated headers in a completed plant hall',
-      caption: 'Plant rooms',
+      alt: "Pump sets and insulated headers in a completed plant hall",
+      caption: "Plant rooms",
     },
   ],
   kitImage: steelBand,
-  kitImageAlt: 'A coil of stainless banding on the workshop floor',
-  kitLabel: 'Workshop equipment',
+  kitImageAlt: "A coil of stainless banding on the workshop floor",
+  kitLabel: "Workshop equipment",
   kit: [
-    'Arc welding machine',
-    'Angle grinder (large)',
-    'Angle grinder (small)',
-    'Argon / TIG welder, water cooled',
-    'Rolling machine',
-    'Cutting machine',
-    'Swagging machine',
-    'Lockforming machine',
-    'Bending machine',
-    'Work bench',
-    'Table vice',
-    'Electrical extension cables',
+    "Arc welding machine",
+    "Angle grinder (large)",
+    "Angle grinder (small)",
+    "Argon / TIG welder, water cooled",
+    "Rolling machine",
+    "Cutting machine",
+    "Swagging machine",
+    "Lockforming machine",
+    "Bending machine",
+    "Work bench",
+    "Table vice",
+    "Electrical extension cables",
   ],
 };
 
@@ -309,47 +315,47 @@ export const services = {
 export const quality = {
   headline: [
     [
-      { text: 'Quality that is', tone: 'plain' },
-      { text: 'measurable,', tone: 'dim' },
+      { text: "Quality that is", tone: "plain" },
+      { text: "measurable,", tone: "dim" },
     ],
-    [{ text: 'audited and never optional', tone: 'sand' }],
+    [{ text: "audited and never optional", tone: "sand" }],
   ] as const,
-  lede: 'The quality system is designed to meet EN ISO 9001:2008 and is subject to annual audit.',
+  lede: "The quality system is designed to meet EN ISO 9001:2008 and is subject to annual audit.",
   policy:
-    'Every member of staff is trained on quality awareness and its impact on customer service. Compliance is mandatory for all personnel.',
+    "Every member of staff is trained on quality awareness and its impact on customer service. Compliance is mandatory for all personnel.",
   banner: {
     image: qaPipework,
-    alt: 'Insulated and clad pipework with valves and gauges in a finished plant room',
+    alt: "Insulated and clad pipework with valves and gauges in a finished plant room",
   },
   columns: [
     {
-      label: 'Quality objectives',
+      label: "Quality objectives",
       items: [
-        'Maintain an effective QA system complying with BS EN ISO 9001:2008',
+        "Maintain an effective QA system complying with BS EN ISO 9001:2008",
         "Be our clients' preferred choice",
-        'Strive to exceed customer expectations',
-        'Achieve and maintain quality that builds the company reputation',
-        'Ensure compliance with statutory and safety requirements',
-        'Maximise customer satisfaction at all times',
-        'Minimise environmental impact',
+        "Strive to exceed customer expectations",
+        "Achieve and maintain quality that builds the company reputation",
+        "Ensure compliance with statutory and safety requirements",
+        "Maximise customer satisfaction at all times",
+        "Minimise environmental impact",
       ],
     },
     {
-      label: 'Mission',
+      label: "Mission",
       items: [
-        'Provide the highest quality engineering and insulation services',
-        'Establish quality that is measurable and consistent with client requirements and specifications',
-        'Train employees to ensure competency in tasks affecting quality and safety',
-        'Zero tolerance to unsafe acts and conditions',
+        "Provide the highest quality engineering and insulation services",
+        "Establish quality that is measurable and consistent with client requirements and specifications",
+        "Train employees to ensure competency in tasks affecting quality and safety",
+        "Zero tolerance to unsafe acts and conditions",
       ],
     },
   ],
   pillars: {
-    label: 'Commercial strength',
+    label: "Commercial strength",
     items: [
-      'Delivery on or ahead of schedule and budget',
-      'Ongoing research and development',
-      'Staff development',
+      "Delivery on or ahead of schedule and budget",
+      "Ongoing research and development",
+      "Staff development",
     ],
   },
 };
@@ -360,35 +366,35 @@ export const quality = {
 
 export const clients = {
   headline: [
-    [{ text: 'Trusted by the names', tone: 'plain' }],
+    [{ text: "Trusted by the names", tone: "plain" }],
     [
-      { text: 'that build', tone: 'dim' },
-      { text: 'Nigeria', tone: 'sand' },
+      { text: "that build", tone: "dim" },
+      { text: "Nigeria", tone: "sand" },
     ],
   ] as const,
-  lede: 'Work delivered across oil and gas, manufacturing, hospitality, utilities and construction.',
+  lede: "Work delivered across oil and gas, manufacturing, hospitality, utilities and construction.",
   banner: {
     image: towerFarm,
-    alt: 'Insulated rooftop pipework and chiller plant beside a high-rise tower',
+    alt: "Insulated rooftop pipework and chiller plant beside a high-rise tower",
   },
   names: [
-    'Chevron Nigeria Limited',
-    'Eko Hotels Limited',
-    'Flour Mills Nigeria PLC',
-    'Four Points by Sheraton',
-    'I.T.B Nigeria Limited',
-    'Intercontinental Hotel',
-    'Milan Nigeria Limited',
-    'Myjoy Food Industries Limited',
-    'Nigerian Bag Manufacturing Coy. PLC',
-    'Ocean Parade Towers',
-    'Powertech Engineering Limited',
-    'Engee Pet Manufacturing Coy. Ltd',
-    'Mitsulift Nigeria Limited',
-    'Miluman Nigeria Limited',
-    'Wayus Nigeria Limited',
-    'ETCO Nigeria Limited',
-    'Nairda Limited',
+    "Chevron Nigeria Limited",
+    "Eko Hotels Limited",
+    "Flour Mills Nigeria PLC",
+    "Four Points by Sheraton",
+    "I.T.B Nigeria Limited",
+    "Intercontinental Hotel",
+    "Milan Nigeria Limited",
+    "Myjoy Food Industries Limited",
+    "Nigerian Bag Manufacturing Coy. PLC",
+    "Ocean Parade Towers",
+    "Powertech Engineering Limited",
+    "Engee Pet Manufacturing Coy. Ltd",
+    "Mitsulift Nigeria Limited",
+    "Miluman Nigeria Limited",
+    "Wayus Nigeria Limited",
+    "ETCO Nigeria Limited",
+    "Nairda Limited",
   ],
 };
 
@@ -398,34 +404,38 @@ export const clients = {
 
 export const team = {
   headline: [
-    [{ text: 'Designers, estimators,', tone: 'plain' }],
+    [{ text: "Designers, estimators,", tone: "plain" }],
     [
-      { text: 'site crew and', tone: 'dim' },
-      { text: 'technicians', tone: 'sand' },
+      { text: "site crew and", tone: "dim" },
+      { text: "technicians", tone: "sand" },
     ],
   ] as const,
-  lede: 'A management structure that carries a job from first estimate through to commissioning.',
+  lede: "A management structure that carries a job from first estimate through to commissioning.",
   banner: {
     image: crewCutting,
-    alt: 'A TerryRock site technician in branded workwear cutting a duct section',
-    caption: 'Site crew at work',
+    alt: "A TerryRock site technician in branded workwear cutting a duct section",
+    caption: "Site crew at work",
   },
   people: [
     {
-      name: 'Taiwo I. Jubrila',
-      role: 'Managing Director',
-      qualification: 'B.Sc Mechanical Engineering',
+      name: "Taiwo I. Jubrila",
+      role: "Managing Director",
+      qualification: "B.Sc Mechanical Engineering",
     },
-    { name: 'Abimbola Jubrila', role: 'Executive Director', qualification: 'B.Sc Accounting' },
     {
-      name: 'Ojedokun Olatunji',
-      role: 'Operations Director',
-      qualification: 'B.Sc Mech. Engr., MSc Project Management (UNILAG)',
+      name: "Abimbola Jubrila",
+      role: "Executive Director",
+      qualification: "B.Sc Accounting",
     },
-    { name: 'James Akoma', role: 'Head Technician', qualification: '' },
-    { name: 'Kehinde I. Jubrila', role: 'Site Supervisor', qualification: '' },
-    { name: 'Orumwense Stephen', role: 'Site Supervisor', qualification: '' },
-    { name: 'Afolabi Oladiran', role: 'Site Supervisor', qualification: '' },
+    {
+      name: "Ojedokun Olatunji",
+      role: "Operations Director",
+      qualification: "B.Sc Mech. Engr., MSc Project Management (UNILAG)",
+    },
+    { name: "James Akoma", role: "Head Technician", qualification: "" },
+    { name: "Kehinde I. Jubrila", role: "Site Supervisor", qualification: "" },
+    { name: "Orumwense Stephen", role: "Site Supervisor", qualification: "" },
+    { name: "Afolabi Oladiran", role: "Site Supervisor", qualification: "" },
   ],
 };
 
@@ -436,43 +446,63 @@ export const team = {
 export const contact = {
   headline: [
     [
-      { text: "Let's build", tone: 'plain' },
-      { text: 'together', tone: 'sand' },
+      { text: "Let's build", tone: "plain" },
+      { text: "together", tone: "sand" },
     ],
   ] as const,
-  lede: 'Two Lagos premises and an Abuja workshop, open to construction, industrial, utility, hospitality and oil and gas clients.',
+  lede: "Two Lagos premises and an Abuja workshop, open to construction, industrial, utility, hospitality and oil and gas clients.",
   /* City and role are split so the premises can be set as a ledger: the city
      large in the display face, the role as a micro label beside it. */
   offices: [
     {
-      city: 'Lagos',
-      role: 'Office & workshop',
-      lines: ['No. 19, Jamiu Balogun Street', 'Shangisha-Magodo Road', 'Ikosi-Ketu, Lagos'],
+      city: "Lagos",
+      role: "Office & workshop",
+      lines: [
+        "No. 19, Jamiu Balogun Street",
+        "Shangisha-Magodo Road",
+        "Ikosi-Ketu, Lagos",
+      ],
     },
     {
-      city: 'Lagos',
-      role: 'Warehouse',
-      lines: ['7 Ilare Close', '7 & 8 Bus Stop, Airport Road', 'Mafoluku, Oshodi, Lagos'],
+      city: "Lagos",
+      role: "Warehouse",
+      lines: [
+        "7 Ilare Close",
+        "7 & 8 Bus Stop, Airport Road",
+        "Mafoluku, Oshodi, Lagos",
+      ],
     },
     {
-      city: 'Abuja',
-      role: 'Office & workshop',
-      lines: ['Beside Exclusive Holiday Resort and Suites', 'Lokogoma District', 'FCT Abuja'],
+      city: "Abuja",
+      role: "Office & workshop",
+      lines: [
+        "Beside Exclusive Holiday Resort and Suites",
+        "Lokogoma District",
+        "FCT Abuja",
+      ],
     },
   ],
-  phones: ['08023460746', '08038810551', '08057688724', '07076402445'],
-  emails: ['info@terrytechnical.com', 'terry_technical@yahoo.com', 'terryrock24@gmail.com'],
+  phones: ["08023460746", "08038810551", "08057688724", "07076402445"],
+  emails: [
+    "info@terrytechnical.com",
+    "terry_technical@yahoo.com",
+    "terryrock24@gmail.com",
+  ],
   socials: [
     {
-      label: 'Instagram',
-      handle: 'terry.technical07',
-      href: 'https://instagram.com/terry.technical07',
+      label: "Instagram",
+      handle: "terry.technical07",
+      href: "https://instagram.com/terry.technical07",
     },
-    { label: 'Skype', handle: 'terry.technical07', href: 'skype:terry.technical07?chat' },
     {
-      label: 'Facebook',
-      handle: '/terrytechnicalcompanyltd',
-      href: 'https://facebook.com/terrytechnicalcompanyltd',
+      label: "Skype",
+      handle: "terry.technical07",
+      href: "skype:terry.technical07?chat",
+    },
+    {
+      label: "Facebook",
+      handle: "/terrytechnicalcompanyltd",
+      href: "https://facebook.com/terrytechnicalcompanyltd",
     },
   ],
 };
