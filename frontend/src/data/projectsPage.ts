@@ -144,9 +144,9 @@ export const projectsPage = {
     },
     {
       category: 'duct',
-      title: 'Foil Wrapped Ductwork',
+      title: 'Cladding of A.H.U duct',
       image: ductFoil,
-      alt: 'Rooftop ductwork wrapped in reflective foil insulation',
+      alt: 'Rooftop air handling ductwork clad in sheet metal',
     },
     {
       category: 'duct',
