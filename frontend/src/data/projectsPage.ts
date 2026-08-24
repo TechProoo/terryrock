@@ -250,7 +250,7 @@ export const projectsPage = {
     },
     {
       category: 'materials',
-      title: 'Slab & Board Stock',
+      title: 'Slab rockwool board',
       image: isokingStock,
       alt: 'Boxed insulation slab and board stock held in the store',
     },
