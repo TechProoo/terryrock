@@ -194,9 +194,9 @@ export const projectsPage = {
     },
     {
       category: 'cold',
-      title: 'Branch & Tee Insulation',
+      title: 'Laminating of insulated pipes and fittings with resin and other chemical components',
       image: coldBranch,
-      alt: 'Cold insulation finished around pipe branches and tees',
+      alt: 'Laminated resin finish over insulated pipe branches and fittings',
     },
     {
       category: 'cold',
@@ -213,9 +213,9 @@ export const projectsPage = {
 
     {
       category: 'fabrication',
-      title: 'Duct Welding',
+      title: 'Fabricating and installations of boiler chimney',
       image: weldDuct,
-      alt: 'A technician welding a fabricated duct section on site',
+      alt: 'A TerryRock technician welding a boiler chimney section on site',
     },
     {
       category: 'fabrication',

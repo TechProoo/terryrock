@@ -590,6 +590,15 @@
   color: #fff;
 }
 
+/* A title several times longer than the others would stack into a column of
+   two-word lines and run out of card. Given room and a smaller face it sets in
+   three or four, without shrinking the short titles to match. */
+.pb__stageTitle.is-long {
+  max-width: 24ch;
+  font-size: clamp(15px, 1.85vw, 26px);
+  line-height: 1.22;
+}
+
 .pb__stageFoot {
   position: relative;
   z-index: 2;

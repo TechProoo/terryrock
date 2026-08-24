@@ -241,7 +241,11 @@ export default function ProjectsPage() {
               </div>
 
               <p className="micro pb__stageTag">{labelFor(current.category)}</p>
-              <h2 className="pb__stageTitle">{current.title}</h2>
+              <h2
+                className={`pb__stageTitle${current.title.length > 34 ? ' is-long' : ''}`}
+              >
+                {current.title}
+              </h2>
 
               <div className="pb__stageFoot">
                 <div className="pb__credit">
