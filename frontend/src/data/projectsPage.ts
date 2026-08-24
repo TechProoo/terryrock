@@ -231,7 +231,7 @@ export const projectsPage = {
     },
     {
       category: 'fabrication',
-      title: 'Equipment Wrapping',
+      title: 'Laminating of insulated A.H.U duct',
       image: wrapCrew,
       alt: 'Crew wrapping and sealing insulated equipment on site',
     },
