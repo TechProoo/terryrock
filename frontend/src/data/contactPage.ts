@@ -19,7 +19,7 @@ export const contactPage = {
   /* Countable straight off this page: three premises, four lines, two cities. */
   facts: [
     { value: '03', label: 'Premises' },
-    { value: '04', label: 'Phone lines' },
+    { value: '05', label: 'Phone lines' },
     { value: '02', label: 'Cities' },
   ],
 

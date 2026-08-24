@@ -557,7 +557,9 @@ export const contact = {
       ],
     },
   ],
-  phones: ["08023460746", "08038810551", "08057688724", "07076402445"],
+  /* The fifth line is carried in international form — it is the one that dials
+     from outside Nigeria, where a 0-prefixed local number does not. */
+  phones: ["08023460746", "08038810551", "08057688724", "07076402445", "+234 813 411 5189"],
   emails: [
     "info@terrytechnical.com",
     "terry_technical@yahoo.com",
