@@ -41,6 +41,17 @@ import pipeSections from '../assets/site_23.jpg';
 import isokingStock from '../assets/site_71.jpg';
 import ceramicFibre from '../assets/site_66.jpg';
 
+/* Stock photographed in the store and on delivery — the materials selection
+   carries the range, not just what happened to be on a site that week. */
+import rollContainer from '../assets/stock_roll_container.jpg';
+import calsilBox from '../assets/stock_calsil_box.jpg';
+import calsilSegments from '../assets/stock_calsil_segments.jpg';
+import foilPipe from '../assets/stock_foil_pipe.jpg';
+import rigidShells from '../assets/stock_rigid_shells.jpg';
+import cellularPipe from '../assets/stock_cellular_pipe.jpg';
+import cellularBoard from '../assets/stock_cellular_board.jpg';
+import rubberRoll from '../assets/stock_rubber_roll.jpg';
+
 export const projectsPage = {
   eyebrow: 'Executed projects',
   headline: ['Mechanical work', 'built to last'],
@@ -259,6 +270,54 @@ export const projectsPage = {
       title: 'Ceramic Fibre',
       image: ceramicFibre,
       alt: 'A coil of ceramic fibre blanket measured out for a job',
+    },
+    {
+      category: 'materials',
+      title: 'Roll Stock On Delivery',
+      image: rollContainer,
+      alt: 'Wrapped insulation rolls loaded the full depth of a shipping container',
+    },
+    {
+      category: 'materials',
+      title: 'Calcium Silicate Pipe Sections',
+      image: calsilBox,
+      alt: 'Calcium silicate pipe section halves boxed and lined ready for issue',
+    },
+    {
+      category: 'materials',
+      title: 'Calcium Silicate Segments',
+      image: calsilSegments,
+      alt: 'Curved calcium silicate pipe segments packed flat in a carton',
+    },
+    {
+      category: 'materials',
+      title: 'Foil Faced Pipe Sections',
+      image: foilPipe,
+      alt: 'Foil faced rigid pipe sections stacked on end with their cores showing',
+    },
+    {
+      category: 'materials',
+      title: 'Rigid Pipe Shells',
+      image: rigidShells,
+      alt: 'Large rigid pipe section shells nested beside stacked insulation board',
+    },
+    {
+      category: 'materials',
+      title: 'Cellular Glass Pipe Sections',
+      image: cellularPipe,
+      alt: 'Fabricated cellular glass pipe sections stacked on their cartons',
+    },
+    {
+      category: 'materials',
+      title: 'Cellular Glass Board',
+      image: cellularBoard,
+      alt: 'Black cellular glass sections packed flat in a carton',
+    },
+    {
+      category: 'materials',
+      title: 'Elastomeric Rubber Roll',
+      image: rubberRoll,
+      alt: 'A roll of black elastomeric rubber insulation sheet unrolled on the ground',
     },
   ],
 };
