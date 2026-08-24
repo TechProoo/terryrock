@@ -35,6 +35,13 @@ export const LOCALE = 'en_NG';
  * are declared because a scraper that cannot fetch the file still lays the card
  * out correctly when it is told the shape.
  */
+/**
+ * The square TR mark, for the `logo` field in structured data. Google wants an
+ * actual logo there rather than a photograph, and at least 112px square — this
+ * is the 512 written for Android, which doubles as the largest clean copy.
+ */
+export const LOGO_PATH = '/android-chrome-512x512.png';
+
 export const OG_IMAGE = {
   path: '/og-image.jpg',
   width: 1000,
@@ -141,7 +148,7 @@ export function structuredData(): Record<string, unknown>[] {
       legalName: LEGAL_NAME,
       alternateName: [LEGAL_NAME, 'TerryRock Technical', 'Terry Technical Company'],
       url: `${SITE_URL}/`,
-      logo: `${SITE_URL}${OG_IMAGE.path}`,
+      logo: `${SITE_URL}${LOGO_PATH}`,
       image: `${SITE_URL}${OG_IMAGE.path}`,
       description: defaultSeo.description,
       identifier: RC_NUMBER,
