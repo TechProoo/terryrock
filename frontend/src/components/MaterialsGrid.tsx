@@ -88,8 +88,9 @@ export default function MaterialsGrid() {
         </header>
 
         <ul className="mg__grid" role="list">
+          {/* Keyed on the image: two tiles now carry the same label. */}
           {materials.tiles.map((tile) => (
-            <li className="mg__tile" key={tile.label}>
+            <li className="mg__tile" key={tile.image}>
               <img src={tile.image} alt={tile.alt} />
               <span className="mg__tileLabel">{tile.label}</span>
             </li>

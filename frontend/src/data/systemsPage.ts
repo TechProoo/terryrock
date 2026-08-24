@@ -30,12 +30,12 @@ import m1 from '../assets/sys_m1.jpg';
 import m2 from '../assets/sys_m2.jpg';
 import m3 from '../assets/sys_m3.jpg';
 import m4 from '../assets/sys_m4.jpg';
-import m5 from '../assets/sys_m5.jpg';
+import rockwoolPipe from '../assets/rockwool_pipe.jpg';
 import m6 from '../assets/sys_m6.jpg';
 import m7 from '../assets/sys_m7.jpg';
 import m8 from '../assets/sys_m8.jpg';
 import m9 from '../assets/sys_m9.jpg';
-import m10 from '../assets/sys_m10.jpg';
+import rockwoolBlanket from '../assets/Rockwool_blanket.jpg';
 
 export const systemsPage = {
   eyebrow: 'Mechanical systems',
@@ -192,16 +192,24 @@ export const systemsPage = {
     title: ['What we', 'supply'],
     lede: 'Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.',
     tiles: [
-      { image: m1, alt: 'Rockwool pipe sections bagged in the store', label: 'Pipe sections' },
-      { image: m2, alt: 'Rolled insulation stock stacked upright', label: 'Roll stock' },
-      { image: m3, alt: 'A rigid pipe section showing its mineral wool core', label: 'Rigid sections' },
-      { image: m4, alt: 'Bagged ceramic fibre stock', label: 'Ceramic fibre' },
-      { image: m5, alt: 'Foil faced insulation unwrapped from its bag', label: 'Foil faced' },
-      { image: m6, alt: 'Boxed fixings and accessories on the store shelf', label: 'Fixings' },
-      { image: m7, alt: 'A coil of stainless sheet', label: 'Stainless sheet' },
-      { image: m8, alt: 'Coils of stainless banding stacked in the store', label: 'Banding' },
-      { image: m9, alt: 'A large coil of sheet metal cladding stock', label: 'Cladding coil' },
-      { image: m10, alt: 'Banding coils and clips ready for issue', label: 'Clips & seals' },
+      { image: m1, alt: 'Rockwool blanket stock held in the store', label: 'Rockwool blanket' },
+      { image: m2, alt: 'Rolls of fire blanket stacked upright', label: 'Fire blanket' },
+      { image: m3, alt: 'A rigid pipe section showing its mineral wool core', label: 'Rigid pipe section' },
+      { image: m4, alt: 'Rigid pipe section stock bagged in the store', label: 'Rigid pipe section' },
+      {
+        image: rockwoolPipe,
+        alt: 'Rockwool pipe sections stacked on a pallet in the store',
+        label: 'Rockwool pipe section',
+      },
+      {
+        image: m6,
+        alt: 'Boxed resin and chemical components on the store shelf',
+        label: 'Resin and other chemical components e.g catalyst, acceleration e.t.c',
+      },
+      { image: m7, alt: 'A coil of aluminium sheet', label: 'Aluminium coil' },
+      { image: m8, alt: 'Coils of stainless banding stacked in the store', label: 'Stainless band' },
+      { image: m9, alt: 'A large coil of stainless sheet', label: 'Stainless coil' },
+      { image: rockwoolBlanket, alt: 'Wrapped rolls of rockwool blanket in the store', label: 'Rockwool blanket' },
     ],
   },
 
