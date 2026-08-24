@@ -1,0 +1,6 @@
+# Every page on this site is public and worth indexing — there is no admin
+# area, no search results and no session URLs to keep a crawler out of.
+User-agent: *
+Allow: /
+
+Sitemap: https://terryrockltd.com/sitemap.xml

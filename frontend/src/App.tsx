@@ -6,6 +6,7 @@ import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
 import ScrollToHash from './components/ScrollToHash';
 import PageTransition from './components/PageTransition';
+import Seo from './components/Seo';
 
 export default function App() {
   /* The curtain renders the routes with a location that lags the real one, so
@@ -14,6 +15,9 @@ export default function App() {
     <PageTransition>
       {(location) => (
         <>
+          {/* Keyed off the displayed location, so the head describes the page
+              the reader can actually see. */}
+          <Seo pathname={location.pathname} />
           <ScrollToHash location={location} />
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />

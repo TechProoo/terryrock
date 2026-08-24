@@ -10,6 +10,12 @@
 # it is copied into the build output and travels with it. That way a manual
 # deploy of the dist folder still routes correctly, where a rule written only
 # in this file would be left behind.
+#
+# The build also writes a real HTML file per route — dist/projects/index.html
+# and so on — each carrying its own title, description and share tags. See the
+# seo plugin in frontend/vite.config.ts. Netlify serves those before it reaches
+# the fallback rule, which is the whole point: a link scraper that never runs
+# JavaScript still reads the right page.
 # ---------------------------------------------------------------------------
 
 [build]
@@ -37,6 +43,31 @@
 
 [[headers]]
   for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# The prerendered routes are index.html by another name and carry the same
+# risk, so they get the same rule. A header rule matches the request path, not
+# the file behind it, which is why these are listed one by one rather than
+# caught by a glob. Keep them in step with `routeSeo` in frontend/src/data/seo.ts.
+
+[[headers]]
+  for = "/services"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/systems"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/projects"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/contact"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
