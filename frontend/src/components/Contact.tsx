@@ -102,8 +102,8 @@ export default function Contact() {
         <div className="ctc__reach">
           <div className="ctc__group reveal">
             <p className="micro ctc__groupLabel">Phone</p>
-            {/* Four numbers that ring the same company read as a set, so they
-                sit as a wrapped row of chips rather than a ranked list. */}
+            {/* Kept as a chip rather than plain text: it is a control, and it
+                sits level with the tags used everywhere else on the page. */}
             <ul className="ctc__chips">
               {phones.map((phone) => (
                 <li key={phone}>

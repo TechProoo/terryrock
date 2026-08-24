@@ -19,14 +19,15 @@ export const contactPage = {
   /* Countable straight off this page: three premises, four lines, two cities. */
   facts: [
     { value: '03', label: 'Premises' },
-    { value: '05', label: 'Phone lines' },
+    { value: '01', label: 'Phone line' },
     { value: '02', label: 'Cities' },
   ],
 
   /* -- WhatsApp ------------------------------------------------------------ */
   whatsapp: {
-    /* Same line as the second entry in `contact.phones`, in the international
-       form wa.me needs: no plus, no spaces. */
+    /* The WhatsApp line, in the international form wa.me needs: no plus, no
+       spaces. It is deliberately its own number, not the published voice line
+       in `contact.phones`. */
     display: '+234 803 881 0551',
     number: '2348038810551',
     title: 'Chat on WhatsApp',
