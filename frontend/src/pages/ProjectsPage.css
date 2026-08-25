@@ -896,6 +896,16 @@
     min-height: 0;
   }
 
+  /* The 2.6:1 letterbox stops being tall enough for the copy once the filter
+     row starts wrapping, so the card deepens as the viewport narrows. */
+  .pp__hero {
+    aspect-ratio: 2.15 / 1;
+  }
+
+  .pp__filter {
+    padding: 14px 19px;
+  }
+
   .pp__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -906,17 +916,32 @@
 
 }
 
+@media (max-width: 960px) {
+  .pp__hero {
+    aspect-ratio: 1.85 / 1;
+  }
+}
+
 @media (max-width: 860px) {
-  /* Too narrow for the letterbox: the card takes a fixed height and the notch
-     spans its full width, so a wrapped filter row never eats the photograph. */
+  /* Too narrow for the letterbox. The notch stops being an overlay and becomes
+     a band in flow at the top of the card: at this width it already spans the
+     full width in the page's own colour, so it reads identically, but a filter
+     row that wraps to three lines now pushes the photograph down instead of
+     eating into it. The card's height follows its content from here on. */
   .pp__hero {
     aspect-ratio: auto;
-    min-height: 430px;
+    flex-direction: column;
+    /* The base card aligns its single child to the bottom; stacked, the same
+       rule would pin both children to the right edge instead. */
+    align-items: stretch;
   }
 
+  /* Relative, not static: the photograph and its scrim are absolutely
+     positioned, so an unpositioned band would paint underneath them. */
   .pp__notch {
-    left: 0;
-    padding-left: 0;
+    position: relative;
+    width: 100%;
+    padding: 0 0 clamp(10px, 2.4vw, 15px);
     border-bottom-left-radius: 0;
   }
 
@@ -929,7 +954,33 @@
   }
 
   .pp__filter {
-    padding: 11px 18px;
+    padding: 11px 16px;
+    font-size: 12.5px;
+  }
+
+  /* The copy runs the full width here, so the scrim has to come from below
+     rather than from the left — otherwise the last words of each line sit on
+     bare photograph. */
+  .pp__heroVeil {
+    background: linear-gradient(
+      to top,
+      rgba(8, 8, 9, 0.92) 0%,
+      rgba(8, 8, 9, 0.78) 26%,
+      rgba(8, 8, 9, 0.3) 58%,
+      rgba(8, 8, 9, 0) 82%
+    );
+  }
+
+  /* Reserves a stretch of unobscured photograph between the chips and the
+     copy, which is what the letterbox gave for free at wider sizes. */
+  .pp__heroCopy {
+    max-width: none;
+    padding-top: clamp(150px, 30vw, 230px);
+  }
+
+  .pp__lede {
+    max-width: 46ch;
+    font-size: 13px;
   }
 }
 
@@ -950,4 +1001,42 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+}
+
+@media (max-width: 560px) {
+  /* Phone: chips shrink so the row wraps to two lines rather than three, and
+     the call to action goes full width like the other buttons on the page. */
+  .pp__hero {
+    border-radius: 18px;
+    --hero-pad-b: 26px;
+  }
+
+  .pp__filters {
+    gap: 7px;
+  }
+
+  .pp__filter {
+    padding: 9px 13px;
+    font-size: 11.5px;
+    border-radius: 18px;
+  }
+
+  .pp__heroCopy {
+    padding-top: clamp(120px, 38vw, 170px);
+  }
+
+  .pp__title {
+    font-size: clamp(24px, 7.4vw, 30px);
+  }
+
+  .pp__lede {
+    margin-top: 14px;
+    font-size: 12.5px;
+  }
+
+  .pp__cta {
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+  }
 }
