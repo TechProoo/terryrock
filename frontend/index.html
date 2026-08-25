@@ -9,10 +9,18 @@
       first because that is the one a browser guesses at /favicon.ico and the
       one older Windows clients understand; the PNGs beside it are what
       everything current picks up.
+
+      The .ico holds three frames and says so: declaring it as 32x32 alone hid
+      the 48x48 inside it. That size matters beyond the tab — Google picks the
+      icon for a search result from the declared sizes and wants a square that
+      is a multiple of 48, so the 192 is declared here as well and not left to
+      the manifest. A 32 and a 16 are all this page used to offer, and neither
+      qualifies, which is why results fell back to the generic globe.
     -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0a0a0b" />
