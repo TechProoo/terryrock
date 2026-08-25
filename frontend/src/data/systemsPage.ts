@@ -6,19 +6,21 @@
 
 import hero from '../assets/sys_hero.jpg';
 
-import d1 from '../assets/sys_d1.jpg';
-import d2 from '../assets/sys_d2.jpg';
-import d3 from '../assets/sys_d3.jpg';
-import d4 from '../assets/sys_d4.jpg';
-import d5 from '../assets/sys_d5.jpg';
-import d6 from '../assets/sys_d6.jpg';
-import d7 from '../assets/sys_d7.jpg';
-import d8 from '../assets/sys_d8.jpg';
-import d9 from '../assets/sys_d9.jpg';
-import d10 from '../assets/sys_d10.jpg';
-import d11 from '../assets/sys_d11.jpg';
-import d12 from '../assets/sys_d12.jpg';
-import d13 from '../assets/sys_d13.jpg';
+/* One photograph per discipline, in the order the list runs — the section's
+   own set, kept apart from the sys_d* frames the home page register uses. */
+import d1 from '../assets/cover_01.jpg';
+import d2 from '../assets/cover_02.jpg';
+import d3 from '../assets/cover_03.jpg';
+import d4 from '../assets/cover_04.jpg';
+import d5 from '../assets/cover_05.jpg';
+import d6 from '../assets/cover_06.jpg';
+import d7 from '../assets/cover_07.jpg';
+import d8 from '../assets/cover_08.jpg';
+import d9 from '../assets/cover_09.jpg';
+import d10 from '../assets/cover_10.jpg';
+import d11 from '../assets/cover_11.jpg';
+import d12 from '../assets/cover_12.jpg';
+import d13 from '../assets/cover_13.jpg';
 
 import s1 from '../assets/sys_s1.jpg';
 import s2 from '../assets/sys_s2.jpg';
@@ -65,79 +67,79 @@ export const systemsPage = {
         title: 'Pipe fittings & welding',
         body: 'Stainless, mild steel, galvanised, PVC and PPR pipe. Valve installation, elbows rolled to any angle, TIG and MIG welding with argon to certified standards — fabrication, site installation and testing, including sewage pumping stations.',
         image: d1,
-        alt: 'A welded manifold of painted pipework, valves and pumps',
+        alt: 'Welded and flanged pipework, valve sets and pump bases across several installations',
       },
       {
         title: 'Insulation & acoustic materials',
         body: 'Polystyrene, polyurethane and rigid pipe insulation, imported or sourced locally to suit the client.',
         image: d2,
-        alt: 'A rigid pipe insulation section showing its mineral wool core',
+        alt: 'Insulation stock: rockwool pipe sections, rolls, calcium silicate shells and rubber sheet',
       },
       {
         title: 'Cladding',
         body: 'Aluminium and stainless steel, 0.5mm to 1mm thick, riveted at even centres for locally fabricated panels.',
         image: d3,
-        alt: 'The spiral-clad end of a large vessel finished in sheet metal',
+        alt: 'Rooftop pipework and vessels finished in bright sheet metal cladding',
       },
       {
         title: 'Laminating',
         body: 'Resin, fibremat, catalyst and accelerator pigment.',
         image: d4,
-        alt: 'A laminated vessel surface finished in resin and fibremat',
+        alt: 'A TerryRock fitter laminating a resin and fibremat finish onto an insulated duct',
       },
       {
         title: 'Stainless & mild steel tanks',
         body: 'Construction and installation in cylindrical, rectangular and square configurations, across a range of capacities and sizes.',
         image: d5,
-        alt: 'A large horizontal clad tank standing on its supports',
+        alt: 'Fabricated stainless cyclones and vessels in the workshop, with the welding bench behind',
       },
       {
         title: 'HVAC',
         body: 'Installation, management and control, with air conditioning ductwork fabricated and erected on site.',
         image: d6,
-        alt: 'Clad air handling units installed through a plant hall',
+        alt: 'Ductwork, air handling plant and chilled water pipework across several installations',
       },
       {
         title: 'Machine & equipment installation',
         body: 'Machines and equipment of different kinds and sizes.',
         image: d7,
-        alt: 'Installed plant equipment and insulated pipework in a machine room',
+        alt: 'Process plant and equipment being insulated and clad inside a mill house',
       },
       {
         title: 'Industrial & domestic plumbing',
         body: 'Plumbing installations for industrial plant and private residences alike.',
         image: d8,
-        alt: 'A white PVC plumbing run bending through a service riser',
+        alt: 'A plant room of insulated hot water pipework, pumps and calorifier tanks',
       },
       {
         title: 'Generator exhausts',
         body: 'Exhaust pipes and muffler pots fabricated and installed for industrial gen-sets.',
         image: d9,
-        alt: 'A fabricated muffler pot for a generator exhaust',
+        alt: 'Polished stainless exhaust runs carried overhead from a bank of generators',
       },
       {
         title: 'Boiler chimneys',
         body: 'Fabrication and installation.',
         image: d10,
-        alt: 'A clad boiler chimney rising above the plant it serves',
+        alt: 'Boiler chimney sections welded at the bench and installed from scaffold',
       },
       {
         title: 'Electrical installation',
         body: 'Panels, trunking and wiring.',
         image: d11,
-        alt: 'Electrical panels and trunking installed alongside plant pipework',
+        alt: 'A control panel of breakers, relays and terminated wiring',
       },
       {
         title: 'Industrial thermal insulation',
         body: 'Hot and cold pipe and tank insulation, generator house soundproofing, club wall insulation and studio insulation.',
         image: d12,
-        alt: 'Mineral wool lining applied to a generator house wall',
+        alt: 'Mineral wool wall and ceiling linings, and finished cladding on tanks and vessels',
       },
       {
         title: 'Supply of insulation materials',
         body: 'Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.',
         image: d13,
-        alt: 'Bagged insulation stock stacked in the TerryRock store',
+        alt: 'Stock held in the store: ceramic fibre, aluminium coil, stainless band, board and resin',
       },
     ],
   },
