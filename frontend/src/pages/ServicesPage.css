@@ -71,16 +71,23 @@
   color: var(--text-on-dark);
 }
 
-/* Each line clips so its inner span can slide up from underneath. */
+/* The words clip so they can slide up from underneath. The mask is on the
+   words rather than the line, so the action beside them is free to wrap onto
+   a row of its own on a narrow screen without being cut off. */
 .sv__titleLine {
   display: flex;
   align-items: center;
   gap: clamp(10px, 1.4vw, 20px);
+}
+
+.sv__titleMask {
+  display: block;
+  min-width: 0;
   overflow: hidden;
   padding-bottom: 0.06em;
 }
 
-.sv__titleLine > span {
+.sv__titleWord {
   display: block;
   white-space: nowrap;
 }
@@ -931,8 +938,128 @@
 }
 
 @media (max-width: 700px) {
+  /* -- The hero on a phone --------------------------------------------------
+     The plates already stack at 900px. Below this the type stops shrinking
+     with the viewport and settles at sizes meant to be read at arm's length,
+     the veil turns vertical now that nothing sits to one side, and the action
+     takes a row of its own under the headline. */
+  .sv__hero {
+    border-radius: 18px;
+  }
+
+  .sv__heroImg {
+    object-position: 56% 50%;
+  }
+
+  .sv__heroVeil {
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 8, 9, 0.88) 0%,
+      rgba(8, 8, 9, 0.54) 26%,
+      rgba(8, 8, 9, 0.62) 58%,
+      rgba(8, 8, 9, 0.92) 100%
+    );
+  }
+
+  .sv__heroGrid {
+    gap: 18px;
+    padding: 20px 16px 18px;
+  }
+
+  .sv__flags {
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+  }
+
+  /* Sized off the viewport rather than pinned at the desktop floor, so the
+     longest line still clears the padding on a 320px screen. */
+  .sv__title {
+    font-size: clamp(22px, 7.1vw, 30px);
+  }
+
   .sv__titleLine {
     flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sv__cta {
+    margin-top: 8px;
+    padding: 12px 18px;
+    font-size: 12.5px;
+  }
+
+  .sv__tags {
+    gap: 8px;
+  }
+
+  .sv__tag {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+
+  /* A square thumbnail beside the text, instead of the tall strip stretching
+     to match it. */
+  .sv__note,
+  .sv__aside {
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .sv__noteThumb,
+  .sv__asideThumb {
+    width: clamp(66px, 22vw, 92px);
+    aspect-ratio: 1;
+    border-radius: 14px;
+  }
+
+  .sv__noteTitle,
+  .sv__asideTitle {
+    font-size: 15px;
+  }
+
+  .sv__noteBody,
+  .sv__asideBody,
+  .sv__closerNote p {
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .sv__more {
+    margin-top: 11px;
+    font-size: 11px;
+  }
+
+  .sv__closerNote {
+    padding: 16px;
+  }
+
+  .sv__closerNote p {
+    margin-top: 0;
+  }
+
+  .sv__foot {
+    gap: 12px;
+  }
+
+  .sv__proof {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .sv__face {
+    width: 32px;
+  }
+
+  .sv__proofValue {
+    font-size: 28px;
+  }
+
+  .sv__proofLabel {
+    font-size: 11px;
   }
 
   .sv__mosaic {

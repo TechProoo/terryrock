@@ -30,7 +30,7 @@ export default function ServicesPage() {
       gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
         gsap
           .timeline({ defaults: { ease: 'expo.out' } })
-          .from('.sv__titleLine span', { yPercent: 110, duration: 1.05, stagger: 0.08 })
+          .from('.sv__titleWord', { yPercent: 110, duration: 1.05, stagger: 0.08 })
           .from('.sv__cta', { opacity: 0, y: 14, duration: 0.7 }, 0.5)
           .from('.sv__tag', { opacity: 0, y: 14, duration: 0.6, stagger: 0.06 }, 0.3)
           .from('.sv__note', { opacity: 0, y: 22, duration: 0.8 }, 0.42)
@@ -141,10 +141,17 @@ export default function ServicesPage() {
                   ))}
                 </p>
 
+                {/* The mask that clips the reveal sits on the words alone, not on
+                   the whole line — on a narrow screen the action wraps onto a
+                   row of its own, and a clipping line would cut it in half. */}
                 <h1 className="sv__title">
                   {hero.headline.map((line, i) => (
                     <span className="sv__titleLine" key={line.text}>
-                      <span className={line.ring ? 'sv__ring' : undefined}>{line.text}</span>
+                      <span className="sv__titleMask">
+                        <span className={line.ring ? 'sv__titleWord sv__ring' : 'sv__titleWord'}>
+                          {line.text}
+                        </span>
+                      </span>
                       {i === hero.headline.length - 1 ? (
                         <Link className="pill pill--solid sv__cta" to={hero.cta.href}>
                           {hero.cta.label}
