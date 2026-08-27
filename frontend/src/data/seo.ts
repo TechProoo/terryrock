@@ -23,24 +23,24 @@
    vite.config.ts, which is compiled under nodenext resolution and rejects
    a relative import without one. Everything else under src/ is resolved by
    the bundler and so leaves it off. */
-import { rockwoolFaq, type Faq } from './rockwoolFaq.ts';
+import { rockwoolFaq, type Faq } from "./rockwoolFaq.ts";
 
 /** Canonical origin. No trailing slash — `absolute()` adds the separator. */
-export const SITE_URL = 'https://terryrockltd.com';
+export const SITE_URL = "https://terryrockltd.com";
 
 /** The name, and the only name, that should ever be displayed for this site. */
-export const SITE_NAME = 'TerryRock';
+export const SITE_NAME = "Terry Rock";
 
-export const LEGAL_NAME = 'TerryRock Technical Company Limited';
-export const RC_NUMBER = 'RC 1360332';
-export const LOCALE = 'en_NG';
+export const LEGAL_NAME = "TerryRock Technical Company Limited";
+export const RC_NUMBER = "RC 1360332";
+export const LOCALE = "en_NG";
 
 /**
  * The square TR mark, for the `logo` field in structured data. Google wants an
  * actual logo there rather than a photograph, and at least 112px square — this
  * is the 512 written for Android, which doubles as the largest clean copy.
  */
-export const LOGO_PATH = '/android-chrome-512x512.png';
+export const LOGO_PATH = "/android-chrome-512x512.png";
 
 /**
  * The share card. A photograph rather than a logo plate: it is the first thing
@@ -61,11 +61,11 @@ export const LOGO_PATH = '/android-chrome-512x512.png';
  * file still lays the card out correctly when it is told the shape.
  */
 export const OG_IMAGE = {
-  path: '/og-cover.jpg',
+  path: "/og-cover.jpg",
   width: 1200,
   height: 630,
-  type: 'image/jpeg',
-  alt: 'Insulated steel chilled water pipework on a rooftop plant deck built by TerryRock',
+  type: "image/jpeg",
+  alt: "Insulated steel chilled water pipework on a rooftop plant deck built by TerryRock",
 };
 
 export type RouteSeo = {
@@ -85,7 +85,7 @@ export type RouteSeo = {
    * schema.org page type. Everything is a WebPage unless a narrower type is
    * true — Google reads ContactPage as "this is where you reach them".
    */
-  pageType?: 'WebPage' | 'ContactPage' | 'CollectionPage';
+  pageType?: "WebPage" | "ContactPage" | "CollectionPage";
   /**
    * Question-and-answer pairs, emitted as an FAQPage. Only worth carrying
    * where the answers are genuinely on the page — the markup tells Google the
@@ -108,57 +108,57 @@ export type RouteSeo = {
    sitemap is written in this order. */
 export const routeSeo: RouteSeo[] = [
   {
-    path: '/',
-    title: 'TerryRock — Thermal Insulation & Mechanical Engineering, Nigeria',
+    path: "/",
+    title: "TerryRock — Thermal Insulation & Mechanical Engineering, Nigeria",
     description:
-      'TerryRock Technical Company Ltd builds and insulates the mechanical systems behind modern buildings — HVAC, chilled water, ductwork, cladding and thermal insulation, delivered across Nigeria since 2009.',
-    name: 'Home',
+      "TerryRock Technical Company Ltd builds and insulates the mechanical systems behind modern buildings — HVAC, chilled water, ductwork, cladding and thermal insulation, delivered across Nigeria since 2009.",
+    name: "Home",
   },
   {
-    path: '/services',
-    title: 'TerryRock — Insulation & Mechanical Services',
+    path: "/services",
+    title: "TerryRock — Insulation & Mechanical Services",
     description:
-      'Mechanical, insulation and electrical work handled in house: pipe fabrication and welding, cladding, HVAC, steel tanks and industrial thermal insulation, to an ISO 9001 quality system.',
-    name: 'Services',
+      "Mechanical, insulation and electrical work handled in house: pipe fabrication and welding, cladding, HVAC, steel tanks and industrial thermal insulation, to an ISO 9001 quality system.",
+    name: "Services",
   },
   {
-    path: '/systems',
-    title: 'TerryRock — Mechanical Systems',
+    path: "/systems",
+    title: "TerryRock — Mechanical Systems",
     description:
-      'Thirteen disciplines in detail — pipework and welding, insulation and acoustic materials, cladding, laminating, steel tanks, HVAC, generator exhausts, boiler chimneys and plant installation.',
-    name: 'Mechanical Systems',
+      "Thirteen disciplines in detail — pipework and welding, insulation and acoustic materials, cladding, laminating, steel tanks, HVAC, generator exhausts, boiler chimneys and plant installation.",
+    name: "Mechanical Systems",
   },
   {
-    path: '/projects',
-    title: 'TerryRock — Executed Projects',
+    path: "/projects",
+    title: "TerryRock — Executed Projects",
     description:
-      'Chiller banks, plant rooms, pump sets, rooftop distribution and riser pipework: mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.',
-    name: 'Executed Projects',
-    pageType: 'CollectionPage',
+      "Chiller banks, plant rooms, pump sets, rooftop distribution and riser pipework: mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.",
+    name: "Executed Projects",
+    pageType: "CollectionPage",
   },
   {
-    path: '/rockwool',
+    path: "/rockwool",
     /* The one title on the site that does not lead with the brand. Every other
        route is found by someone looking for TerryRock; this one is found by
        someone looking for the material, and the words they typed have to be
        the words the result opens with. */
-    title: 'Rockwool Insulation Nigeria — Supply & Installation | TerryRock',
+    title: "Rockwool Insulation Nigeria — Supply & Installation | TerryRock",
     description:
-      'Rockwool blanket, slab board and pipe sections held in Lagos and Abuja — supplied loose or fitted to chilled water, ductwork, generator houses and chimneys.',
-    name: 'Rockwool',
+      "Rockwool blanket, slab board and pipe sections held in Lagos and Abuja — supplied loose or fitted to chilled water, ductwork, generator houses and chimneys.",
+    name: "Rockwool",
     faq: rockwoolFaq,
     service: {
-      name: 'Rockwool insulation supply and installation',
-      type: 'Insulation supply and installation',
+      name: "Rockwool insulation supply and installation",
+      type: "Insulation supply and installation",
     },
   },
   {
-    path: '/contact',
-    title: 'TerryRock — Contact',
+    path: "/contact",
+    title: "TerryRock — Contact",
     description:
-      'Two Lagos premises and an Abuja workshop. Send a scope, a drawing or a rough idea of the works and TerryRock comes back with a price for the whole package.',
-    name: 'Contact',
-    pageType: 'ContactPage',
+      "Two Lagos premises and an Abuja workshop. Send a scope, a drawing or a rough idea of the works and TerryRock comes back with a price for the whole package.",
+    name: "Contact",
+    pageType: "ContactPage",
   },
 ];
 
@@ -166,7 +166,7 @@ export const defaultSeo: RouteSeo = routeSeo[0];
 
 /** Absolute URL for a router path. The origin itself keeps its single slash. */
 export function absolute(path: string): string {
-  return path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+  return path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
 }
 
 export type ResolvedSeo = RouteSeo & {
@@ -182,7 +182,8 @@ export type ResolvedSeo = RouteSeo & {
 export function seoFor(pathname: string): ResolvedSeo {
   /* A trailing slash is the same page to the router, so it is the same page
      here. */
-  const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') || '/' : pathname;
+  const path =
+    pathname.length > 1 ? pathname.replace(/\/+$/, "") || "/" : pathname;
   const match = routeSeo.find((route) => route.path === path);
 
   return match
@@ -214,103 +215,108 @@ const WEBSITE_ID = `${SITE_URL}/#website`;
 export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
   return [
     {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      '@id': ORGANISATION_ID,
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": ORGANISATION_ID,
       name: SITE_NAME,
       legalName: LEGAL_NAME,
-      alternateName: [LEGAL_NAME, 'TerryRock Technical', 'Terry Technical Company'],
+      alternateName: [
+        LEGAL_NAME,
+        "TerryRock Technical",
+        "Terry Technical Company",
+      ],
       url: `${SITE_URL}/`,
       logo: `${SITE_URL}${LOGO_PATH}`,
       image: `${SITE_URL}${OG_IMAGE.path}`,
       description: defaultSeo.description,
       identifier: RC_NUMBER,
-      foundingDate: '2009',
-      areaServed: ['Nigeria', 'West Africa'],
+      foundingDate: "2009",
+      areaServed: ["Nigeria", "West Africa"],
       knowsAbout: [
-        'Thermal insulation',
-        'HVAC installation',
-        'Chilled water pipework',
-        'Ductwork fabrication',
-        'Cladding',
-        'Mechanical engineering services',
+        "Thermal insulation",
+        "HVAC installation",
+        "Chilled water pipework",
+        "Ductwork fabrication",
+        "Cladding",
+        "Mechanical engineering services",
       ],
-      email: 'info@terryrockltd.com',
-      telephone: '+2348038810551',
+      email: "info@terryrockltd.com",
+      telephone: "+2348038810551",
       /* `sameAs` is how Google ties this site to the same company elsewhere,
          so a URL here has to resolve. The Instagram and Facebook accounts it
          used to name are both gone; pointing at them claimed a presence that
          is not there. Keep this in step with `contact.socials` in site.ts. */
-      sameAs: ['https://www.tiktok.com/@terryrock128'],
+      sameAs: ["https://www.tiktok.com/@terryrock128"],
       address: [
         {
-          '@type': 'PostalAddress',
-          streetAddress: 'No. 19, Jamiu Balogun Street, Shangisha-Magodo Road',
-          addressLocality: 'Ikosi-Ketu, Lagos',
-          addressRegion: 'Lagos',
-          addressCountry: 'NG',
+          "@type": "PostalAddress",
+          streetAddress: "No. 19, Jamiu Balogun Street, Shangisha-Magodo Road",
+          addressLocality: "Ikosi-Ketu, Lagos",
+          addressRegion: "Lagos",
+          addressCountry: "NG",
         },
         {
-          '@type': 'PostalAddress',
-          streetAddress: '7 Ilare Close, 7 & 8 Bus Stop, Airport Road',
-          addressLocality: 'Mafoluku, Oshodi, Lagos',
-          addressRegion: 'Lagos',
-          addressCountry: 'NG',
+          "@type": "PostalAddress",
+          streetAddress: "7 Ilare Close, 7 & 8 Bus Stop, Airport Road",
+          addressLocality: "Mafoluku, Oshodi, Lagos",
+          addressRegion: "Lagos",
+          addressCountry: "NG",
         },
         {
-          '@type': 'PostalAddress',
-          streetAddress: 'Beside Exclusive Holiday Resort and Suites, Lokogoma District',
-          addressLocality: 'Abuja',
-          addressRegion: 'FCT',
-          addressCountry: 'NG',
+          "@type": "PostalAddress",
+          streetAddress:
+            "Beside Exclusive Holiday Resort and Suites, Lokogoma District",
+          addressLocality: "Abuja",
+          addressRegion: "FCT",
+          addressCountry: "NG",
         },
       ],
     },
     {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      '@id': WEBSITE_ID,
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
       /* The displayed site name. Deliberately the short brand and nothing
          else — a name carrying a suffix gets shown with the suffix. */
       name: SITE_NAME,
       alternateName: LEGAL_NAME,
       url: `${SITE_URL}/`,
-      inLanguage: 'en',
-      publisher: { '@id': ORGANISATION_ID },
+      inLanguage: "en",
+      publisher: { "@id": ORGANISATION_ID },
     },
     {
-      '@context': 'https://schema.org',
-      '@type': seo.pageType ?? 'WebPage',
-      '@id': `${seo.canonical}#webpage`,
+      "@context": "https://schema.org",
+      "@type": seo.pageType ?? "WebPage",
+      "@id": `${seo.canonical}#webpage`,
       url: seo.canonical,
       name: seo.title,
       description: seo.description,
-      isPartOf: { '@id': WEBSITE_ID },
-      about: { '@id': ORGANISATION_ID },
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORGANISATION_ID },
       primaryImageOfPage: `${SITE_URL}${OG_IMAGE.path}`,
-      inLanguage: 'en',
+      inLanguage: "en",
     },
     ...(seo.service
       ? [
           {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            '@id': `${seo.canonical}#service`,
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": `${seo.canonical}#service`,
             name: seo.service.name,
             serviceType: seo.service.type,
             description: seo.description,
-            provider: { '@id': ORGANISATION_ID },
+            provider: { "@id": ORGANISATION_ID },
             areaServed: [
-              { '@type': 'Country', name: 'Nigeria' },
-              { '@type': 'City', name: 'Lagos' },
-              { '@type': 'City', name: 'Abuja' },
+              { "@type": "Country", name: "Nigeria" },
+              { "@type": "City", name: "Lagos" },
+              { "@type": "City", name: "Abuja" },
             ],
             /* The page is the thing to open, so it is the thing offered. A
                price is deliberately absent: quotes are written against a
                schedule, and a number here would be one the office never gave. */
             offers: {
-              '@type': 'Offer',
-              availability: 'https://schema.org/InStock',
+              "@type": "Offer",
+              availability: "https://schema.org/InStock",
               url: seo.canonical,
             },
           },
@@ -319,13 +325,13 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
     ...(seo.faq?.length
       ? [
           {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            '@id': `${seo.canonical}#faq`,
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": `${seo.canonical}#faq`,
             mainEntity: seo.faq.map((entry) => ({
-              '@type': 'Question',
+              "@type": "Question",
               name: entry.question,
-              acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+              acceptedAnswer: { "@type": "Answer", text: entry.answer },
             })),
           },
         ]
@@ -334,19 +340,19 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
       ? []
       : [
           {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            '@id': `${seo.canonical}#breadcrumbs`,
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "@id": `${seo.canonical}#breadcrumbs`,
             itemListElement: [
               {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 1,
                 name: defaultSeo.name,
                 item: absolute(defaultSeo.path),
               },
               /* The last rung carries no `item`: it is the page already open,
                  and a self link there is what makes Google drop the trail. */
-              { '@type': 'ListItem', position: 2, name: seo.name },
+              { "@type": "ListItem", position: 2, name: seo.name },
             ],
           },
         ]),
@@ -365,51 +371,54 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
 
 export function escapeAttribute(value: string): string {
   return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 export function renderHead(seo: ResolvedSeo): string {
   const image = `${SITE_URL}${OG_IMAGE.path}`;
 
-  const meta: [attribute: 'name' | 'property', key: string, content: string][] = [
-    ['name', 'description', seo.description],
+  const meta: [attribute: "name" | "property", key: string, content: string][] =
     [
-      'name',
-      'robots',
-      seo.indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow',
-    ],
-    ['name', 'author', LEGAL_NAME],
+      ["name", "description", seo.description],
+      [
+        "name",
+        "robots",
+        seo.indexable
+          ? "index, follow, max-image-preview:large"
+          : "noindex, follow",
+      ],
+      ["name", "author", LEGAL_NAME],
 
-    /* The three places a client reads a name from when it has to print one:
+      /* The three places a client reads a name from when it has to print one:
        the share card, the Windows tile, and an iOS home screen shortcut. All
        three say the brand and nothing else. */
-    ['property', 'og:site_name', SITE_NAME],
-    ['name', 'application-name', SITE_NAME],
-    ['name', 'apple-mobile-web-app-title', SITE_NAME],
+      ["property", "og:site_name", SITE_NAME],
+      ["name", "application-name", SITE_NAME],
+      ["name", "apple-mobile-web-app-title", SITE_NAME],
 
-    ['property', 'og:type', 'website'],
-    ['property', 'og:locale', LOCALE],
-    ['property', 'og:title', seo.title],
-    ['property', 'og:description', seo.description],
-    ['property', 'og:url', seo.canonical],
-    ['property', 'og:image', image],
-    /* Facebook reads this one in preference to og:image when it has it, and a
+      ["property", "og:type", "website"],
+      ["property", "og:locale", LOCALE],
+      ["property", "og:title", seo.title],
+      ["property", "og:description", seo.description],
+      ["property", "og:url", seo.canonical],
+      ["property", "og:image", image],
+      /* Facebook reads this one in preference to og:image when it has it, and a
        few older scrapers will not show a card without it. Same file. */
-    ['property', 'og:image:secure_url', image],
-    ['property', 'og:image:width', String(OG_IMAGE.width)],
-    ['property', 'og:image:height', String(OG_IMAGE.height)],
-    ['property', 'og:image:type', OG_IMAGE.type],
-    ['property', 'og:image:alt', OG_IMAGE.alt],
+      ["property", "og:image:secure_url", image],
+      ["property", "og:image:width", String(OG_IMAGE.width)],
+      ["property", "og:image:height", String(OG_IMAGE.height)],
+      ["property", "og:image:type", OG_IMAGE.type],
+      ["property", "og:image:alt", OG_IMAGE.alt],
 
-    ['name', 'twitter:card', 'summary_large_image'],
-    ['name', 'twitter:title', seo.title],
-    ['name', 'twitter:description', seo.description],
-    ['name', 'twitter:image', image],
-    ['name', 'twitter:image:alt', OG_IMAGE.alt],
-  ];
+      ["name", "twitter:card", "summary_large_image"],
+      ["name", "twitter:title", seo.title],
+      ["name", "twitter:description", seo.description],
+      ["name", "twitter:image", image],
+      ["name", "twitter:image:alt", OG_IMAGE.alt],
+    ];
 
   /* The attribute order is load bearing: the prerender step finds a tag by its
      name or property and rewrites the content that follows it. */
@@ -424,9 +433,8 @@ export function renderHead(seo: ResolvedSeo): string {
     ...tags,
     /* Closing angle brackets inside the JSON would end the script early; there
        are none in this data, and escaping the sequence keeps it that way. */
-    `<script type="application/ld+json">${JSON.stringify(structuredData(seo)).replace(
-      /</g,
-      '\\u003c',
-    )}</script>`,
-  ].join('\n    ');
+    `<script type="application/ld+json">${JSON.stringify(
+      structuredData(seo),
+    ).replace(/</g, "\\u003c")}</script>`,
+  ].join("\n    ");
 }
