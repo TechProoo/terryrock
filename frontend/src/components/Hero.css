@@ -169,8 +169,8 @@
 .hero__railBtn {
   display: grid;
   place-items: center;
-  width: 33px;
-  height: 33px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--r-pill);
   color: var(--text-on-light);
   background: var(--glass-light);

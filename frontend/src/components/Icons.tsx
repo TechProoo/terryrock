@@ -45,8 +45,12 @@ export function IconEye({ size = 18, className }: IconProps) {
 
 /* The note: a stem down the right, the flag off its top, and the disc at the
    foot. The stem stops on the disc's rightmost point so the two meet cleanly
-   at any size rather than crossing. */
-export function IconTikTok({ size = 16, className }: IconProps) {
+   at any size rather than crossing.
+
+   Larger than the rest by default: this is the one social account the site
+   carries, and at the line weight the set shares it was reading as a scuff on
+   the glass rather than a mark worth clicking. */
+export function IconTikTok({ size = 22, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>
       <path d="M15 3.6v11.5" />
