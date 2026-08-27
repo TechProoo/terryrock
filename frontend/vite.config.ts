@@ -10,6 +10,7 @@ import {
   renderHead,
   routeSeo,
   seoFor,
+  structuredData,
 } from './src/data/seo.ts';
 
 /* ---------------------------------------------------------------------------
@@ -27,10 +28,17 @@ import {
       WhatsApp, Facebook, LinkedIn, X — do not. They would show the home page's
       title and description for every route on the site.
 
-      So after the build each route gets a real file at dist/<route>/index.html,
+      So after the build each route gets a real file at dist/<route>.html,
       identical to index.html but with its own head. Netlify serves a matching
       file before it reaches the fallback rule, so those are what a scraper
       gets, while the app itself boots and behaves exactly as before.
+
+      The flat name matters. Written as dist/<route>/index.html these were
+      served at /services/ and Netlify answered /services — the URL in every
+      link, in the canonical tag and in the sitemap — with a 301 to the slashed
+      form. That made the canonical point at a redirect, which is the one thing
+      a canonical must never do. A file at dist/services.html is served at
+      /services directly, and it is the slashed form that redirects instead.
 
    A sitemap falls out of the same list, which is the point of it living in one
    place: a route added to seo.ts is prerendered and listed without anyone
@@ -64,8 +72,8 @@ function seoPlugin(): Plugin {
         const home = await readFile(join(dist, 'index.html'), 'utf8');
 
         /* The home page is already on disk as dist/index.html; the rest are
-           copies of it with six values swapped. Pulling the values out of the
-           built file rather than re-rendering the block keeps whatever else
+           copies of it with the head values swapped. Pulling the values out of
+           the built file rather than re-rendering the block keeps whatever else
            the build injected — asset URLs, preloads — untouched. */
         const rest = routeSeo.filter((route) => route.path !== defaultSeo.path);
 
@@ -88,7 +96,14 @@ function seoPlugin(): Plugin {
           html = replaceMeta(html, 'name', 'twitter:title', seo.title);
           html = replaceMeta(html, 'name', 'twitter:description', seo.description);
 
-          const file = join(dist, route.path.slice(1), 'index.html');
+          /* The structured data carries this page's WebPage node and its
+             breadcrumb trail, so it is rebuilt rather than patched. */
+          html = html.replace(
+            /(<script type="application\/ld\+json">)[\s\S]*?(<\/script>)/,
+            `$1${JSON.stringify(structuredData(seo)).replace(/</g, '\u003c').replace(/\$/g, '$$$$')}$2`,
+          );
+
+          const file = join(dist, `${route.path.slice(1)}.html`);
           await mkdir(dirname(file), { recursive: true });
           await writeFile(file, html, 'utf8');
         }

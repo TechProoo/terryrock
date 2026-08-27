@@ -69,6 +69,17 @@ export type RouteSeo = {
   title: string;
   /** Kept near 155 characters: longer and a result page truncates it. */
   description: string;
+  /**
+   * The page's own name, without the brand in front of it. This is the crumb
+   * Google prints in the breadcrumb line above a result, where "TerryRock —"
+   * on every rung would only repeat the site name already shown beside it.
+   */
+  name: string;
+  /**
+   * schema.org page type. Everything is a WebPage unless a narrower type is
+   * true — Google reads ContactPage as "this is where you reach them".
+   */
+  pageType?: 'WebPage' | 'ContactPage' | 'CollectionPage';
 };
 
 /* Order matters: the first entry is the home page and the fallback, and the
@@ -79,30 +90,37 @@ export const routeSeo: RouteSeo[] = [
     title: 'TerryRock — Thermal Insulation & Mechanical Engineering, Nigeria',
     description:
       'TerryRock Technical Company Ltd builds and insulates the mechanical systems behind modern buildings — HVAC, chilled water, ductwork, cladding and thermal insulation, delivered across Nigeria since 2009.',
+    name: 'Home',
   },
   {
     path: '/services',
     title: 'TerryRock — Insulation & Mechanical Services',
     description:
       'Mechanical, insulation and electrical work handled in house: pipe fabrication and welding, cladding, HVAC, steel tanks and industrial thermal insulation, to an ISO 9001 quality system.',
+    name: 'Services',
   },
   {
     path: '/systems',
     title: 'TerryRock — Mechanical Systems',
     description:
       'Thirteen disciplines in detail — pipework and welding, insulation and acoustic materials, cladding, laminating, steel tanks, HVAC, generator exhausts, boiler chimneys and plant installation.',
+    name: 'Mechanical Systems',
   },
   {
     path: '/projects',
     title: 'TerryRock — Executed Projects',
     description:
       'Chiller banks, plant rooms, pump sets, rooftop distribution and riser pipework: mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.',
+    name: 'Executed Projects',
+    pageType: 'CollectionPage',
   },
   {
     path: '/contact',
     title: 'TerryRock — Contact',
     description:
       'Two Lagos premises and an Abuja workshop. Send a scope, a drawing or a rough idea of the works and TerryRock comes back with a price for the whole package.',
+    name: 'Contact',
+    pageType: 'ContactPage',
   },
 ];
 
@@ -137,20 +155,25 @@ export function seoFor(pathname: string): ResolvedSeo {
 /* ---------------------------------------------------------------------------
    Structured data.
 
-   Two records, both site level rather than page level, so the same block is
-   correct on every route:
+   Four records. The first two are site level and identical on every route; the
+   last two describe the page being served:
 
      Organization — who the company is. Google reconciles the site with the
        business behind it from this, and `alternateName` carries the other forms
        people type.
      WebSite — the record Google reads the displayed site name from. This is the
        one that stops "terryrockltd.com" appearing above a result.
+     WebPage — this page, tied back to both of the above by @id so the three
+       read as one graph rather than three unrelated claims.
+     BreadcrumbList — the trail Google prints above a result in place of the
+       raw URL. Home is the first rung on every page but the home page, which
+       is a trail of one and so gets none.
    --------------------------------------------------------------------------- */
 
 const ORGANISATION_ID = `${SITE_URL}/#organisation`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
-export function structuredData(): Record<string, unknown>[] {
+export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
   return [
     {
       '@context': 'https://schema.org',
@@ -216,6 +239,38 @@ export function structuredData(): Record<string, unknown>[] {
       inLanguage: 'en',
       publisher: { '@id': ORGANISATION_ID },
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': seo.pageType ?? 'WebPage',
+      '@id': `${seo.canonical}#webpage`,
+      url: seo.canonical,
+      name: seo.title,
+      description: seo.description,
+      isPartOf: { '@id': WEBSITE_ID },
+      about: { '@id': ORGANISATION_ID },
+      primaryImageOfPage: `${SITE_URL}${OG_IMAGE.path}`,
+      inLanguage: 'en',
+    },
+    ...(seo.path === defaultSeo.path
+      ? []
+      : [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            '@id': `${seo.canonical}#breadcrumbs`,
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: defaultSeo.name,
+                item: absolute(defaultSeo.path),
+              },
+              /* The last rung carries no `item`: it is the page already open,
+                 and a self link there is what makes Google drop the trail. */
+              { '@type': 'ListItem', position: 2, name: seo.name },
+            ],
+          },
+        ]),
   ];
 }
 
@@ -262,6 +317,9 @@ export function renderHead(seo: ResolvedSeo): string {
     ['property', 'og:description', seo.description],
     ['property', 'og:url', seo.canonical],
     ['property', 'og:image', image],
+    /* Facebook reads this one in preference to og:image when it has it, and a
+       few older scrapers will not show a card without it. Same file. */
+    ['property', 'og:image:secure_url', image],
     ['property', 'og:image:width', String(OG_IMAGE.width)],
     ['property', 'og:image:height', String(OG_IMAGE.height)],
     ['property', 'og:image:type', OG_IMAGE.type],
@@ -287,7 +345,7 @@ export function renderHead(seo: ResolvedSeo): string {
     ...tags,
     /* Closing angle brackets inside the JSON would end the script early; there
        are none in this data, and escaping the sequence keeps it that way. */
-    `<script type="application/ld+json">${JSON.stringify(structuredData()).replace(
+    `<script type="application/ld+json">${JSON.stringify(structuredData(seo)).replace(
       /</g,
       '\\u003c',
     )}</script>`,

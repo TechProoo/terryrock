@@ -7,7 +7,7 @@
 import hero from '../assets/sys_hero.jpg';
 
 /* One photograph per discipline, in the order the list runs — the section's
-   own set, kept apart from the sys_d* frames the home page register uses. */
+   own set, kept apart from the sheets the home page register uses. */
 import d1 from '../assets/cover_01.jpg';
 import d2 from '../assets/cover_02.jpg';
 import d3 from '../assets/cover_03.jpg';

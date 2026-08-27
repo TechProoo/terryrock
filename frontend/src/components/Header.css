@@ -41,6 +41,22 @@
   white-space: nowrap;
 }
 
+/* -- Definition against a bright hero -------------------------------------- */
+
+/* The pills' frosted rim is white, which vanished once the hero was lifted
+   toward daylight. An ink outline gives the bar its own edge at any exposure —
+   scoped to the header so frosted chrome elsewhere keeps its soft rim. */
+.hdr .hdr__pill,
+.hdr .hdr__pill:hover {
+  border-color: var(--ink);
+}
+
+/* The menu chip is ink-solid, so it only needs the outline when it inverts.
+   Drawn inset so the chip's height still matches the pills beside it. */
+.hdr .hdr__menu.is-open {
+  box-shadow: inset 0 0 0 1px var(--ink), 0 8px 24px rgba(10, 10, 12, 0.24);
+}
+
 /* -- Current page ---------------------------------------------------------- */
 
 /* The glass pills are already light, so the page being read is marked by going
