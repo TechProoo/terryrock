@@ -40,7 +40,7 @@ import d12 from "../assets/sys_d12.jpg";
 import d13 from "../assets/sys_d13.jpg";
 
 import materialStock from "../assets/photo_048.jpg";
-import steelBand from "../assets/photo_037.jpg";
+import workshopKit from "../assets/workshop.jpg";
 import fabrication from "../assets/photo_040.jpg";
 import crewCutting from "../assets/photo_039.jpg";
 
@@ -331,8 +331,9 @@ export const services = {
       caption: "Plant rooms",
     },
   ],
-  kitImage: steelBand,
-  kitImageAlt: "A coil of stainless banding on the workshop floor",
+  kitImage: workshopKit,
+  kitImageAlt:
+    "A lockforming machine and rolled duct sections in the TerryRock workshop",
   kitLabel: "Workshop equipment",
   kit: [
     "Arc welding machine",
