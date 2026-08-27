@@ -197,7 +197,7 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
         'Cladding',
         'Mechanical engineering services',
       ],
-      email: 'info@terrytechnical.com',
+      email: 'info@terryrockltd.com',
       telephone: '+2348038810551',
       /* `sameAs` is how Google ties this site to the same company elsewhere,
          so a URL here has to resolve. The Instagram and Facebook accounts it

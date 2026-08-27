@@ -522,6 +522,15 @@ export const team = {
    Contact — three premises, and every way in.
    --------------------------------------------------------------------------- */
 
+/* A premises may name the place it is listed as on a map; the rest are found
+   by the address the ledger prints. */
+type Office = {
+  city: string;
+  role: string;
+  lines: string[];
+  map?: string;
+};
+
 export const contact = {
   headline: [
     [
@@ -541,6 +550,12 @@ export const contact = {
         "Shangisha-Magodo Road",
         "Ikosi-Ketu, Lagos",
       ],
+      /* Searched by name, not by address. This premises is a listed place on
+         Google Maps — "Terryrock Technical company limited", plus code
+         J95G+Q7 — so the map opens the company's own pin, with its photograph
+         and hours, rather than dropping a marker somewhere along the street
+         the way an address string does. */
+      map: "Terryrock Technical company limited, 19 Jamiu Balogun Street, Ikosi-Ketu, Lagos",
     },
     {
       city: "Lagos",
@@ -560,15 +575,16 @@ export const contact = {
         "FCT Abuja",
       ],
     },
-  ],
+  ] as Office[],
   /* One published line, carried in international form so it dials from outside
      Nigeria as well as in. Everything that shows a number reads this list. */
   phones: ["+234 813 411 5189"],
-  emails: [
-    "info@terrytechnical.com",
-    "terry_technical@yahoo.com",
-    "terryrock24@gmail.com",
-  ],
+  /* One published address, on the company's own domain. The yahoo and gmail
+     lines that used to sit beside it were a second and third door onto the
+     same company, and three addresses on a contact page asks the reader to
+     guess which one is read. Everything that shows an email reads this list,
+     so the one entry here is the one the whole site offers. */
+  emails: ["info@terryrockltd.com"],
   /* Only accounts that actually answer. The Instagram and Facebook handles
      that used to sit here are gone — Facebook returns "this content isn't
      available", and the Instagram account is closed — as is the Skype link,

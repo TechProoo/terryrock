@@ -15,9 +15,11 @@ const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
 
 /* A maps *search* rather than a pin: the premises have street addresses but no
    published coordinates, so this hands the address to the map the same way a
-   reader would type it, instead of asserting a location we don't have. */
-const mapHref = (lines: readonly string[]) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lines.join(', '))}`;
+   reader would type it, instead of asserting a location we don't have. An
+   office that carries its own `map` query is a listed place, and that query is
+   what opens its listing — see the note on it in site.ts. */
+const mapHref = (office: { lines: readonly string[]; map?: string }) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.map ?? office.lines.join(', '))}`;
 
 export default function Contact() {
   const { headline, lede, offices, phones, emails, socials } = contact;
@@ -86,7 +88,7 @@ export default function Contact() {
 
                 <a
                   className="ctc__rowMap"
-                  href={mapHref(office.lines)}
+                  href={mapHref(office)}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
