@@ -43,20 +43,15 @@ export function IconEye({ size = 18, className }: IconProps) {
   );
 }
 
-export function IconInstagram({ size = 16, className }: IconProps) {
+/* The note: a stem down the right, the flag off its top, and the disc at the
+   foot. The stem stops on the disc's rightmost point so the two meet cleanly
+   at any size rather than crossing. */
+export function IconTikTok({ size = 16, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>
-      <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-export function IconFacebook({ size = 16, className }: IconProps) {
-  return (
-    <svg {...base(size)} className={className}>
-      <path d="M14.6 8.4h2.1M14.6 8.4V6.9c0-1.2.8-2 2-2h.9M14.6 8.4v10.7M11 11.6h3.6" />
+      <path d="M15 3.6v11.5" />
+      <path d="M15 3.6c.4 2.3 2.1 3.9 4.4 4.2" />
+      <circle cx="11.1" cy="15.1" r="3.9" />
     </svg>
   );
 }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import { IconEye, IconFacebook, IconInstagram, IconPin, IconX } from './Icons';
-import { hero } from '../data/site';
+import { IconEye, IconPin, IconTikTok } from './Icons';
+import { contact, hero } from '../data/site';
 import './Hero.css';
 
 const toneClass: Record<string, string> = {
@@ -10,11 +10,19 @@ const toneClass: Record<string, string> = {
   'steel-deep': 'c-steel-deep',
 };
 
-const socials = [
-  { key: 'instagram', label: 'Instagram', Icon: IconInstagram },
-  { key: 'facebook', label: 'Facebook', Icon: IconFacebook },
-  { key: 'x', label: 'X', Icon: IconX },
-];
+/* The rail used to be a hand-written trio — Instagram, Facebook and an X the
+   company never had — all three pointing at the contact anchor. It advertised
+   accounts that did not answer. It is drawn from the contact record now, and
+   an account with no icon here simply does not appear, so the rail cannot
+   claim a platform the data does not carry. */
+const socialIcons: Record<string, typeof IconTikTok | undefined> = {
+  TikTok: IconTikTok,
+};
+
+const socials = contact.socials.flatMap((social) => {
+  const Icon = socialIcons[social.label];
+  return Icon ? [{ ...social, Icon }] : [];
+});
 
 export default function Hero() {
   return (
@@ -32,8 +40,15 @@ export default function Hero() {
       <div className="hero__floor" aria-hidden="true" />
 
       <div className="hero__rail">
-        {socials.map(({ key, label, Icon }) => (
-          <a key={key} className="hero__railBtn" href="#contact" aria-label={label}>
+        {socials.map(({ label, href, handle, Icon }) => (
+          <a
+            key={label}
+            className="hero__railBtn"
+            href={href}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={`${label}, ${handle}`}
+          >
             <Icon />
           </a>
         ))}

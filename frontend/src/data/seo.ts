@@ -199,10 +199,11 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
       ],
       email: 'info@terrytechnical.com',
       telephone: '+2348038810551',
-      sameAs: [
-        'https://instagram.com/terry.technical07',
-        'https://facebook.com/terrytechnicalcompanyltd',
-      ],
+      /* `sameAs` is how Google ties this site to the same company elsewhere,
+         so a URL here has to resolve. The Instagram and Facebook accounts it
+         used to name are both gone; pointing at them claimed a presence that
+         is not there. Keep this in step with `contact.socials` in site.ts. */
+      sameAs: ['https://www.tiktok.com/@terryrock128'],
       address: [
         {
           '@type': 'PostalAddress',

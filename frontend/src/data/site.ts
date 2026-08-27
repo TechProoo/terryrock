@@ -40,7 +40,7 @@ import d9 from "../assets/nine.jpg";
 import d10 from "../assets/ten.jpg";
 import d11 from "../assets/eleven.jpg";
 import d12 from "../assets/twelve.jpg";
-import d13 from "../assets/thirteen.jpg";
+import d13 from "../assets/thirteen_v2.jpg";
 
 import materialStock from "../assets/photo_048.jpg";
 import workshopKit from "../assets/workshop.jpg";
@@ -314,7 +314,7 @@ export const services = {
       title: "Supply of insulation materials",
       body: "Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.",
       image: d13,
-      alt: "A sheet of supplied materials — calcium silicate and cellular glass segments, PIR shells and rubber roll",
+      alt: "A sheet of supplied materials — ceramic fibre blanket, aluminium and stainless coil, banding, PIR board and rockwool pipe sections",
     },
   ],
   gallery: [
@@ -569,21 +569,20 @@ export const contact = {
     "terry_technical@yahoo.com",
     "terryrock24@gmail.com",
   ],
+  /* Only accounts that actually answer. The Instagram and Facebook handles
+     that used to sit here are gone — Facebook returns "this content isn't
+     available", and the Instagram account is closed — as is the Skype link,
+     which nothing can open since Microsoft retired consumer Skype in May 2025.
+     A dead handle on a contact page is worse than no handle: it reads as a
+     company that stopped answering. Everything that lists a social account
+     reads this array, so an entry removed here disappears from all of them. */
   socials: [
     {
-      label: "Instagram",
-      handle: "terry.technical07",
-      href: "https://instagram.com/terry.technical07",
-    },
-    {
-      label: "Skype",
-      handle: "terry.technical07",
-      href: "skype:terry.technical07?chat",
-    },
-    {
-      label: "Facebook",
-      handle: "/terrytechnicalcompanyltd",
-      href: "https://facebook.com/terrytechnicalcompanyltd",
+      label: "TikTok",
+      handle: "@terryrock128",
+      /* The share sheet appends is_from_webapp and sender_device; they are
+         tracking for the click that copied the link, not part of the address. */
+      href: "https://www.tiktok.com/@terryrock128",
     },
   ],
 };
