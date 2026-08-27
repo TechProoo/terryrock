@@ -16,8 +16,8 @@
   --ink-line-soft: rgba(255, 255, 255, 0.08);
 
   /* -- Light surface ------------------------------------------------------- */
-  --paper: #eef0f1;
-  --paper-deep: #d9dcde;
+  --paper: #f3f7fa;
+  --paper-deep: #dfe8ef;
 
   /* -- Text ---------------------------------------------------------------- */
   --text-on-dark: #f4f4f5;
@@ -27,13 +27,13 @@
   --text-on-light-dim: #5d6165;
 
   /* -- Accents ------------------------------------------------------------- */
-  /* Tuned to the logo: its gold (#f0a800) and azure (#0078c0), pulled well down
-     in saturation so the page keeps the reference's muted read while the hues
-     still belong to the brand. */
+  /* Tuned to the logo: its gold (#f0a800) and azure (#0078c0). The gold stays
+     soft against the dark body; the azure is kept near full strength so the
+     light surfaces read as bright rather than grey. */
   --sand: #cbab6d; /* gold-tinted tan, secondary heading clauses on dark */
   --sand-soft: #dcc596;
-  --steel: #9dbdd8; /* azure-tinted steel, hero heading clause on paper */
-  --steel-deep: #6ea5d3;
+  --steel: #3d9fe0; /* azure, hero heading clause on paper */
+  --steel-deep: #0f80c8;
 
   /* -- Glass --------------------------------------------------------------- */
   --glass-light: rgba(255, 255, 255, 0.62);

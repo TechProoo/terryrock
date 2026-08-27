@@ -15,7 +15,7 @@
   min-height: min(88vh, 860px);
   padding-bottom: clamp(0px, 2vw, 22px);
   background:
-    radial-gradient(128% 92% at 50% 0%, #fdfdfe 0%, #f3f5f6 38%, #e6e9eb 74%, #dcdfe2 100%),
+    radial-gradient(128% 92% at 50% 0%, #ffffff 0%, #f6fbfe 36%, #e9f3fb 72%, #dfedf8 100%),
     var(--paper);
   color: var(--text-on-light);
 }
@@ -55,9 +55,9 @@
   height: 66%;
   background: radial-gradient(
     50% 58% at 50% 60%,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.46) 48%,
-    transparent 76%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.6) 48%,
+    transparent 78%
   );
   pointer-events: none;
 }
@@ -97,9 +97,9 @@
   object-fit: cover;
   /* Framed off-centre so the subject lands right of the headline column. */
   object-position: 52% 64%;
-  /* Near-monochrome, but the subject keeps its weight: the reference's tower
-     reads as a solid dark mass, not a ghost. */
-  filter: grayscale(0.92) contrast(1.14) brightness(1.03);
+  /* Desaturated, not monochrome: enough of the steel's own colour survives to
+     keep the scene alive, lifted so it sits in daylight rather than overcast. */
+  filter: grayscale(0.42) saturate(1.12) contrast(1.06) brightness(1.16);
 }
 
 /* Paper veil across the top and both flanks — keeps the header pills, the
@@ -112,18 +112,18 @@
   background:
     linear-gradient(
       to bottom,
-      rgba(240, 242, 244, 0.96) 0%,
-      rgba(240, 242, 244, 0.72) 12%,
-      rgba(240, 242, 244, 0.2) 26%,
-      rgba(240, 242, 244, 0) 40%
+      rgba(250, 253, 255, 0.96) 0%,
+      rgba(250, 253, 255, 0.7) 12%,
+      rgba(248, 252, 255, 0.18) 26%,
+      rgba(248, 252, 255, 0) 40%
     ),
     linear-gradient(
       to right,
-      rgba(240, 242, 244, 0.82) 0%,
-      rgba(240, 242, 244, 0) 22%,
-      rgba(240, 242, 244, 0) 62%,
-      rgba(240, 242, 244, 0.72) 78%,
-      rgba(240, 242, 244, 0.88) 100%
+      rgba(249, 252, 255, 0.82) 0%,
+      rgba(249, 252, 255, 0) 22%,
+      rgba(249, 252, 255, 0) 62%,
+      rgba(249, 252, 255, 0.7) 78%,
+      rgba(249, 252, 255, 0.88) 100%
     );
   pointer-events: none;
 }
@@ -135,7 +135,7 @@
   inset: auto 0 0 0;
   z-index: 4;
   height: 21%;
-  background: linear-gradient(to top, #dfe2e5 0%, rgba(223, 226, 229, 0.42) 46%, transparent 100%);
+  background: linear-gradient(to top, #e4eef7 0%, rgba(228, 238, 247, 0.4) 46%, transparent 100%);
   pointer-events: none;
 }
 
@@ -268,7 +268,7 @@
   margin-top: 9px;
   font-size: 10.5px;
   line-height: 1.6;
-  color: rgba(29, 32, 36, 0.5);
+  color: rgba(29, 32, 36, 0.62);
   text-wrap: pretty;
 }
 
@@ -288,9 +288,9 @@
   padding: 16px 11px 18px;
   text-align: center;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--glass-light-line);
-  backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.5);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);
   box-shadow: 0 12px 30px rgba(20, 24, 28, 0.09);
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
@@ -322,7 +322,7 @@
 .hero__cardBody {
   font-size: 9.5px;
   line-height: 1.42;
-  color: rgba(29, 32, 36, 0.46);
+  color: rgba(29, 32, 36, 0.58);
   max-width: 88px;
 }
 
