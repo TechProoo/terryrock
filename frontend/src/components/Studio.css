@@ -74,7 +74,7 @@
 
 .std__featureFrame > img {
   object-position: 50% 40%;
-  filter: saturate(0.3) contrast(1.05) brightness(1.08);
+  filter: saturate(1.04) contrast(1.05) brightness(1.08);
 }
 
 /* -- Pitch ---------------------------------------------------------------- */
@@ -147,7 +147,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.4) contrast(1.04);
+  filter: saturate(1.04) contrast(1.04);
 }
 
 .std__proofText {

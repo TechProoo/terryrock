@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   WhatsApp dock. The page is monochrome, so the brand green is used as an
+   WhatsApp dock. The page is near-black, so the brand green is used as an
    accent only — the mark, the live dot and the send button — and never as a
    surface. GSAP handles the open; CSS only describes the two states.
    --------------------------------------------------------------------------- */

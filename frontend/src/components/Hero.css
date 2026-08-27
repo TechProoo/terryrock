@@ -97,9 +97,9 @@
   object-fit: cover;
   /* Framed off-centre so the subject lands right of the headline column. */
   object-position: 52% 64%;
-  /* Desaturated, not monochrome: enough of the steel's own colour survives to
-     keep the scene alive, lifted so it sits in daylight rather than overcast. */
-  filter: grayscale(0.3) saturate(1.2) contrast(1.04) brightness(1.26);
+  /* Lifted well past neutral: the hero is the one full-daylight frame on the
+     page, so its colour is pushed rather than held back. */
+  filter: saturate(1.2) contrast(1.04) brightness(1.26);
 }
 
 /* Paper veil across the top and both flanks — keeps the header pills, the

@@ -90,7 +90,7 @@
   object-fit: cover;
   /* Same treatment the rest of the dark surfaces use, so the gallery reads as
      one material with the sections above it. */
-  filter: grayscale(0.84) saturate(0.9) contrast(1.14) brightness(0.93);
+  filter: saturate(1.04) contrast(1.14) brightness(0.93);
 }
 
 /* Tall, short, tall — the bento shape. Positions are what give each photo its

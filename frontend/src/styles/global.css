@@ -244,11 +244,10 @@ h3 {
   height: 100%;
   object-fit: cover;
   /* Source photography is warm site documentation shot in daylight — blue sky,
-     hi-vis vests, greenery. The dark sections need the reference's near
-     monochrome read, so colour is pulled almost all the way out and the images
-     are seated slightly darker so they sit into the black ground rather than
-     glowing off it. */
-  filter: grayscale(0.84) saturate(0.9) contrast(1.14) brightness(0.93);
+     hi-vis vests, greenery — and it keeps that colour. The grade only seats an
+     image into the black ground: a touch of contrast, and a touch darker, so it
+     sits in the page rather than glowing off it. */
+  filter: saturate(1.04) contrast(1.14) brightness(0.93);
 }
 
 /* ---------------------------------------------------------------------------
