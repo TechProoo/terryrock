@@ -123,8 +123,15 @@
 
 .svc__kitFrame {
   border-radius: var(--r-card-md);
-  aspect-ratio: 1 / 0.62;
+  /* The workshop shot is portrait, so the frame stays near square — a wide
+     crop would keep the machine's flank and throw away its head and the
+     rolled duct behind it. */
+  aspect-ratio: 1 / 0.92;
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.42);
+}
+
+.svc__kitFrame > img {
+  object-position: 50% 45%;
 }
 
 .svc__kitLabel {
@@ -160,7 +167,7 @@
   }
 
   .svc__kitFrame {
-    aspect-ratio: 1 / 0.42;
+    aspect-ratio: 1 / 0.52;
   }
 }
 
@@ -209,10 +216,10 @@
 
 .svc__thumb {
   display: none;
-  width: clamp(56px, 8vw, 84px);
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  aspect-ratio: 1 / 0.66;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: var(--r-card-sm);
   background: #1a1b1d;
 }
 
@@ -231,6 +238,7 @@
 
   .svc__thumb {
     display: block;
-    margin-top: clamp(8px, 1vw, 12px);
+    margin-top: clamp(12px, 1.8vw, 18px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
   }
 }
