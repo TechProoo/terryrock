@@ -115,22 +115,24 @@ function seoPlugin(): Plugin {
            travels in public/_redirects — first match wins, so they have to sit
            above it.
 
-           Two rules per route: the slashed form redirects to the canonical
-           one, and the canonical one is served from its file without a
-           redirect of its own. */
+           One rule per route, and a rewrite rather than a redirect: the page
+           is served at the canonical URL itself. There is deliberately no
+           second rule normalising the slashed form — Netlify ignores a
+           trailing slash when it matches a rule, so `/services/ -> /services`
+           also matches /services and sends it to itself forever. The slashed
+           form lands on this same rule and is served the same page; the
+           canonical tag in its head is what settles which of the two is the
+           address of record. */
         const redirects = join(dist, '_redirects');
         const fallback = await readFile(redirects, 'utf8');
-        const rules = rest.flatMap((route) => [
-          `${route.path}/    ${route.path}    301!`,
-          `${route.path}    ${route.path}.html    200`,
-        ]);
+        const rules = rest.map((route) => `${route.path}    ${route.path}.html    200`);
 
         await writeFile(
           redirects,
           [
             '# Canonical URLs, written by the seo plugin in vite.config.ts.',
-            '# One route per pair: the slashed form redirects, the canonical',
-            '# form is served. Do not edit here — edit routeSeo in',
+            '# Each route is served from its prerendered file at the URL its',
+            '# canonical tag claims. Do not edit here — edit routeSeo in',
             '# src/data/seo.ts and rebuild.',
             ...rules,
             '',
