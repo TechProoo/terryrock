@@ -30,24 +30,36 @@ export const RC_NUMBER = 'RC 1360332';
 export const LOCALE = 'en_NG';
 
 /**
- * The share card. A photograph rather than a logo plate: it is the first thing
- * a reader sees of the company, and the work is the argument. The dimensions
- * are declared because a scraper that cannot fetch the file still lays the card
- * out correctly when it is told the shape.
- */
-/**
  * The square TR mark, for the `logo` field in structured data. Google wants an
  * actual logo there rather than a photograph, and at least 112px square — this
  * is the 512 written for Android, which doubles as the largest clean copy.
  */
 export const LOGO_PATH = '/android-chrome-512x512.png';
 
+/**
+ * The share card. A photograph rather than a logo plate: it is the first thing
+ * a reader sees of the company, and the work is the argument. The name is set
+ * into the frame because a card is often seen before the title beneath it is
+ * read — and in a forwarded WhatsApp message, sometimes instead of it.
+ *
+ * 1200x630 is not decoration. Facebook and WhatsApp scale anything smaller
+ * down into a thumbnail beside the text, and LinkedIn wants at least 1200x627
+ * before it will use the large card at all — the previous file was 1000x478,
+ * which is why the link shared as a small tile rather than a picture.
+ *
+ * The filename carries the size change with it. Every scraper caches the image
+ * against its URL and will happily serve the old crop for weeks; a new path is
+ * the only reliable way to make them fetch again.
+ *
+ * The dimensions are declared below because a scraper that cannot fetch the
+ * file still lays the card out correctly when it is told the shape.
+ */
 export const OG_IMAGE = {
-  path: '/og-image.jpg',
-  width: 1000,
-  height: 478,
+  path: '/og-cover.jpg',
+  width: 1200,
+  height: 630,
   type: 'image/jpeg',
-  alt: 'Polished stainless steel extract ducts installed on a rooftop plant deck by TerryRock',
+  alt: 'Insulated steel chilled water pipework on a rooftop plant deck built by TerryRock',
 };
 
 export type RouteSeo = {

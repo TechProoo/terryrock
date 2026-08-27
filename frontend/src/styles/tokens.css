@@ -16,8 +16,8 @@
   --ink-line-soft: rgba(255, 255, 255, 0.08);
 
   /* -- Light surface ------------------------------------------------------- */
-  --paper: #f3f7fa;
-  --paper-deep: #dfe8ef;
+  --paper: #f8fbfd;
+  --paper-deep: #e6eef5;
 
   /* -- Text ---------------------------------------------------------------- */
   --text-on-dark: #f4f4f5;
@@ -32,7 +32,7 @@
      light surfaces read as bright rather than grey. */
   --sand: #cbab6d; /* gold-tinted tan, secondary heading clauses on dark */
   --sand-soft: #dcc596;
-  --steel: #3d9fe0; /* azure, hero heading clause on paper */
+  --steel: #2b9ae7; /* azure, hero heading clause on paper */
   --steel-deep: #0f80c8;
 
   /* -- Glass --------------------------------------------------------------- */

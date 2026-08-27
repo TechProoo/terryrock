@@ -23,21 +23,24 @@ import brandedVessel from "../assets/site_10.jpg";
 import supportRun from "../assets/site_19.jpg";
 import rooftopBlue from "../assets/site_09.jpg";
 
-/* The thirteen discipline photographs, shared with the systems page so one
-   discipline never shows two different pictures. */
-import d1 from "../assets/sys_d1.jpg";
-import d2 from "../assets/sys_d2.jpg";
-import d3 from "../assets/sys_d3.jpg";
-import d4 from "../assets/sys_d4.jpg";
-import d5 from "../assets/sys_d5.jpg";
-import d6 from "../assets/sys_d6.jpg";
-import d7 from "../assets/sys_d7.jpg";
-import d8 from "../assets/sys_d8.jpg";
-import d9 from "../assets/sys_d9.jpg";
-import d10 from "../assets/sys_d10.jpg";
-import d11 from "../assets/sys_d11.jpg";
-import d12 from "../assets/sys_d12.jpg";
-import d13 from "../assets/sys_d13.jpg";
+/* The thirteen discipline sheets — mostly contact sheets of a job rather than
+   single frames, so the register shows a discipline's range rather than one
+   moment of it. Their proportions run from a 4:1 strip to a 1:2.2 tower, which
+   is why Services.css sizes them by their own ratio instead of cropping to a
+   common frame. The systems page keeps its own set. */
+import d1 from "../assets/one.jpg";
+import d2 from "../assets/two.jpg";
+import d3 from "../assets/three.jpg";
+import d4 from "../assets/four.jpg";
+import d5 from "../assets/five.jpg";
+import d6 from "../assets/six.jpg";
+import d7 from "../assets/seven.jpg";
+import d8 from "../assets/eight.jpg";
+import d9 from "../assets/nine.jpg";
+import d10 from "../assets/ten.jpg";
+import d11 from "../assets/eleven.jpg";
+import d12 from "../assets/twelve.jpg";
+import d13 from "../assets/thirteen.jpg";
 
 import materialStock from "../assets/photo_048.jpg";
 import workshopKit from "../assets/workshop.jpg";
@@ -239,79 +242,79 @@ export const services = {
       title: "Pipe fittings & welding",
       body: "Stainless, mild steel, galvanised, PVC and PPR pipe. Valve installation, elbows rolled to any angle, TIG and MIG welding with argon to certified standards — fabrication, site installation and testing, including sewage pumping stations.",
       image: d1,
-      alt: "A welded manifold of painted pipework, valves and pumps",
+      alt: "A sheet of pipework jobs — red-oxide headers, flanged valves and pump sets being welded and set on their plinths",
     },
     {
       title: "Insulation & acoustic materials",
       body: "Polystyrene, polyurethane and rigid pipe insulation, imported or sourced locally to suit the client.",
       image: d2,
-      alt: "A rigid pipe insulation section showing its mineral wool core",
+      alt: "A sheet of insulation stock — rockwool pipe sections, foil-faced rolls, rubber sheet and bagged slab",
     },
     {
       title: "Cladding",
       body: "Aluminium and stainless steel, 0.5mm to 1mm thick, riveted at even centres for locally fabricated panels.",
       image: d3,
-      alt: "The spiral-clad end of a large vessel finished in sheet metal",
+      alt: "A sheet of finished cladding — chilled water headers and risers wrapped in aluminium on a rooftop plant deck",
     },
     {
       title: "Laminating",
       body: "Resin, fibremat, catalyst and accelerator pigment.",
       image: d4,
-      alt: "A laminated vessel surface finished in resin and fibremat",
+      alt: "A TerryRock fabricator laying fibremat and resin over a lagged plant enclosure",
     },
     {
       title: "Stainless & mild steel tanks",
       body: "Construction and installation in cylindrical, rectangular and square configurations, across a range of capacities and sizes.",
       image: d5,
-      alt: "A large horizontal clad tank standing on its supports",
+      alt: "A sheet of stainless fabrication — rolled cones, cut tube and finished cyclone vessels in the workshop",
     },
     {
       title: "HVAC",
       body: "Installation, management and control, with air conditioning ductwork fabricated and erected on site.",
       image: d6,
-      alt: "Clad air handling units installed through a plant hall",
+      alt: "A sheet of HVAC work — galvanised ductwork, clad air handling plant and valve headers through finished plant rooms",
     },
     {
       title: "Machine & equipment installation",
       body: "Machines and equipment of different kinds and sizes.",
       image: d7,
-      alt: "Installed plant equipment and insulated pipework in a machine room",
+      alt: "A sheet of installed plant — mill and cyclone equipment with its ducting lagged in mineral wool and clad",
     },
     {
       title: "Industrial & domestic plumbing",
       body: "Plumbing installations for industrial plant and private residences alike.",
       image: d8,
-      alt: "A white PVC plumbing run bending through a service riser",
+      alt: "Insulated red flow and return pipework running to a bank of grey calorifiers in a plant room",
     },
     {
       title: "Generator exhausts",
       body: "Exhaust pipes and muffler pots fabricated and installed for industrial gen-sets.",
       image: d9,
-      alt: "A fabricated muffler pot for a generator exhaust",
+      alt: "Stainless generator exhaust runs and muffler pots slung from the roof above a row of gen-sets",
     },
     {
       title: "Boiler chimneys",
       body: "Fabrication and installation.",
       image: d10,
-      alt: "A clad boiler chimney rising above the plant it serves",
+      alt: "A sheet of chimney work — a flue section flanged up, welded, and raised on scaffold against the building",
     },
     {
       title: "Electrical installation",
       body: "Panels, trunking and wiring.",
       image: d11,
-      alt: "Electrical panels and trunking installed alongside plant pipework",
+      alt: "The inside of a control panel — breakers, contactors and relays wired out to numbered terminals",
     },
     {
       title: "Industrial thermal insulation",
       body: "Hot and cold pipe and tank insulation, generator house soundproofing, club wall insulation and studio insulation.",
       image: d12,
-      alt: "Mineral wool lining applied to a generator house wall",
+      alt: "A sheet of thermal insulation — mineral wool pinned to walls and soffits, and storage tanks finished in foil and sheet",
     },
     {
       title: "Supply of insulation materials",
       body: "Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.",
       image: d13,
-      alt: "Bagged insulation stock stacked in the TerryRock store",
+      alt: "A sheet of supplied materials — calcium silicate and cellular glass segments, PIR shells and rubber roll",
     },
   ],
   gallery: [
