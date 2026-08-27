@@ -1,5 +1,5 @@
-import { useLayoutEffect } from 'react';
-import { seoFor } from '../data/seo';
+import { useLayoutEffect, useMemo } from 'react';
+import { seoFor, structuredData } from '../data/seo';
 
 /* ---------------------------------------------------------------------------
    Per-route head tags.
@@ -13,7 +13,9 @@ import { seoFor } from '../data/seo';
 
    It only rewrites what actually varies by route. og:site_name, og:type, the
    share image and the Twitter card kind are the same everywhere, so they are
-   left where they are rather than being set again on every navigation.
+   left where they are rather than being set again on every navigation. The
+   structured data does vary — it carries this page's WebPage node and its
+   breadcrumb trail — so it is rewritten with the rest.
    --------------------------------------------------------------------------- */
 
 type Props = {
@@ -35,7 +37,10 @@ function upsertMeta(selector: string, attribute: 'name' | 'property', key: strin
 }
 
 export default function Seo({ pathname }: Props) {
-  const { title, description, canonical, indexable } = seoFor(pathname);
+  /* Memoised so the effect below keys off the route rather than off a new
+     object identity on every render. */
+  const seo = useMemo(() => seoFor(pathname), [pathname]);
+  const { title, description, canonical, indexable } = seo;
 
   /* Layout effect rather than a plain one: the title should already be correct
      when the curtain lifts on the new page, not a frame after it. */
@@ -68,7 +73,13 @@ export default function Seo({ pathname }: Props) {
     }
 
     link.setAttribute('href', canonical);
-  }, [title, description, canonical, indexable]);
+
+    const ld = document.head.querySelector('script[type="application/ld+json"]');
+
+    if (ld) {
+      ld.textContent = JSON.stringify(structuredData(seo));
+    }
+  }, [seo, title, description, canonical, indexable]);
 
   return null;
 }

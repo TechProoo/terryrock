@@ -100,13 +100,44 @@ function seoPlugin(): Plugin {
              breadcrumb trail, so it is rebuilt rather than patched. */
           html = html.replace(
             /(<script type="application\/ld\+json">)[\s\S]*?(<\/script>)/,
-            `$1${JSON.stringify(structuredData(seo)).replace(/</g, '\u003c').replace(/\$/g, '$$$$')}$2`,
+            `$1${JSON.stringify(structuredData(seo)).replace(/</g, '\\u003c').replace(/\$/g, '$$$$')}$2`,
           );
 
           const file = join(dist, `${route.path.slice(1)}.html`);
           await mkdir(dirname(file), { recursive: true });
           await writeFile(file, html, 'utf8');
         }
+
+        /* Netlify picks the file for a path on its own, and what it picks is
+           not something to leave to a default that can be toggled in a UI. So
+           the rules that map each route to its prerendered file are written
+           out here, from the same list, and prepended to the SPA fallback that
+           travels in public/_redirects — first match wins, so they have to sit
+           above it.
+
+           Two rules per route: the slashed form redirects to the canonical
+           one, and the canonical one is served from its file without a
+           redirect of its own. */
+        const redirects = join(dist, '_redirects');
+        const fallback = await readFile(redirects, 'utf8');
+        const rules = rest.flatMap((route) => [
+          `${route.path}/    ${route.path}    301!`,
+          `${route.path}    ${route.path}.html    200`,
+        ]);
+
+        await writeFile(
+          redirects,
+          [
+            '# Canonical URLs, written by the seo plugin in vite.config.ts.',
+            '# One route per pair: the slashed form redirects, the canonical',
+            '# form is served. Do not edit here — edit routeSeo in',
+            '# src/data/seo.ts and rebuild.',
+            ...rules,
+            '',
+            fallback.trimStart(),
+          ].join('\n'),
+          'utf8',
+        );
 
         const lastmod = new Date().toISOString().slice(0, 10);
         const sitemap = [
@@ -130,8 +161,8 @@ function seoPlugin(): Plugin {
         await writeFile(join(dist, 'sitemap.xml'), sitemap, 'utf8');
 
         console.log(
-          `\nseo: prerendered ${rest.length} route${rest.length === 1 ? '' : 's'} ` +
-            `and a sitemap for ${SITE_URL}`,
+          `\nseo: prerendered ${rest.length} route${rest.length === 1 ? '' : 's'}, ` +
+            `their redirect rules and a sitemap for ${SITE_URL}`,
         );
       },
     },
