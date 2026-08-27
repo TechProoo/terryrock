@@ -71,7 +71,13 @@ export const routeLabels: Record<string, string> = {
 /* Four pills, widest first: the two nearest the mark are the ones that survive
    the medium breakpoint, so the pair that matters most sits there. */
 export const nav = {
-  left: [{ label: "Services", to: "/services" }],
+  /* Rockwool sits in the header rather than only in the overlay menu: it is
+     the material people arrive searching for, and a link on every page is
+     what tells a crawler the page matters. */
+  left: [
+    { label: "Services", to: "/services" },
+    { label: "Rockwool", to: "/rockwool" },
+  ],
   right: [
     { label: "Contacts", to: "/contact" },
     { label: "Executed Projects", to: "/projects" },

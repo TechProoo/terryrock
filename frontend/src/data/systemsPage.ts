@@ -193,6 +193,10 @@ export const systemsPage = {
     eyebrow: 'Held in stock',
     title: ['What we', 'supply'],
     lede: 'Rockwool, rigid pipe insulation, polystyrene, aluminium polyisocyanate, ceramic fibre, calcium silicate, fire blanket, stainless sheet and band.',
+    /* Rockwool is the one item on this list people arrive looking for by name,
+       and it has a page of its own. The link is here rather than in the copy
+       so the grid keeps reading as a list of stock. */
+    link: { label: 'Rockwool, in detail', to: '/rockwool' },
     tiles: [
       { image: m1, alt: 'Rockwool blanket stock held in the store', label: 'Rockwool blanket' },
       { image: m2, alt: 'Rolls of fire blanket stacked upright', label: 'Fire blanket' },

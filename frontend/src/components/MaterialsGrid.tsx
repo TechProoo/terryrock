@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { systemsPage } from '../data/systemsPage';
@@ -85,6 +86,9 @@ export default function MaterialsGrid() {
             ))}
           </h2>
           <p className="mg__lede">{materials.lede}</p>
+          <Link className="pill pill--outline mg__link" to={materials.link.to}>
+            {materials.link.label}
+          </Link>
         </header>
 
         <ul className="mg__grid" role="list">

@@ -42,6 +42,10 @@
   text-wrap: pretty;
 }
 
+.mg__link {
+  margin-top: clamp(16px, 2vw, 24px);
+}
+
 .mg__grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

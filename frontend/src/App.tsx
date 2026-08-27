@@ -4,6 +4,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import SystemsPage from './pages/SystemsPage';
 import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
+import RockwoolPage from './pages/RockwoolPage';
 import ScrollToHash from './components/ScrollToHash';
 import PageTransition from './components/PageTransition';
 import Seo from './components/Seo';
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/systems" element={<SystemsPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/rockwool" element={<RockwoolPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Anything else falls back to the landing page. */}
             <Route path="*" element={<HomePage />} />

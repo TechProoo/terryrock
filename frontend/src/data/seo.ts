@@ -19,6 +19,12 @@
    pure data and string handling. No DOM, no asset imports.
    --------------------------------------------------------------------------- */
 
+/* The extension is explicit because this module is also read by
+   vite.config.ts, which is compiled under nodenext resolution and rejects
+   a relative import without one. Everything else under src/ is resolved by
+   the bundler and so leaves it off. */
+import { rockwoolFaq, type Faq } from './rockwoolFaq.ts';
+
 /** Canonical origin. No trailing slash — `absolute()` adds the separator. */
 export const SITE_URL = 'https://terryrockltd.com';
 
@@ -80,6 +86,22 @@ export type RouteSeo = {
    * true — Google reads ContactPage as "this is where you reach them".
    */
   pageType?: 'WebPage' | 'ContactPage' | 'CollectionPage';
+  /**
+   * Question-and-answer pairs, emitted as an FAQPage. Only worth carrying
+   * where the answers are genuinely on the page — the markup tells Google the
+   * page answers these, and a page that does not is worse off than one that
+   * never claimed to. Google no longer prints FAQ rich results for a site like
+   * this one, but it still reads the block to work out what the page is for,
+   * which is the reason it is here.
+   */
+  faq?: Faq[];
+  /**
+   * A Service node, for a page whose subject is one thing the company sells
+   * rather than the company itself. `areaServed` is the half that matters: it
+   * is what connects the page to "in Lagos", "in Abuja", "in Nigeria" without
+   * those phrases having to be stuffed into the copy.
+   */
+  service?: { name: string; type: string };
 };
 
 /* Order matters: the first entry is the home page and the fallback, and the
@@ -113,6 +135,22 @@ export const routeSeo: RouteSeo[] = [
       'Chiller banks, plant rooms, pump sets, rooftop distribution and riser pipework: mechanical, ductwork and insulation packages completed on site across Lagos and Abuja.',
     name: 'Executed Projects',
     pageType: 'CollectionPage',
+  },
+  {
+    path: '/rockwool',
+    /* The one title on the site that does not lead with the brand. Every other
+       route is found by someone looking for TerryRock; this one is found by
+       someone looking for the material, and the words they typed have to be
+       the words the result opens with. */
+    title: 'Rockwool Insulation Nigeria — Supply & Installation | TerryRock',
+    description:
+      'Rockwool blanket, slab board and pipe sections held in Lagos and Abuja — supplied loose or fitted to chilled water, ductwork, generator houses and chimneys.',
+    name: 'Rockwool',
+    faq: rockwoolFaq,
+    service: {
+      name: 'Rockwool insulation supply and installation',
+      type: 'Insulation supply and installation',
+    },
   },
   {
     path: '/contact',
@@ -252,6 +290,46 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
       primaryImageOfPage: `${SITE_URL}${OG_IMAGE.path}`,
       inLanguage: 'en',
     },
+    ...(seo.service
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            '@id': `${seo.canonical}#service`,
+            name: seo.service.name,
+            serviceType: seo.service.type,
+            description: seo.description,
+            provider: { '@id': ORGANISATION_ID },
+            areaServed: [
+              { '@type': 'Country', name: 'Nigeria' },
+              { '@type': 'City', name: 'Lagos' },
+              { '@type': 'City', name: 'Abuja' },
+            ],
+            /* The page is the thing to open, so it is the thing offered. A
+               price is deliberately absent: quotes are written against a
+               schedule, and a number here would be one the office never gave. */
+            offers: {
+              '@type': 'Offer',
+              availability: 'https://schema.org/InStock',
+              url: seo.canonical,
+            },
+          },
+        ]
+      : []),
+    ...(seo.faq?.length
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            '@id': `${seo.canonical}#faq`,
+            mainEntity: seo.faq.map((entry) => ({
+              '@type': 'Question',
+              name: entry.question,
+              acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+            })),
+          },
+        ]
+      : []),
     ...(seo.path === defaultSeo.path
       ? []
       : [

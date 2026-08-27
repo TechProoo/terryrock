@@ -11,6 +11,7 @@ import home from '../assets/site_05.jpg';
 import projects from '../assets/site_35.jpg';
 import services from '../assets/srv_hero.jpg';
 import systems from '../assets/sys_hero.jpg';
+import rockwool from '../assets/rockwool_pipe.jpg';
 import contact from '../assets/contact_hero.jpg';
 
 export const menu = {
@@ -51,6 +52,13 @@ export const menu = {
       to: '/systems',
       image: systems,
       alt: 'Insulated pipework threading overhead through a plant hall',
+    },
+    {
+      label: 'Rockwool',
+      note: 'Supplied, and fitted',
+      to: '/rockwool',
+      image: rockwool,
+      alt: 'Rockwool pipe sections stacked in the TerryRock store',
     },
     {
       label: 'Contact',

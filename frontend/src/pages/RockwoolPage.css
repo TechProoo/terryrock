@@ -1,0 +1,459 @@
+/* ---------------------------------------------------------------------------
+   Rockwool — the material page.
+
+   It borrows the Mechanical Systems hero card and stat strip so a reader who
+   arrives here from a search result and then moves into the site does not feel
+   handed between two websites. Everything below the hero is set wider and
+   looser than the rest of the site: this is the one page people read rather
+   than scan, and the sections carry sentences instead of labels.
+   --------------------------------------------------------------------------- */
+
+.rw {
+  background: var(--ink);
+  min-height: 100vh;
+}
+
+.rw__main {
+  padding-top: clamp(84px, 9vw, 118px);
+}
+
+/* -- Hero ------------------------------------------------------------------ */
+
+.rw__hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  aspect-ratio: 2.6 / 1;
+  display: flex;
+  align-items: flex-end;
+  background: #141416;
+}
+
+.rw__heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The photograph is portrait and the card is a letterbox, so the crop is
+     pulled to the middle of the stack where the bores read as rockwool rather
+     than to the pallet under it. */
+  object-position: 50% 42%;
+  filter: saturate(1.02) contrast(1.08) brightness(0.72);
+}
+
+.rw__heroVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(8, 8, 9, 0.94) 0%,
+      rgba(8, 8, 9, 0.7) 26%,
+      rgba(8, 8, 9, 0.24) 48%,
+      rgba(8, 8, 9, 0) 68%
+    ),
+    linear-gradient(to top, rgba(8, 8, 9, 0.62) 0%, rgba(8, 8, 9, 0) 46%);
+}
+
+.rw__heroCopy {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(20px, 2.6vw, 38px) clamp(30px, 6.3vw, 90px);
+  max-width: 680px;
+}
+
+.rw__eyebrow {
+  color: var(--sand);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+}
+
+.rw__title {
+  margin-top: clamp(10px, 1.3vw, 16px);
+  font-family: var(--font-display);
+  font-size: clamp(25px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+}
+
+/* Outer span clips, inner span is what GSAP slides. */
+.rw__title > span {
+  display: block;
+  overflow: hidden;
+}
+
+.rw__title > span > span {
+  display: block;
+}
+
+.rw__lede {
+  margin-top: clamp(16px, 1.8vw, 26px);
+  max-width: 56ch;
+  font-size: clamp(10.5px, 0.85vw, 12.5px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74);
+  text-wrap: pretty;
+}
+
+.rw__cta {
+  margin-top: clamp(24px, 2.8vw, 40px);
+  padding: clamp(11px, 1.05vw, 15px) clamp(18px, 1.8vw, 26px);
+  border-radius: 16px;
+  font-size: clamp(12px, 1vw, 14px);
+}
+
+/* -- Stat strip ------------------------------------------------------------ */
+
+.rw__stats {
+  margin-top: clamp(12px, 1.6vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.rw__stat {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 18px);
+  padding: clamp(16px, 1.9vw, 26px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.rw__stat:hover {
+  border-color: var(--ink-line);
+}
+
+.rw__statValue {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 34px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text-on-dark);
+  white-space: nowrap;
+}
+
+.rw__statLabel {
+  font-size: clamp(9.5px, 0.82vw, 11.5px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-on-dark-faint);
+}
+
+.rw__statLabel span {
+  display: block;
+}
+
+/* -- Shared section furniture ---------------------------------------------- */
+
+.rw__forms,
+.rw__material,
+.rw__uses,
+.rw__coverage,
+.rw__faq {
+  padding-block: clamp(52px, 7vw, 104px);
+}
+
+.rw__h2 {
+  font-family: var(--font-display);
+  font-size: clamp(25px, 3.4vw, 46px);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.rw__h2 span {
+  display: block;
+}
+
+/* The shared lede is set for a short centred line; these sections carry
+   sentences, so they get their own measure. */
+.rw__forms .section__lede,
+.rw__material .section__lede {
+  max-width: 58ch;
+  font-size: clamp(10.5px, 0.85vw, 12px);
+}
+
+/* -- The three forms ------------------------------------------------------- */
+
+.rw__formList {
+  margin: clamp(34px, 4.4vw, 62px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 30px);
+}
+
+.rw__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rw__formFrame {
+  aspect-ratio: 1 / 0.78;
+  border-radius: var(--r-card-md);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.4);
+}
+
+.rw__formLabel {
+  margin-top: clamp(16px, 1.8vw, 24px);
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+
+.rw__formBody {
+  margin-top: clamp(8px, 1vw, 12px);
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.62;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+/* -- Why the material ------------------------------------------------------ */
+
+.rw__points {
+  margin: clamp(34px, 4.4vw, 62px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.rw__point {
+  padding: clamp(22px, 2.6vw, 36px);
+  border-radius: var(--r-card-md);
+  background: var(--ink-raise);
+  border: 1px solid var(--ink-line-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.rw__point:hover {
+  border-color: var(--ink-line);
+}
+
+.rw__pointLabel {
+  font-size: clamp(14px, 1.25vw, 18px);
+  font-weight: 600;
+  color: var(--sand);
+}
+
+.rw__pointBody {
+  margin-top: clamp(10px, 1.1vw, 14px);
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.65;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+/* -- Applications ---------------------------------------------------------- */
+
+.rw__useList {
+  margin: clamp(34px, 4.4vw, 62px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1px, 0.12vw, 2px);
+  background: var(--ink-line-soft);
+  border: 1px solid var(--ink-line-soft);
+  border-radius: var(--r-card-md);
+  overflow: hidden;
+}
+
+.rw__use {
+  padding: clamp(22px, 2.5vw, 34px);
+  background: var(--ink);
+  transition: background var(--dur) var(--ease);
+}
+
+.rw__use:hover {
+  background: var(--ink-raise);
+}
+
+.rw__useLabel {
+  font-size: clamp(13px, 1.1vw, 15.5px);
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+
+.rw__useBody {
+  margin-top: clamp(8px, 0.9vw, 11px);
+  font-size: clamp(10px, 0.82vw, 11.5px);
+  line-height: 1.6;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+/* -- Coverage -------------------------------------------------------------- */
+
+.rw__coverageInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+
+.rw__coverageFrame {
+  aspect-ratio: 1 / 0.92;
+  border-radius: var(--r-card-lg);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.48);
+}
+
+.rw__coverageBody .section__mark {
+  margin-bottom: clamp(14px, 1.6vw, 20px);
+  color: var(--text-on-dark-faint);
+}
+
+.rw__coverageCopy {
+  margin-top: clamp(16px, 1.8vw, 24px);
+  max-width: 52ch;
+  font-size: clamp(10.5px, 0.85vw, 12.5px);
+  line-height: 1.65;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+.rw__places {
+  margin: clamp(18px, 2.2vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rw__place {
+  font-size: 10.5px;
+  color: var(--text-on-dark-dim);
+}
+
+/* -- Questions ------------------------------------------------------------- */
+
+.rw__faqList {
+  margin: clamp(34px, 4.4vw, 62px) auto 0;
+  max-width: 860px;
+}
+
+.rw__qa {
+  padding-block: clamp(20px, 2.4vw, 30px);
+  border-top: 1px solid var(--ink-line-soft);
+}
+
+.rw__qa:last-child {
+  border-bottom: 1px solid var(--ink-line-soft);
+}
+
+.rw__q {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  line-height: 1.25;
+  color: var(--text-on-dark);
+}
+
+.rw__a {
+  margin: clamp(10px, 1.1vw, 14px) 0 0;
+  max-width: 68ch;
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.68;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
+/* -- Closer ---------------------------------------------------------------- */
+
+.rw__closer {
+  padding-block: clamp(50px, 7vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rw__closerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.6vw, 50px);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: var(--text-on-dark);
+}
+
+.rw__closerTitle span {
+  display: block;
+}
+
+.rw__closerBody {
+  max-width: 46ch;
+  margin-top: clamp(14px, 1.8vw, 22px);
+  font-size: clamp(10.5px, 0.85vw, 12px);
+  line-height: 1.6;
+  color: var(--text-on-dark-faint);
+  text-wrap: pretty;
+}
+
+.rw__closerCta {
+  margin-top: clamp(20px, 2.4vw, 32px);
+  padding: clamp(11px, 1.05vw, 15px) clamp(18px, 1.8vw, 26px);
+  border-radius: 16px;
+}
+
+.rw__back {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: clamp(34px, 4.6vw, 62px);
+}
+
+/* -- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 960px) {
+  .rw__formList,
+  .rw__useList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rw__coverageInner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rw__coverageFrame {
+    aspect-ratio: 1 / 0.56;
+  }
+}
+
+@media (max-width: 860px) {
+  .rw__hero {
+    aspect-ratio: auto;
+    min-height: 440px;
+  }
+
+  .rw__stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .rw__formList,
+  .rw__points,
+  .rw__useList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rw__formFrame {
+    aspect-ratio: 1 / 0.62;
+  }
+}
