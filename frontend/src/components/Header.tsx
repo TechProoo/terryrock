@@ -40,7 +40,12 @@ export default function Header() {
       <header className="hdr">
         <div className="hdr__inner">
           <Link className="hdr__brand" to="/" aria-label="TerryRock — home">
-            <BrandMark height={38} />
+            {/* The one mark a reader looks for to know whose site this is, so
+                it is sized against the viewport rather than pinned at a size
+                that only suits one. The floor is what the narrow bar can hold
+                beside the menu chip; the ceiling is what the wide one can
+                carry without the mark outweighing the pills. */}
+            <BrandMark height="clamp(52px, 4.2vw, 68px)" reserve={56} />
           </Link>
 
           <nav className="hdr__group hdr__group--left" aria-label="Primary">

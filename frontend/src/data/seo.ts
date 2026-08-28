@@ -29,7 +29,7 @@ import { rockwoolFaq, type Faq } from "./rockwoolFaq.ts";
 export const SITE_URL = "https://terryrockltd.com";
 
 /** The name, and the only name, that should ever be displayed for this site. */
-export const SITE_NAME = "Terry Rock";
+export const SITE_NAME = "TerryRock";
 
 export const LEGAL_NAME = "TerryRock Technical Company Limited";
 export const RC_NUMBER = "RC 1360332";
