@@ -138,10 +138,7 @@ export const routeSeo: RouteSeo[] = [
   },
   {
     path: "/rockwool",
-    /* The one title on the site that does not lead with the brand. Every other
-       route is found by someone looking for TerryRock; this one is found by
-       someone looking for the material, and the words they typed have to be
-       the words the result opens with. */
+
     title: "Rockwool Insulation Nigeria — Supply & Installation | TerryRock",
     description:
       "Rockwool blanket, slab board and pipe sections held in Lagos and Abuja — supplied loose or fitted to chilled water, ductwork, generator houses and chimneys.",
