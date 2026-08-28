@@ -25,7 +25,7 @@
 
 .tm__row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.25fr);
+  grid-template-columns: auto auto minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.25fr);
   align-items: baseline;
   gap: clamp(14px, 2.4vw, 38px);
   padding: clamp(15px, 1.8vw, 23px) 0;
@@ -45,6 +45,26 @@
   color: var(--sand);
   font-size: 9.5px;
   letter-spacing: 0.16em;
+}
+
+/* The row aligns on the baseline so the four text columns sit on one line; a
+   mark has no baseline worth aligning to, so this one centres against the name
+   instead of hanging off it. */
+.tm__avatar {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: clamp(34px, 3.4vw, 42px);
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ink-line-soft);
+  color: var(--text-on-dark-faint);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.tm__row:hover .tm__avatar {
+  border-color: var(--ink-line);
+  color: var(--text-on-dark-dim);
 }
 
 .tm__name {
@@ -94,68 +114,28 @@
 
 @media (max-width: 900px) {
   .tm__row {
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 6px clamp(14px, 3vw, 24px);
+    grid-template-columns: auto auto minmax(0, 1fr);
+    gap: 6px clamp(12px, 2.6vw, 20px);
   }
 
   /* Name takes the row, then role and qualification stack beneath it, both
-     offset past the index column. */
+     offset past the index and the mark. Every cell is placed explicitly: the
+     mark spans the stacked rows so it stays centred on the block rather than
+     on the name alone, and a spanning item left to auto-placement takes the
+     first column and pushes the index out of it. */
+  .tm__index {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .tm__avatar {
+    grid-column: 2;
+    grid-row: 1 / -1;
+  }
+
+  .tm__name,
   .tm__role,
   .tm__qual {
-    grid-column: 2;
-  }
-}
-
-/* -- Cursor preview ---------------------------------------------------------
-   Centring and scale are set by GSAP (xPercent/yPercent) — a CSS translate
-   here would be resolved into the same `x`/`y` the pointer tween writes, and
-   the image would sit offset by half its own size.
-   --------------------------------------------------------------------------- */
-
-.tm__row {
-  position: relative;
-}
-
-.tm__preview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 40;
-  width: clamp(190px, 19vw, 290px);
-  aspect-ratio: 1 / 1.12;
-  object-fit: cover;
-  border-radius: var(--r-card-sm);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  filter: saturate(1.04) contrast(1.14) brightness(0.95);
-}
-
-.tm__thumb {
-  display: none;
-  width: clamp(56px, 8vw, 84px);
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #1a1b1d;
-}
-
-.tm__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(1.04) contrast(1.14) brightness(0.93);
-}
-
-/* Wherever the preview cannot run, the photograph comes back into the row. */
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .tm__preview {
-    display: none;
-  }
-
-  .tm__thumb {
-    display: block;
-    margin-top: clamp(8px, 1vw, 12px);
+    grid-column: 3;
   }
 }

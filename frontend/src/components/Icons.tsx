@@ -71,6 +71,18 @@ export function IconTikTok({ size = 22, className }: IconProps) {
   );
 }
 
+/* A roster mark, not a portrait: head over shoulders on the same 24 grid as
+   the rest. The shoulders are an arc rather than a closed shape so it reads at
+   the weight the set shares instead of filling in to a blob at small sizes. */
+export function IconAvatar({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="8.6" r="3.9" />
+      <path d="M4.9 19.7a7.4 7.4 0 0 1 14.2 0" />
+    </svg>
+  );
+}
+
 export function IconX({ size = 15, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>

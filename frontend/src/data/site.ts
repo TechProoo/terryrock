@@ -468,58 +468,46 @@ export const team = {
     alt: "A TerryRock site technician in branded workwear cutting a duct section",
     caption: "Site crew at work",
   },
-  /* The images below are site photography chosen to suit each role — they are
-     not portraits of these people, and the alt text describes the scene rather
-     than the person. Swap in headshots when there are some. */
+  /* No image per person. Each row used to carry a photograph of the work its
+     role covers, which was site photography standing in for a portrait — it
+     told a reader nothing about the person named, and on hover it claimed to
+     be about them. The roster now carries one avatar mark instead, the same
+     for every seat, until there are real headshots to put there. */
   people: [
     {
       name: "Taiwo I. Jubrila",
       role: "Managing Director",
       qualification: "B.Sc Mechanical Engineering",
-      image: qaPipework,
-      alt: "Insulated and clad pipework with valves and gauges in a finished plant room",
     },
     {
       name: "Abimbola Jubrila",
       role: "Executive Director",
       qualification: "B.Sc Accounting",
-      image: materialStock,
-      alt: "Insulation stock bagged and stacked in the TerryRock store",
     },
     {
       name: "Ojedokun Olatunji",
       role: "Operations Director",
       qualification: "B.Sc Mech. Engr., MSc Project Management (UNILAG)",
-      image: plantRoom,
-      alt: "A finished plant room of insulated pipework and pumps",
     },
     {
       name: "James Akoma",
       role: "Head Technician",
       qualification: "",
-      image: fabrication,
-      alt: "A TerryRock fabricator welding a galvanised duct section on site",
     },
     {
       name: "Kehinde I. Jubrila",
       role: "Site Supervisor",
       qualification: "",
-      image: crewCutting,
-      alt: "A TerryRock site technician in branded workwear cutting a duct section",
     },
     {
       name: "Orumwense Stephen",
       role: "Site Supervisor",
       qualification: "",
-      image: installedPlant,
-      alt: "Insulated and clad pipework installed through a finished plant room",
     },
     {
       name: "Afolabi Oladiran",
       role: "Site Supervisor",
       qualification: "",
-      image: supportRun,
-      alt: "A long insulated pipe run carried on its site supports",
     },
   ],
 };
