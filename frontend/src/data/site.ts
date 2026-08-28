@@ -570,20 +570,24 @@ export const contact = {
       ],
     },
   ] as Office[],
-  /* One published line, carried in international form so it dials from outside
-     Nigeria as well as in. Everything that shows a number reads this list. */
-  phones: ["+234 813 411 5189"],
+  /* Both published lines, carried in international form so they dial from
+     outside Nigeria as well as in. The first entry is the one the site acts
+     on — the direct-call link on the contact section and the call pill on the
+     contact page open `phones[0]` — while the chip lists print every line.
+     Everything that shows a number reads this list. */
+  phones: ["+234 813 411 5189", "+234 805 768 8724"],
   /* Order matters: the first entry is the address the site acts on. The
      enquiry button, the menu chip and the prefilled mailto on the contact page
      all open `emails[0]`, while the lists on the contact section and the
      contact page print every line. So the general company address leads, and
-     the named and gmail boxes follow it as alternatives a reader can pick
-     rather than as three doors they have to choose between. Everything that
+     the named and webmail boxes follow it as alternatives a reader can pick
+     rather than as four doors they have to choose between. Everything that
      shows an email reads this list. */
   emails: [
     "info@terryrockltd.com",
     "terryrock_technical@terryrockltd.com",
     "terryrock24@gmail.com",
+    "terry_technical@yahoo.com",
   ],
   /* Only accounts that actually answer. The handles the site used to carry
      were dead — an old Instagram at terry.technical07, a Facebook page that

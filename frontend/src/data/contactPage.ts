@@ -16,10 +16,10 @@ export const contactPage = {
     alt: 'A TerryRock technician working on insulated pipework overhead',
   },
 
-  /* Countable straight off this page: three premises, four lines, two cities. */
+  /* Countable straight off this page: three premises, two lines, two cities. */
   facts: [
     { value: '03', label: 'Premises' },
-    { value: '01', label: 'Phone line' },
+    { value: '02', label: 'Phone lines' },
     { value: '02', label: 'Cities' },
   ],
 
