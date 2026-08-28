@@ -591,14 +591,20 @@ export const contact = {
      guess which one is read. Everything that shows an email reads this list,
      so the one entry here is the one the whole site offers. */
   emails: ["info@terryrockltd.com"],
-  /* Only accounts that actually answer. The Instagram and Facebook handles
-     that used to sit here are gone — Facebook returns "this content isn't
-     available", and the Instagram account is closed — as is the Skype link,
-     which nothing can open since Microsoft retired consumer Skype in May 2025.
-     A dead handle on a contact page is worse than no handle: it reads as a
-     company that stopped answering. Everything that lists a social account
-     reads this array, so an entry removed here disappears from all of them. */
+  /* Only accounts that actually answer. The handles the site used to carry
+     were dead — an old Instagram at terry.technical07, a Facebook page that
+     returned "this content isn't available", and a Skype link with nothing to
+     open since Microsoft retired consumer Skype in May 2025 — and a dead
+     handle reads as a company that stopped answering. These are the live
+     ones. Everything that lists a social account reads this array, so an entry
+     changed here changes on the hero rail, the contact section, the menu and
+     the contact page at once; keep `sameAs` in seo.ts in step with it. */
   socials: [
+    {
+      label: "Instagram",
+      handle: "@terryrock_technical",
+      href: "https://www.instagram.com/terryrock_technical/",
+    },
     {
       label: "TikTok",
       handle: "@terryrock128",

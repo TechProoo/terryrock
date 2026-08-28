@@ -43,13 +43,24 @@ export function IconEye({ size = 18, className }: IconProps) {
   );
 }
 
+/* The social marks all default to 22 rather than the 16 the UI icons use: they
+   sit alone on glass in the hero rail, and at the line weight this set shares
+   they read as scuffs at anything smaller. Keeping the default equal across
+   them is what makes the rail read as one row rather than three sizes. */
+
+export function IconInstagram({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /* The note: a stem down the right, the flag off its top, and the disc at the
    foot. The stem stops on the disc's rightmost point so the two meet cleanly
-   at any size rather than crossing.
-
-   Larger than the rest by default: this is the one social account the site
-   carries, and at the line weight the set shares it was reading as a scuff on
-   the glass rather than a mark worth clicking. */
+   at any size rather than crossing. */
 export function IconTikTok({ size = 22, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>

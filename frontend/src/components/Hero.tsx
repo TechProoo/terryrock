@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import { IconEye, IconPin, IconTikTok } from './Icons';
+import { IconEye, IconInstagram, IconPin, IconTikTok } from './Icons';
 import { contact, hero } from '../data/site';
 import './Hero.css';
 
@@ -16,6 +16,7 @@ const toneClass: Record<string, string> = {
    an account with no icon here simply does not appear, so the rail cannot
    claim a platform the data does not carry. */
 const socialIcons: Record<string, typeof IconTikTok | undefined> = {
+  Instagram: IconInstagram,
   TikTok: IconTikTok,
 };
 
