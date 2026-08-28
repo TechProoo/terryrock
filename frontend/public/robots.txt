@@ -1,6 +1,13 @@
-# Every page on this site is public and worth indexing — there is no admin
+# Every page on this site is public and worth indexing: there is no admin
 # area, no search results and no session URLs to keep a crawler out of.
+#
+# Written in plain ASCII, with an explicit empty Disallow before the Allow.
+# Neither is for Google's benefit -- it reads UTF-8 and treats a bare
+# "Allow: /" as a complete group. Strict validators do not, and a robots.txt
+# reported as malformed is a file some crawler somewhere decides to ignore.
+
 User-agent: *
+Disallow:
 Allow: /
 
 Sitemap: https://terryrockltd.com/sitemap.xml
