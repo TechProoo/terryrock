@@ -15,7 +15,8 @@
    those come off a schedule the office writes against a duty, not off a page.
    --------------------------------------------------------------------------- */
 
-import hero from '../assets/rockwool_pipe.jpg';
+import roll from '../assets/rockwool.png';
+import pipeStack from '../assets/rockwool_pipe.jpg';
 import blanket from '../assets/sys_m1.jpg';
 import board from '../assets/site_71.jpg';
 import container from '../assets/stock_roll_container.jpg';
@@ -23,12 +24,46 @@ import { rockwoolFaq } from './rockwoolFaq';
 
 export const rockwoolPage = {
   eyebrow: 'Rockwool supply & installation',
-  headline: ['Rockwool insulation,', 'supplied and fitted', 'across Nigeria'],
   lede: 'TerryRock holds rockwool blanket, slab board and pipe sections at premises in Lagos and Abuja, and fits them to chilled water lines, ductwork, generator houses and boiler chimneys. One company for the material and for the crew that installs it.',
   cta: { label: 'Request a rockwool quote', href: '/contact' },
+  /* The hero is one word, set as large as the card allows, with a cut-out roll
+     of blanket standing in the gap between its two halves. The word is the
+     search term and the object is the product, and a reader who arrives from a
+     search result sees both before reading a line of copy.
+
+     Everything else in the card is annotation: a column of stock words running
+     up the left edge, and short notes dropped around the type. None of it is
+     load bearing — it is all repeated properly further down the page — so all
+     of it is hidden from assistive tech rather than read out as fragments. */
   hero: {
-    image: hero,
-    alt: 'Rockwool pipe sections stacked in the TerryRock store, the stone wool fibre visible in the bore',
+    image: roll,
+    alt: 'A roll of rockwool blanket',
+    /* Split so the roll can stand between the halves; read together they are
+       the page's subject and its heading. */
+    words: ['Rock', 'wool'],
+    /* The year the company started, set as a reference mark. */
+    marker: '[09]',
+    column: [
+      'Blanket',
+      'Slab',
+      'Board',
+      'Pipe section',
+      'Acoustic',
+      'Thermal',
+      'Cladding',
+      'Lagos',
+      'Abuja',
+      'Supply',
+      'Install',
+    ],
+    notes: [
+      ['Blanket, slab', 'and pipe section'],
+      ['Held in stock'],
+      ['Lagos', '& Abuja'],
+      ['Supplied,', 'and fitted'],
+      ['It does not burn'],
+      ['Since 2009'],
+    ],
   },
 
   stats: [
@@ -57,7 +92,7 @@ export const rockwoolPage = {
       },
       {
         label: 'Rockwool pipe section',
-        image: hero,
+        image: pipeStack,
         alt: 'Preformed rockwool pipe sections stacked on a pallet',
         body: 'Preformed split sections sized to the pipe, so a run is closed inside a shell rather than wrapped in one. This is what goes onto chilled water and heating lines before the cladding does.',
       },

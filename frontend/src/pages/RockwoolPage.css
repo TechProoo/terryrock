@@ -17,99 +17,233 @@
   padding-top: clamp(84px, 9vw, 118px);
 }
 
-/* -- Hero ------------------------------------------------------------------ */
+/* -- Hero -----------------------------------------------------------------
 
-.rw__hero {
+   A light card in a dark page, and the only one on the site built around a
+   single word. "Rockwool" is set as large as the card allows and split down
+   the middle so a cut-out roll of blanket can stand in the gap: the search
+   term and the product, in one read, before any copy.
+
+   Three layers of annotation sit around it — a column of stock words running
+   up the left edge and clipped by it, short notes dropped in the corners, and
+   the year set as a reference mark. All of it is decoration, all of it is
+   repeated properly further down the page, and all of it is hidden from
+   assistive tech rather than read out as fragments.
+   ------------------------------------------------------------------------- */
+
+.rwh {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  border-radius: 22px;
-  aspect-ratio: 2.6 / 1;
-  display: flex;
-  align-items: flex-end;
-  background: #141416;
-}
-
-.rw__heroImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* The photograph is portrait and the card is a letterbox, so the crop is
-     pulled to the middle of the stack where the bores read as rockwool rather
-     than to the pallet under it. */
-  object-position: 50% 42%;
-  filter: saturate(1.02) contrast(1.08) brightness(0.72);
-}
-
-.rw__heroVeil {
-  position: absolute;
-  inset: 0;
+  display: grid;
+  place-items: center;
+  min-height: clamp(480px, 72vh, 700px);
+  border-radius: clamp(22px, 2.4vw, 34px);
   background:
-    linear-gradient(
-      to right,
-      rgba(8, 8, 9, 0.94) 0%,
-      rgba(8, 8, 9, 0.7) 26%,
-      rgba(8, 8, 9, 0.24) 48%,
-      rgba(8, 8, 9, 0) 68%
-    ),
-    linear-gradient(to top, rgba(8, 8, 9, 0.62) 0%, rgba(8, 8, 9, 0) 46%);
+    radial-gradient(120% 96% at 50% 6%, #ffffff 0%, #fafbfc 44%, #f1f2f3 100%),
+    var(--paper);
+  color: var(--text-on-light);
 }
 
-.rw__heroCopy {
+/* -- The stock column ------------------------------------------------------ */
+
+.rwh__column {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: clamp(110px, 17vw, 250px);
+  overflow: hidden;
+  /* Faded at both ends so the loop has no visible seam. */
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.rwh__columnTrack {
+  margin: 0;
+  padding: 0;
+  /* Pulled left so the words are cut by the card edge rather than sitting
+     tidily inside it — the list is meant to read as passing through. A
+     negative margin rather than padding, which cannot go below zero. */
+  margin-left: clamp(-16px, -1vw, -6px);
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(20, 23, 27, 0.09);
+  white-space: nowrap;
+  animation: rwh-column 34s linear infinite;
+}
+
+/* The track holds the list twice, so travelling exactly half its height lands
+   the second copy where the first began. */
+@keyframes rwh-column {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* -- The word -------------------------------------------------------------- */
+
+.rwh__title {
   position: relative;
   z-index: 2;
-  padding: 0 clamp(20px, 2.6vw, 38px) clamp(30px, 6.3vw, 90px);
-  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The gap is the roll's stage: wide enough that the object never crowds
+     either half of the word. */
+  gap: clamp(140px, 26vw, 380px);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(46px, 12.4vw, 164px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: #14171b;
+  white-space: nowrap;
 }
 
-.rw__eyebrow {
-  color: var(--sand);
+.rwh__word {
+  display: block;
+}
+
+.rwh__marker {
+  font-size: 0.2em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  vertical-align: super;
+  margin-left: 0.08em;
+  color: rgba(20, 23, 27, 0.45);
+}
+
+/* -- The roll -------------------------------------------------------------- */
+
+.rwh__roll {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  width: clamp(178px, 29vw, 400px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.rwh__roll img {
+  width: 100%;
+  height: auto;
+  /* A shadow on the cut-out rather than a box behind it, so the roll sits on
+     the paper instead of on a plate. */
+  filter: saturate(0.88) drop-shadow(0 34px 46px rgba(16, 18, 20, 0.28));
+  transform: rotate(-5deg);
+  animation: rwh-float 9s ease-in-out infinite;
+}
+
+@keyframes rwh-float {
+  0%,
+  100% {
+    transform: rotate(-5deg) translateY(-8px);
+  }
+  50% {
+    transform: rotate(-4deg) translateY(8px);
+  }
+}
+
+/* -- Scattered notes ------------------------------------------------------- */
+
+.rwh__note {
+  position: absolute;
+  z-index: 4;
+  margin: 0;
+  font-size: clamp(9.5px, 0.78vw, 11.5px);
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: 0.002em;
+  color: rgba(20, 23, 27, 0.6);
+  pointer-events: none;
+}
+
+.rwh__note span {
+  display: block;
+}
+
+.rwh__note--1 {
+  top: 15%;
+  left: 25%;
+}
+.rwh__note--2 {
+  top: 12%;
+  right: 11%;
+  text-align: right;
+}
+/* Below the word rather than beside it: at 41% this note landed on the "l"
+   of "wool", which no amount of opacity makes legible. */
+.rwh__note--3 {
+  top: 70%;
+  right: 8%;
+  text-align: right;
+}
+.rwh__note--4 {
+  top: 62%;
+  left: 20%;
+}
+.rwh__note--5 {
+  bottom: 14%;
+  left: 48%;
+}
+.rwh__note--6 {
+  bottom: 12%;
+  right: 15%;
+  text-align: right;
+}
+
+/* -- Foot ------------------------------------------------------------------ */
+
+.rwh__foot {
+  position: absolute;
+  z-index: 5;
+  left: clamp(18px, 2.6vw, 40px);
+  bottom: clamp(18px, 2.6vw, 38px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 1.5vw, 18px);
+}
+
+.rwh__eyebrow {
+  color: rgba(20, 23, 27, 0.5);
   font-size: 9.5px;
   letter-spacing: 0.18em;
 }
 
-.rw__title {
-  margin-top: clamp(10px, 1.3vw, 16px);
-  font-family: var(--font-display);
-  font-size: clamp(25px, 3vw, 44px);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: var(--text-on-dark);
-}
-
-/* Outer span clips, inner span is what GSAP slides. */
-.rw__title > span {
-  display: block;
-  overflow: hidden;
-}
-
-.rw__title > span > span {
-  display: block;
-}
-
-.rw__lede {
-  margin-top: clamp(16px, 1.8vw, 26px);
-  max-width: 56ch;
-  font-size: clamp(10.5px, 0.85vw, 12.5px);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.74);
-  text-wrap: pretty;
-}
-
-.rw__cta {
-  margin-top: clamp(24px, 2.8vw, 40px);
+.rwh__cta {
   padding: clamp(11px, 1.05vw, 15px) clamp(18px, 1.8vw, 26px);
   border-radius: 16px;
   font-size: clamp(12px, 1vw, 14px);
 }
 
+/* The lede sits below the card rather than inside it: the card is a picture,
+   and a paragraph laid over it would be read as part of the composition
+   instead of as the sentence that explains the page. */
+.rwh__lede {
+  margin: clamp(18px, 2.2vw, 28px) 0 0;
+  max-width: 74ch;
+  font-size: clamp(11px, 0.92vw, 13.5px);
+  line-height: 1.62;
+  color: var(--text-on-dark-dim);
+  text-wrap: pretty;
+}
+
 /* -- Stat strip ------------------------------------------------------------ */
 
 .rw__stats {
-  margin-top: clamp(12px, 1.6vw, 20px);
+  margin-top: clamp(18px, 2.4vw, 30px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(10px, 1.2vw, 16px);
@@ -436,13 +570,73 @@
 }
 
 @media (max-width: 860px) {
-  .rw__hero {
-    aspect-ratio: auto;
+  .rw__stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Four of the six notes are the first thing to go: at this width they land
+     on the word or on the roll rather than around them. */
+  .rwh__note--2,
+  .rwh__note--3,
+  .rwh__note--4,
+  .rwh__note--6 {
+    display: none;
+  }
+
+  .rwh__note--1 {
+    top: 12%;
+    left: auto;
+    right: 8%;
+    text-align: right;
+  }
+
+  .rwh__note--5 {
+    left: auto;
+    right: 8%;
+    bottom: 13%;
+    text-align: right;
+  }
+}
+
+@media (max-width: 620px) {
+  .rwh {
     min-height: 440px;
   }
 
-  .rw__stats {
-    grid-template-columns: minmax(0, 1fr);
+  /* The word stacks, and the roll moves out from between its halves to sit
+     behind them — there is no width left for a gap wide enough to hold it. */
+  .rwh__title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-inline: clamp(18px, 6vw, 34px);
+    width: 100%;
+  }
+
+  .rwh__roll {
+    top: 46%;
+    left: auto;
+    right: -4%;
+    width: 62%;
+    transform: translateY(-50%);
+  }
+
+  .rwh__column {
+    width: 84px;
+    opacity: 0.55;
+  }
+
+  .rwh__note--1 {
+    top: 8%;
+  }
+}
+
+/* The column loop and the roll's drift are both ambient — neither carries
+   meaning, so both stop when motion is not wanted. */
+@media (prefers-reduced-motion: reduce) {
+  .rwh__columnTrack,
+  .rwh__roll img {
+    animation: none;
   }
 }
 

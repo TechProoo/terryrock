@@ -12,7 +12,7 @@ import './RockwoolPage.css';
 gsap.registerPlugin(useGSAP);
 
 export default function RockwoolPage() {
-  const { eyebrow, headline, lede, cta, hero, stats, forms, material, uses, coverage, faq, closer } =
+  const { eyebrow, lede, cta, hero, stats, forms, material, uses, coverage, faq, closer } =
     rockwoolPage;
   const heroRef = useRef<HTMLElement>(null);
 
@@ -29,11 +29,15 @@ export default function RockwoolPage() {
       gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
         gsap
           .timeline({ defaults: { ease: 'expo.out' } })
-          .from('.rw__title span span', { yPercent: 108, duration: 1.1, stagger: 0.09 })
-          .from('.rw__eyebrow', { opacity: 0, duration: 0.6 }, 0.15)
-          .from('.rw__lede', { opacity: 0, y: 16, duration: 0.8 }, 0.45)
-          .from('.rw__cta', { opacity: 0, y: 16, duration: 0.8 }, 0.58)
-          .from('.rw__stat', { opacity: 0, y: 20, duration: 0.8, stagger: 0.08 }, 0.62);
+          .from('.rwh__word', { yPercent: 26, opacity: 0, duration: 1.15, stagger: 0.1 })
+          /* The roll arrives after the word it stands inside, so the gap reads
+             as a gap first and is filled second. */
+          .from('.rwh__roll', { opacity: 0, y: 34, scale: 0.94, duration: 1.1 }, 0.34)
+          .from('.rwh__note', { opacity: 0, duration: 0.7, stagger: 0.05 }, 0.62)
+          .from('.rwh__eyebrow', { opacity: 0, duration: 0.6 }, 0.3)
+          .from('.rwh__lede', { opacity: 0, y: 16, duration: 0.8 }, 0.5)
+          .from('.rwh__cta', { opacity: 0, y: 16, duration: 0.8 }, 0.56)
+          .from('.rw__stat', { opacity: 0, y: 20, duration: 0.8, stagger: 0.08 }, 0.66);
       });
     },
     { scope: heroRef },
@@ -44,27 +48,48 @@ export default function RockwoolPage() {
       <Header />
 
       <main className="rw__main">
-        <section className="rw__heroWrap shell" ref={heroRef}>
-          <div className="rw__hero">
-            <img className="rw__heroImg" src={hero.image} alt={hero.alt} />
-            <div className="rw__heroVeil" aria-hidden="true" />
-
-            <div className="rw__heroCopy">
-              <p className="micro rw__eyebrow">{eyebrow}</p>
-              {/* Outer span clips so the inner one can slide up from below. */}
-              <h1 className="rw__title">
-                {headline.map((line) => (
-                  <span key={line}>
-                    <span>{line}</span>
-                  </span>
+        <section className="rwh__wrap shell" ref={heroRef}>
+          <div className="rwh">
+            {/* The stock list running up the left edge, clipped by the card.
+                Doubled so the loop has a second copy to hand off to. */}
+            <div className="rwh__column" aria-hidden="true">
+              <ul className="rwh__columnTrack">
+                {[...hero.column, ...hero.column].map((word, i) => (
+                  <li key={`${word}-${i}`}>{word}</li>
                 ))}
-              </h1>
-              <p className="rw__lede">{lede}</p>
-              <Link className="pill pill--solid rw__cta" to={cta.href}>
+              </ul>
+            </div>
+
+            {hero.notes.map((note, i) => (
+              <p className={`rwh__note rwh__note--${i + 1}`} key={note.join(' ')} aria-hidden="true">
+                {note.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </p>
+            ))}
+
+            {/* One word, split, with the roll standing in the gap. */}
+            <h1 className="rwh__title">
+              <span className="rwh__word">{hero.words[0]}</span>
+              <span className="rwh__word">
+                {hero.words[1]}
+                <sup className="rwh__marker">{hero.marker}</sup>
+              </span>
+            </h1>
+
+            <div className="rwh__roll">
+              <img src={hero.image} alt={hero.alt} />
+            </div>
+
+            <div className="rwh__foot">
+              <p className="micro rwh__eyebrow">{eyebrow}</p>
+              <Link className="pill pill--ink rwh__cta" to={cta.href}>
                 {cta.label}
               </Link>
             </div>
           </div>
+
+          <p className="rwh__lede">{lede}</p>
 
           <div className="rw__stats">
             {stats.map((stat) => (
