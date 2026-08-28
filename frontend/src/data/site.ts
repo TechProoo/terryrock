@@ -573,12 +573,18 @@ export const contact = {
   /* One published line, carried in international form so it dials from outside
      Nigeria as well as in. Everything that shows a number reads this list. */
   phones: ["+234 813 411 5189"],
-  /* One published address, on the company's own domain. The yahoo and gmail
-     lines that used to sit beside it were a second and third door onto the
-     same company, and three addresses on a contact page asks the reader to
-     guess which one is read. Everything that shows an email reads this list,
-     so the one entry here is the one the whole site offers. */
-  emails: ["info@terryrockltd.com"],
+  /* Order matters: the first entry is the address the site acts on. The
+     enquiry button, the menu chip and the prefilled mailto on the contact page
+     all open `emails[0]`, while the lists on the contact section and the
+     contact page print every line. So the general company address leads, and
+     the named and gmail boxes follow it as alternatives a reader can pick
+     rather than as three doors they have to choose between. Everything that
+     shows an email reads this list. */
+  emails: [
+    "info@terryrockltd.com",
+    "terryrock_technical@terryrockltd.com",
+    "terryrock24@gmail.com",
+  ],
   /* Only accounts that actually answer. The handles the site used to carry
      were dead — an old Instagram at terry.technical07, a Facebook page that
      returned "this content isn't available", and a Skype link with nothing to
