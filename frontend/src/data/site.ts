@@ -585,7 +585,7 @@ export const contact = {
      shows an email reads this list. */
   emails: [
     "info@terryrockltd.com",
-    "terryrock_technical@terryrockltd.com",
+    "terry@terryrockltd.com",
     "terryrock24@gmail.com",
     "terry_technical@yahoo.com",
   ],
