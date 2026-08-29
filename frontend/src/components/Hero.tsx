@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import { IconEye, IconInstagram, IconPin, IconTikTok } from './Icons';
+import { IconEye, IconFacebook, IconInstagram, IconPin, IconTikTok } from './Icons';
 import { contact, hero } from '../data/site';
 import './Hero.css';
 
@@ -18,6 +18,7 @@ const toneClass: Record<string, string> = {
 const socialIcons: Record<string, typeof IconTikTok | undefined> = {
   Instagram: IconInstagram,
   TikTok: IconTikTok,
+  Facebook: IconFacebook,
 };
 
 const socials = contact.socials.flatMap((social) => {

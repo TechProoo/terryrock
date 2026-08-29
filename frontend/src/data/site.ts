@@ -590,10 +590,10 @@ export const contact = {
     "terry_technical@yahoo.com",
   ],
   /* Only accounts that actually answer. The handles the site used to carry
-     were dead — an old Instagram at terry.technical07, a Facebook page that
-     returned "this content isn't available", and a Skype link with nothing to
-     open since Microsoft retired consumer Skype in May 2025 — and a dead
-     handle reads as a company that stopped answering. These are the live
+     were dead — an old Instagram at terry.technical07, an old Facebook page
+     that returned "this content isn't available", and a Skype link with
+     nothing to open since Microsoft retired consumer Skype in May 2025 — and a
+     dead handle reads as a company that stopped answering. These are the live
      ones. Everything that lists a social account reads this array, so an entry
      changed here changes on the hero rail, the contact section, the menu and
      the contact page at once; keep `sameAs` in seo.ts in step with it. */
@@ -609,6 +609,15 @@ export const contact = {
       /* The share sheet appends is_from_webapp and sender_device; they are
          tracking for the click that copied the link, not part of the address. */
       href: "https://www.tiktok.com/@terryrock128",
+    },
+    {
+      label: "Facebook",
+      handle: "Terry Rock",
+      /* The page carries no vanity name yet, so its numeric id is the address.
+         The share link this came from — facebook.com/share/v/18vhwqhAq3 —
+         opens one video off the page rather than the page itself, and a rail
+         that says "Facebook" should land on the account. */
+      href: "https://www.facebook.com/61588099523283",
     },
   ],
 };

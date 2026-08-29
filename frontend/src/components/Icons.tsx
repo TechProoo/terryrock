@@ -71,6 +71,18 @@ export function IconTikTok({ size = 22, className }: IconProps) {
   );
 }
 
+/* The f as a single stroke: the stem rises out of the foot and turns over at
+   the top, with the bar crossing it. Drawn bare, like the note above it,
+   rather than inside a frame — the glyph is the mark people read. */
+export function IconFacebook({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M13.6 20V6.4c0-1.6 1.1-2.8 2.7-2.8h1.5" />
+      <path d="M10.3 10.5h6.4" />
+    </svg>
+  );
+}
+
 /* A roster mark, not a portrait: head over shoulders on the same 24 grid as
    the rest. The shoulders are an arc rather than a closed shape so it reads at
    the weight the set shares instead of filling in to a blob at small sizes. */

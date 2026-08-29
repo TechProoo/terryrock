@@ -246,6 +246,7 @@ export function structuredData(seo: ResolvedSeo): Record<string, unknown>[] {
       sameAs: [
         "https://www.instagram.com/terryrock_technical/",
         "https://www.tiktok.com/@terryrock128",
+        "https://www.facebook.com/61588099523283",
       ],
       address: [
         {
