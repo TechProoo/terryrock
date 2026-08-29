@@ -612,7 +612,10 @@ export const contact = {
     },
     {
       label: "Facebook",
-      handle: "Terry Rock",
+      /* Written as the company writes itself, one word, so the rails read the
+         same on every platform. Facebook itself still carries the page as
+         "Terry Rock"; renaming it there would close the gap. */
+      handle: "TerryRock",
       /* The page carries no vanity name yet, so its numeric id is the address.
          The share link this came from — facebook.com/share/v/18vhwqhAq3 —
          opens one video off the page rather than the page itself, and a rail
